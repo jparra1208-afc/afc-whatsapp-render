@@ -1,0 +1,2372 @@
+<html lang='es'><head><meta http-equiv='Content-Type' content='application/vnd.ms-excel;charset=UTF-8'/><style type='text/css'>body {font-family: Arial;}.Titulo {text-align: center; border-radius: 52px 52px 52px 52px; border: 2px solid #C5B786; background-color: #E0E0E0; font-family: Arial; font-weight: bold; margin: 7px;}.EncabezadoTabla {background-color: #E0E0E0; font-size: 12px; text-align: center; font-weight: bold; border-style: solid; border-width: 1px 1px 1px 1px; padding: 2px 2px 2px 2px; border-color:#E0E0E0; text-color:#808080;}.RegistroTabla {font-size: 12px; border-style: solid; border-width: 1px 1px 1px 1px; padding: 2px 2px 2px 2px; border-color:#E0E0E0; text-color:#808080;}.TotalesTabla {font-size: 12px; padding: 2px 2px 2px 2px; background-color: white; text-color:#808080; font-weight: bold;border-color:#FFFFFF}</style></head><body><table style='border=2px;border-color:#FFFFFF';><tr bgcolor='#FFFFFF'><tr>
+<td style="background-color: #E0E0E0; font-size: 12px; text-align: center; font-weight: bold; border-style: solid; border-width: 1px 1px 1px 1px; padding: 2px 2px 2px 2px; border-color:#E0E0E0; text-color:#808080;min-width:100px;">Factura<br></td>
+<td style="background-color: #E0E0E0; font-size: 12px; text-align: center; font-weight: bold; border-style: solid; border-width: 1px 1px 1px 1px; padding: 2px 2px 2px 2px; border-color:#E0E0E0; text-color:#808080;min-width:100px;">Fecha Factura<br></td>
+<td style="background-color: #E0E0E0; font-size: 12px; text-align: center; font-weight: bold; border-style: solid; border-width: 1px 1px 1px 1px; padding: 2px 2px 2px 2px; border-color:#E0E0E0; text-color:#808080;min-width:100px;">Fecha de Salida<br></td>
+<td style="background-color: #E0E0E0; font-size: 12px; text-align: center; font-weight: bold; border-style: solid; border-width: 1px 1px 1px 1px; padding: 2px 2px 2px 2px; border-color:#E0E0E0; text-color:#808080;min-width:130px;">Fecha de Llegada<br></td>		
+<td style="background-color: #E0E0E0; font-size: 12px; text-align: center; font-weight: bold; border-style: solid; border-width: 1px 1px 1px 1px; padding: 2px 2px 2px 2px; border-color:#E0E0E0; text-color:#808080;min-width:100px;">Fecha Envío<br></td>
+<td style="background-color: #E0E0E0; font-size: 12px; text-align: center; font-weight: bold; border-style: solid; border-width: 1px 1px 1px 1px; padding: 2px 2px 2px 2px; border-color:#E0E0E0; text-color:#808080;min-width:100px;">No Cliente<br></td>
+<td style="background-color: #E0E0E0; font-size: 12px; text-align: center; font-weight: bold; border-style: solid; border-width: 1px 1px 1px 1px; padding: 2px 2px 2px 2px; border-color:#E0E0E0; text-color:#808080;min-width:300px;">Cliente<br></td>
+<td style="background-color: #E0E0E0; font-size: 12px; text-align: center; font-weight: bold; border-style: solid; border-width: 1px 1px 1px 1px; padding: 2px 2px 2px 2px; border-color:#E0E0E0; text-color:#808080;min-width:100px;">Subtotal<br></td>
+<td style="background-color: #E0E0E0; font-size: 12px; text-align: center; font-weight: bold; border-style: solid; border-width: 1px 1px 1px 1px; padding: 2px 2px 2px 2px; border-color:#E0E0E0; text-color:#808080;min-width:100px;">IVA<br></td>
+<td style="background-color: #E0E0E0; font-size: 12px; text-align: center; font-weight: bold; border-style: solid; border-width: 1px 1px 1px 1px; padding: 2px 2px 2px 2px; border-color:#E0E0E0; text-color:#808080;min-width:100px;">Retención<br></td>
+<td style="background-color: #E0E0E0; font-size: 12px; text-align: center; font-weight: bold; border-style: solid; border-width: 1px 1px 1px 1px; padding: 2px 2px 2px 2px; border-color:#E0E0E0; text-color:#808080;min-width:100px;">Total<br></td>
+<td style="background-color: #E0E0E0; font-size: 12px; text-align: center; font-weight: bold; border-style: solid; border-width: 1px 1px 1px 1px; padding: 2px 2px 2px 2px; border-color:#E0E0E0; text-color:#808080;min-width:100px;">Moneda<br></td>
+<td style="background-color: #E0E0E0; font-size: 12px; text-align: center; font-weight: bold; border-style: solid; border-width: 1px 1px 1px 1px; padding: 2px 2px 2px 2px; border-color:#E0E0E0; text-color:#808080;min-width:130px;">Estatus De Factura<br></td>
+<td style="background-color: #E0E0E0; font-size: 12px; text-align: center; font-weight: bold; border-style: solid; border-width: 1px 1px 1px 1px; padding: 2px 2px 2px 2px; border-color:#E0E0E0; text-color:#808080;min-width:200px;">Fecha Programada de pago<br></td>
+<td style="background-color: #E0E0E0; font-size: 12px; text-align: center; font-weight: bold; border-style: solid; border-width: 1px 1px 1px 1px; padding: 2px 2px 2px 2px; border-color:#E0E0E0; text-color:#808080;min-width:100px;">Fecha De Pago<br></td><td style="background-color: #E0E0E0; font-size: 12px; text-align: center; font-weight: bold; border-style: solid; border-width: 1px 1px 1px 1px; padding: 2px 2px 2px 2px; border-color:#E0E0E0; text-color:#808080;min-width:200px;">Fecha de recepción cliente<br></td>
+<td style="background-color: #E0E0E0; font-size: 12px; text-align: center; font-weight: bold; border-style: solid; border-width: 1px 1px 1px 1px; padding: 2px 2px 2px 2px; border-color:#E0E0E0; text-color:#808080;min-width:100px;">Importe pagado<br></td>
+<td style="background-color: #E0E0E0; font-size: 12px; text-align: center; font-weight: bold; border-style: solid; border-width: 1px 1px 1px 1px; padding: 2px 2px 2px 2px; border-color:#E0E0E0; text-color:#808080;min-width:130px;">Cuenta Bancaria<br></td>
+<td style="background-color: #E0E0E0; font-size: 12px; text-align: center; font-weight: bold; border-style: solid; border-width: 1px 1px 1px 1px; padding: 2px 2px 2px 2px; border-color:#E0E0E0; text-color:#808080;min-width:100px;">Elaboró<br></td>
+<td style="background-color: #E0E0E0; font-size: 12px; text-align: center; font-weight: bold; border-style: solid; border-width: 1px 1px 1px 1px; padding: 2px 2px 2px 2px; border-color:#E0E0E0; text-color:#808080;min-width:150px;">Fecha de Vencimiento<br></td>		
+<td style="background-color: #E0E0E0; font-size: 12px; text-align: center; font-weight: bold; border-style: solid; border-width: 1px 1px 1px 1px; padding: 2px 2px 2px 2px; border-color:#E0E0E0; text-color:#808080;min-width:200px;">Estatus de Días de Crédito<br></td>
+<td style="background-color: #E0E0E0; font-size: 12px; text-align: center; font-weight: bold; border-style: solid; border-width: 1px 1px 1px 1px; padding: 2px 2px 2px 2px; border-color:#E0E0E0; text-color:#808080;min-width:100px;">Días Vencidos<br></td>
+<td style="background-color: #E0E0E0; font-size: 12px; text-align: center; font-weight: bold; border-style: solid; border-width: 1px 1px 1px 1px; padding: 2px 2px 2px 2px; border-color:#E0E0E0; text-color:#808080;min-width:250px;">Estado De Días De Crédito De Cliente<br></td>
+<td style="background-color: #E0E0E0; font-size: 12px; text-align: center; font-weight: bold; border-style: solid; border-width: 1px 1px 1px 1px; padding: 2px 2px 2px 2px; border-color:#E0E0E0; text-color:#808080;min-width:100px;">Folio Viaje<br></td>
+<td style="background-color: #E0E0E0; font-size: 12px; text-align: center; font-weight: bold; border-style: solid; border-width: 1px 1px 1px 1px; padding: 2px 2px 2px 2px; border-color:#E0E0E0; text-color:#808080;min-width:150px;">Folio Carta porte<br></td>
+<td style="background-color: #E0E0E0; font-size: 12px; text-align: center; font-weight: bold; border-style: solid; border-width: 1px 1px 1px 1px; padding: 2px 2px 2px 2px; border-color:#E0E0E0; text-color:#808080;min-width:200px;">Origen Ruta<br></td>
+<td style="background-color: #E0E0E0; font-size: 12px; text-align: center; font-weight: bold; border-style: solid; border-width: 1px 1px 1px 1px; padding: 2px 2px 2px 2px; border-color:#E0E0E0; text-color:#808080;min-width:200px;">Destino Ruta<br></td>
+<td style="background-color: #E0E0E0; font-size: 12px; text-align: center; font-weight: bold; border-style: solid; border-width: 1px 1px 1px 1px; padding: 2px 2px 2px 2px; border-color:#E0E0E0; text-color:#808080;min-width:100px;">No Ruta<br></td>
+<td style="background-color: #E0E0E0; font-size: 12px; text-align: center; font-weight: bold; border-style: solid; border-width: 1px 1px 1px 1px; padding: 2px 2px 2px 2px; border-color:#E0E0E0; text-color:#808080;min-width:300px;">Descripción Ruta<br></td>
+<td style="background-color: #E0E0E0; font-size: 12px; text-align: center; font-weight: bold; border-style: solid; border-width: 1px 1px 1px 1px; padding: 2px 2px 2px 2px; border-color:#E0E0E0; text-color:#808080;min-width:100px;">No Viaje Cliente<br></td>
+<td style="background-color: #E0E0E0; font-size: 12px; text-align: center; font-weight: bold; border-style: solid; border-width: 1px 1px 1px 1px; padding: 2px 2px 2px 2px; border-color:#E0E0E0; text-color:#808080;min-width:100px;">Tipo De Unidad<br></td>
+<td style="background-color: #E0E0E0; font-size: 12px; text-align: center; font-weight: bold; border-style: solid; border-width: 1px 1px 1px 1px; padding: 2px 2px 2px 2px; border-color:#E0E0E0; text-color:#808080;min-width:100px;">Unidad<br></td>
+<td style="background-color: #E0E0E0; font-size: 12px; text-align: center; font-weight: bold; border-style: solid; border-width: 1px 1px 1px 1px; padding: 2px 2px 2px 2px; border-color:#E0E0E0; text-color:#808080;min-width:100px;">Remolque<br></td>					<td style="background-color: #E0E0E0; font-size: 12px; text-align: center; font-weight: bold; border-style: solid; border-width: 1px 1px 1px 1px; padding: 2px 2px 2px 2px; border-color:#E0E0E0; text-color:#808080;min-width:100px;">Numero Operador<br></td>
+<td style="background-color: #E0E0E0; font-size: 12px; text-align: center; font-weight: bold; border-style: solid; border-width: 1px 1px 1px 1px; padding: 2px 2px 2px 2px; border-color:#E0E0E0; text-color:#808080;min-width:300px;">Chofer<br></td>
+<td style="background-color: #E0E0E0; font-size: 12px; text-align: center; font-weight: bold; border-style: solid; border-width: 1px 1px 1px 1px; padding: 2px 2px 2px 2px; border-color:#E0E0E0; text-color:#808080;min-width:500px;">Observaciones Facturas<br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">224606-TC<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">97501<br></td>
+<td style="text-align: left;" class="RegistroTabla">INDUSTRIAS D K<br></td>
+<td style="text-align: right;" class="RegistroTabla">$28,000.00<br></td><td style="text-align: right;" class="RegistroTabla">$4,480.00<br></td><td style="text-align: center;" class="RegistroTabla">$1,120.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">$31,360.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">PESOS<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">MAURO<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">79129<br></td>
+<td style="text-align: left;" class="RegistroTabla">67396<br></td>
+<td style="text-align: left;" class="RegistroTabla">ECATEPEC, MEXICO<br></td>
+<td style="text-align: left;" class="RegistroTabla">GUADALUPE, NUEVO LEON&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">3277<br></td>
+<td style="text-align: left;" class="RegistroTabla">COLCHONES AMERICA/ ELIZONDO/ ECATEPEC, MEXICO / GUADALUPE, NUEVO LEON<br></td>
+<td style="text-align: left;" class="RegistroTabla">OE1640<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 235<br></td>
+<td style="text-align: left;" class="RegistroTabla">590<br></td>
+<td style="text-align: left;" class="RegistroTabla">639<br></td>
+<td style="text-align: left;" class="RegistroTabla"> SOLANO ROA RUBEN<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">101098-TJ<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">128767<br></td>
+<td style="text-align: left;" class="RegistroTabla">THERM-O-DISC, INC.<br></td>
+<td style="text-align: right;" class="RegistroTabla">$220.00<br></td><td style="text-align: right;" class="RegistroTabla">$0.00<br></td><td style="text-align: center;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">$220.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">DÓLARES<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">JORGE TELLEZ<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">31573<br></td>
+<td style="text-align: left;" class="RegistroTabla">19114<br></td>
+<td style="text-align: left;" class="RegistroTabla">JUAREZ, CHIHUAHUA<br></td>
+<td style="text-align: left;" class="RegistroTabla">EL PASO, TX&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">3190<br></td>
+<td style="text-align: left;" class="RegistroTabla">CONTROLES DE TEMP - TERMODISC,, JUAREZ, CHIH / EL PASO, TX<br></td>
+<td style="text-align: left;" class="RegistroTabla">NBJ26037<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 141<br></td>
+<td style="text-align: left;" class="RegistroTabla">5347<br></td>
+<td style="text-align: left;" class="RegistroTabla">223<br></td>
+<td style="text-align: left;" class="RegistroTabla"> SALAZAR LOPEZ GILBERTO<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">101099-TJ<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">84501<br></td>
+<td style="text-align: left;" class="RegistroTabla">WESTROCK CP LLC            EL PASO 4375<br></td>
+<td style="text-align: right;" class="RegistroTabla">$96.44<br></td><td style="text-align: right;" class="RegistroTabla">$15.43<br></td><td style="text-align: center;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">$111.87<br></td>
+<td style="text-align: left;" class="RegistroTabla">DÓLARES<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">JORGE TELLEZ<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">31574<br></td>
+<td style="text-align: left;" class="RegistroTabla">12395<br></td>
+<td style="text-align: left;" class="RegistroTabla">CIUDAD JUAREZ CHIHUAHUA<br></td>
+<td style="text-align: left;" class="RegistroTabla">CIUDAD JUAREZ CHIHUAHUA&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">146<br></td>
+<td style="text-align: left;" class="RegistroTabla">WR/ LOCAL CARDINAL/ CIUDAD JUAREZ- CIUDAD JUAREZ<br></td>
+<td style="text-align: left;" class="RegistroTabla">437502657759<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 171<br></td>
+<td style="text-align: left;" class="RegistroTabla">515<br></td>
+<td style="text-align: left;" class="RegistroTabla">559<br></td>
+<td style="text-align: left;" class="RegistroTabla"> BRIONES CHAVIRA ARNOLDO<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">224607-TC<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">128767<br></td>
+<td style="text-align: left;" class="RegistroTabla">THERM-O-DISC, INC.<br></td>
+<td style="text-align: right;" class="RegistroTabla">$919.00<br></td><td style="text-align: right;" class="RegistroTabla">$0.00<br></td><td style="text-align: center;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">$919.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">DÓLARES<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">YESICA BEZANILLA<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">79130<br></td>
+<td style="text-align: left;" class="RegistroTabla">67397<br></td>
+<td style="text-align: left;" class="RegistroTabla">DELICIAS, CHIHUAHUA<br></td>
+<td style="text-align: left;" class="RegistroTabla">EL PASO, TX&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">3194<br></td>
+<td style="text-align: left;" class="RegistroTabla">DELICIAS, CHIHUAHUA / EL PASO, TX<br></td>
+<td style="text-align: left;" class="RegistroTabla">NBD26036<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 294<br></td>
+<td style="text-align: left;" class="RegistroTabla">745<br></td>
+<td style="text-align: left;" class="RegistroTabla">433<br></td>
+<td style="text-align: left;" class="RegistroTabla"> ARZOLA VARELA EDUARDO<br></td>
+<td style="text-align: left;" class="RegistroTabla">FACTURAS: PT026111
+ENTRY: SCS57221132
+SELLO: 3371980
+CAJA 745<br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">101100-TJ<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla">16/05/2026<br></td>
+<td style="text-align: left;" class="RegistroTabla">16/05/2026<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">84501<br></td>
+<td style="text-align: left;" class="RegistroTabla">WESTROCK CP LLC            EL PASO 4375<br></td>
+<td style="text-align: right;" class="RegistroTabla">$222.57<br></td><td style="text-align: right;" class="RegistroTabla">$0.00<br></td><td style="text-align: center;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">$222.57<br></td>
+<td style="text-align: left;" class="RegistroTabla">DÓLARES<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">JORGE TELLEZ<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">31575<br></td>
+<td style="text-align: left;" class="RegistroTabla">19115<br></td>
+<td style="text-align: left;" class="RegistroTabla">EL PASO, TX<br></td>
+<td style="text-align: left;" class="RegistroTabla">JUAREZ, CHIHUAHUA&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">6<br></td>
+<td style="text-align: left;" class="RegistroTabla">WR/ IMPORTACION AUTOFLETERA (ZARAGOZA) / EL PASO / CIUDAD JUAREZ<br></td>
+<td style="text-align: left;" class="RegistroTabla">437502657739<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 141<br></td>
+<td style="text-align: left;" class="RegistroTabla">5327<br></td>
+<td style="text-align: left;" class="RegistroTabla">223<br></td>
+<td style="text-align: left;" class="RegistroTabla"> SALAZAR LOPEZ GILBERTO<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">101101-TJ<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">84501<br></td>
+<td style="text-align: left;" class="RegistroTabla">WESTROCK CP LLC            EL PASO 4375<br></td>
+<td style="text-align: right;" class="RegistroTabla">$222.57<br></td><td style="text-align: right;" class="RegistroTabla">$0.00<br></td><td style="text-align: center;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">$222.57<br></td>
+<td style="text-align: left;" class="RegistroTabla">DÓLARES<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">JORGE TELLEZ<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">31576<br></td>
+<td style="text-align: left;" class="RegistroTabla">19116<br></td>
+<td style="text-align: left;" class="RegistroTabla">EL PASO, TX<br></td>
+<td style="text-align: left;" class="RegistroTabla">JUAREZ, CHIHUAHUA&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">6<br></td>
+<td style="text-align: left;" class="RegistroTabla">WR/ IMPORTACION AUTOFLETERA (ZARAGOZA) / EL PASO / CIUDAD JUAREZ<br></td>
+<td style="text-align: left;" class="RegistroTabla">437502657747<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 164<br></td>
+<td style="text-align: left;" class="RegistroTabla">5305<br></td>
+<td style="text-align: left;" class="RegistroTabla">578<br></td>
+<td style="text-align: left;" class="RegistroTabla"> ROCHA SALVA DAVID FERNANDO<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">224608-TC<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">97501<br></td>
+<td style="text-align: left;" class="RegistroTabla">INDUSTRIAS D K<br></td>
+<td style="text-align: right;" class="RegistroTabla">$28,000.00<br></td><td style="text-align: right;" class="RegistroTabla">$4,480.00<br></td><td style="text-align: center;" class="RegistroTabla">$1,120.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">$31,360.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">PESOS<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">YESICA BEZANILLA<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">79131<br></td>
+<td style="text-align: left;" class="RegistroTabla">67398<br></td>
+<td style="text-align: left;" class="RegistroTabla">ECATEPEC, MEXICO<br></td>
+<td style="text-align: left;" class="RegistroTabla">GUADALUPE, NUEVO LEON&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">3277<br></td>
+<td style="text-align: left;" class="RegistroTabla">COLCHONES AMERICA/ ELIZONDO/ ECATEPEC, MEXICO / GUADALUPE, NUEVO LEON<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 235<br></td>
+<td style="text-align: left;" class="RegistroTabla">590<br></td>
+<td style="text-align: left;" class="RegistroTabla">639<br></td>
+<td style="text-align: left;" class="RegistroTabla"> SOLANO ROA RUBEN<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">101102-TJ<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla">16/05/2026<br></td>
+<td style="text-align: left;" class="RegistroTabla">16/05/2026<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">128884<br></td>
+<td style="text-align: left;" class="RegistroTabla">COPELAND CORPORATE DE MEXICO<br></td>
+<td style="text-align: right;" class="RegistroTabla">$229.82<br></td><td style="text-align: right;" class="RegistroTabla">$36.77<br></td><td style="text-align: center;" class="RegistroTabla">$8.59<br></td>
+<td style="text-align: left;" class="RegistroTabla">$258.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">DÓLARES<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">JORGE TELLEZ<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">31577<br></td>
+<td style="text-align: left;" class="RegistroTabla">19117<br></td>
+<td style="text-align: left;" class="RegistroTabla">CIUDAD JUAREZ CHIHUAHUA<br></td>
+<td style="text-align: left;" class="RegistroTabla">EL PASO TEXAS&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">1541<br></td>
+<td style="text-align: left;" class="RegistroTabla">COPELAND DE MEXICO/ EXPORTACION COPELAND/ CIUDAD JUAREZ/ EL PASO TEXAS<br></td>
+<td style="text-align: left;" class="RegistroTabla">2015303754<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 164<br></td>
+<td style="text-align: left;" class="RegistroTabla">5323<br></td>
+<td style="text-align: left;" class="RegistroTabla">578<br></td>
+<td style="text-align: left;" class="RegistroTabla"> ROCHA SALVA DAVID FERNANDO<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">224609-TC<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">23113<br></td>
+<td style="text-align: left;" class="RegistroTabla">DESARROLLO LOGISTICO<br></td>
+<td style="text-align: right;" class="RegistroTabla">$88,000.00<br></td><td style="text-align: right;" class="RegistroTabla">$14,080.00<br></td><td style="text-align: center;" class="RegistroTabla">$3,520.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">$98,560.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">PESOS<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">YESICA BEZANILLA<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">79134<br></td>
+<td style="text-align: left;" class="RegistroTabla">67401<br></td>
+<td style="text-align: left;" class="RegistroTabla">TEZONTEPEC DE ALDAMA, HIDALGO<br></td>
+<td style="text-align: left;" class="RegistroTabla">MEXICALI, BAJA CALIFORNIA&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">3196<br></td>
+<td style="text-align: left;" class="RegistroTabla">DESARROLLO / JUMEX / TEZONTEPEC DE ALDAMA, HIDALGO / MEXICALI, BAJA CALIFORNIA<br></td>
+<td style="text-align: left;" class="RegistroTabla">260344376<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 290<br></td>
+<td style="text-align: left;" class="RegistroTabla">587<br></td>
+<td style="text-align: left;" class="RegistroTabla">458<br></td>
+<td style="text-align: left;" class="RegistroTabla"> MARQUEZ HERNANDEZ ALFREDO<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">224610-TC<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">101901<br></td>
+<td style="text-align: left;" class="RegistroTabla">DIESEL GLOBAL LOGISTICS, INC.<br></td>
+<td style="text-align: right;" class="RegistroTabla">$2,452.00<br></td><td style="text-align: right;" class="RegistroTabla">$392.32<br></td><td style="text-align: center;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">$2,844.32<br></td>
+<td style="text-align: left;" class="RegistroTabla">DÓLARES<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">YESICA BEZANILLA<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">79135<br></td>
+<td style="text-align: left;" class="RegistroTabla">67402<br></td>
+<td style="text-align: left;" class="RegistroTabla">LERMA<br></td>
+<td style="text-align: left;" class="RegistroTabla">CHIHUAHUA, CHIHUAHUA&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">130<br></td>
+<td style="text-align: left;" class="RegistroTabla">DIESEL GLOBAL/ BWI/ LERMA / CHIHUAHUA, CHIHUAHUA<br></td>
+<td style="text-align: left;" class="RegistroTabla">DGL1123699<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 265<br></td>
+<td style="text-align: left;" class="RegistroTabla">701<br></td>
+<td style="text-align: left;" class="RegistroTabla">20<br></td>
+<td style="text-align: left;" class="RegistroTabla"> MEDINA JAQUEZ JOSE LUIS<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">101103-TJ<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">84501<br></td>
+<td style="text-align: left;" class="RegistroTabla">WESTROCK CP LLC            EL PASO 4375<br></td>
+<td style="text-align: right;" class="RegistroTabla">$222.57<br></td><td style="text-align: right;" class="RegistroTabla">$0.00<br></td><td style="text-align: center;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">$222.57<br></td>
+<td style="text-align: left;" class="RegistroTabla">DÓLARES<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">JORGE TELLEZ<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">31578<br></td>
+<td style="text-align: left;" class="RegistroTabla">19118<br></td>
+<td style="text-align: left;" class="RegistroTabla">EL PASO, TX<br></td>
+<td style="text-align: left;" class="RegistroTabla">JUAREZ, CHIHUAHUA&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">6<br></td>
+<td style="text-align: left;" class="RegistroTabla">WR/ IMPORTACION AUTOFLETERA (ZARAGOZA) / EL PASO / CIUDAD JUAREZ<br></td>
+<td style="text-align: left;" class="RegistroTabla">437502657749<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 143<br></td>
+<td style="text-align: left;" class="RegistroTabla">5335<br></td>
+<td style="text-align: left;" class="RegistroTabla">338<br></td>
+<td style="text-align: left;" class="RegistroTabla"> ESCALANTE GONZALEZ OMAR<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">224611-TC<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla">11/05/2026<br></td>
+<td style="text-align: left;" class="RegistroTabla">12/05/2026<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">113301<br></td>
+<td style="text-align: left;" class="RegistroTabla">PAPELES Y CONVERSIONES DE MEXICO<br></td>
+<td style="text-align: right;" class="RegistroTabla">$12,400.00<br></td><td style="text-align: right;" class="RegistroTabla">$1,984.00<br></td><td style="text-align: center;" class="RegistroTabla">$496.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">$13,888.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">PESOS<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">10/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">YESICA BEZANILLA<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">10<br></td><td style="text-align: left;" class="RegistroTabla">78674<br></td>
+<td style="text-align: left;" class="RegistroTabla">67036<br></td>
+<td style="text-align: left;" class="RegistroTabla">JUAREZ, CHIHUAHUA<br></td>
+<td style="text-align: left;" class="RegistroTabla">CHIHUAHUA, CHIHUAHUA&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">792<br></td>
+<td style="text-align: left;" class="RegistroTabla">INGENIERIA DE EMPAQUE - JUAREZ, CHIHUAHUA / CHIHUAHUA, CHIHUAHUA<br></td>
+<td style="text-align: left;" class="RegistroTabla">CDJ44177<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 253<br></td>
+<td style="text-align: left;" class="RegistroTabla">613<br></td>
+<td style="text-align: left;" class="RegistroTabla">679<br></td>
+<td style="text-align: left;" class="RegistroTabla"> RODRIGUEZ ARMENDARIZ ALBERTO<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">224612-TC<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">128884<br></td>
+<td style="text-align: left;" class="RegistroTabla">COPELAND CORPORATE DE MEXICO<br></td>
+<td style="text-align: right;" class="RegistroTabla">$134.83<br></td><td style="text-align: right;" class="RegistroTabla">$21.57<br></td><td style="text-align: center;" class="RegistroTabla">$5.39<br></td>
+<td style="text-align: left;" class="RegistroTabla">$151.01<br></td>
+<td style="text-align: left;" class="RegistroTabla">DÓLARES<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">YESICA BEZANILLA<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">79138<br></td>
+<td style="text-align: left;" class="RegistroTabla">3600<br></td>
+<td style="text-align: left;" class="RegistroTabla">CHIHUAHUA, CHIHUAHUA<br></td>
+<td style="text-align: left;" class="RegistroTabla">CHIHUAHUA, CHIHUAHUA&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">1573<br></td>
+<td style="text-align: left;" class="RegistroTabla">COPELAND DE MEXICO/ LOCAL EPL - TERMOTEC/ CHIHUAHUA/ CHIHUAHUA<br></td>
+<td style="text-align: left;" class="RegistroTabla">2015300744<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 189<br></td>
+<td style="text-align: left;" class="RegistroTabla">US109<br></td>
+<td style="text-align: left;" class="RegistroTabla">504<br></td>
+<td style="text-align: left;" class="RegistroTabla"> GONZALEZ CARRILLO ALVARO<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">101104-TJ<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla">16/05/2026<br></td>
+<td style="text-align: left;" class="RegistroTabla">16/05/2026<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">84501<br></td>
+<td style="text-align: left;" class="RegistroTabla">WESTROCK CP LLC            EL PASO 4375<br></td>
+<td style="text-align: right;" class="RegistroTabla">$96.44<br></td><td style="text-align: right;" class="RegistroTabla">$15.43<br></td><td style="text-align: center;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">$111.87<br></td>
+<td style="text-align: left;" class="RegistroTabla">DÓLARES<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">JORGE TELLEZ<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">31579<br></td>
+<td style="text-align: left;" class="RegistroTabla">12396<br></td>
+<td style="text-align: left;" class="RegistroTabla">CIUDAD JUAREZ CHIHUAHUA<br></td>
+<td style="text-align: left;" class="RegistroTabla">CIUDAD JUAREZ CHIHUAHUA&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">1187<br></td>
+<td style="text-align: left;" class="RegistroTabla">WR/ LOCAL DETROIT AXLE/ CIUDAD JUAREZ/ CIUDAD JUAREZ<br></td>
+<td style="text-align: left;" class="RegistroTabla">437502657777<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 170<br></td>
+<td style="text-align: left;" class="RegistroTabla">5341<br></td>
+<td style="text-align: left;" class="RegistroTabla">356<br></td>
+<td style="text-align: left;" class="RegistroTabla"> RIVERA NUÑEZ JESUS MANUEL<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">101105-TJ<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">84501<br></td>
+<td style="text-align: left;" class="RegistroTabla">WESTROCK CP LLC            EL PASO 4375<br></td>
+<td style="text-align: right;" class="RegistroTabla">$96.44<br></td><td style="text-align: right;" class="RegistroTabla">$15.43<br></td><td style="text-align: center;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">$111.87<br></td>
+<td style="text-align: left;" class="RegistroTabla">DÓLARES<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">JORGE TELLEZ<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">31580<br></td>
+<td style="text-align: left;" class="RegistroTabla">12397<br></td>
+<td style="text-align: left;" class="RegistroTabla">CIUDAD JUAREZ CHIHUAHUA<br></td>
+<td style="text-align: left;" class="RegistroTabla">CIUDAD JUAREZ CHIHUAHUA&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">146<br></td>
+<td style="text-align: left;" class="RegistroTabla">WR/ LOCAL CARDINAL/ CIUDAD JUAREZ- CIUDAD JUAREZ<br></td>
+<td style="text-align: left;" class="RegistroTabla">437502657779<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 171<br></td>
+<td style="text-align: left;" class="RegistroTabla">1741<br></td>
+<td style="text-align: left;" class="RegistroTabla">559<br></td>
+<td style="text-align: left;" class="RegistroTabla"> BRIONES CHAVIRA ARNOLDO<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">101106-TJ<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla">16/05/2026<br></td>
+<td style="text-align: left;" class="RegistroTabla">16/05/2026<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">84501<br></td>
+<td style="text-align: left;" class="RegistroTabla">WESTROCK CP LLC            EL PASO 4375<br></td>
+<td style="text-align: right;" class="RegistroTabla">$222.57<br></td><td style="text-align: right;" class="RegistroTabla">$0.00<br></td><td style="text-align: center;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">$222.57<br></td>
+<td style="text-align: left;" class="RegistroTabla">DÓLARES<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">JORGE TELLEZ<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">31581<br></td>
+<td style="text-align: left;" class="RegistroTabla">19119<br></td>
+<td style="text-align: left;" class="RegistroTabla">EL PASO, TX<br></td>
+<td style="text-align: left;" class="RegistroTabla">JUAREZ, CHIHUAHUA&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">6<br></td>
+<td style="text-align: left;" class="RegistroTabla">WR/ IMPORTACION AUTOFLETERA (ZARAGOZA) / EL PASO / CIUDAD JUAREZ<br></td>
+<td style="text-align: left;" class="RegistroTabla">437502657770<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 172<br></td>
+<td style="text-align: left;" class="RegistroTabla">5333<br></td>
+<td style="text-align: left;" class="RegistroTabla">554<br></td>
+<td style="text-align: left;" class="RegistroTabla"> GARCIA CAMPOS JORGE<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">224613-TC<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">21601<br></td>
+<td style="text-align: left;" class="RegistroTabla">DISTRIBUCION INTERCERAMIC<br></td>
+<td style="text-align: right;" class="RegistroTabla">$33,900.00<br></td><td style="text-align: right;" class="RegistroTabla">$5,424.00<br></td><td style="text-align: center;" class="RegistroTabla">$1,356.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">$37,968.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">PESOS<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">YESICA BEZANILLA<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">79139<br></td>
+<td style="text-align: left;" class="RegistroTabla">67405<br></td>
+<td style="text-align: left;" class="RegistroTabla">CHIHUAHUA, CHIHUAHUA<br></td>
+<td style="text-align: left;" class="RegistroTabla">CIUDAD DE MEXICO&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">1732<br></td>
+<td style="text-align: left;" class="RegistroTabla">DIST INTERCERAMIC/ LA CANTERA/ CHIHUAHUA, CHIHUAHUA / CIUDAD DE MEXICO<br></td>
+<td style="text-align: left;" class="RegistroTabla">2906533 A Y B<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 180/ 260<br></td>
+<td style="text-align: left;" class="RegistroTabla">616<br></td>
+<td style="text-align: left;" class="RegistroTabla">648<numerooperador>702<br></numerooperador></td>
+<td style="text-align: left;" class="RegistroTabla"> GONZALEZ RAMOS JUAN MANUEL/ RAMOS MARES JULIO CESAR<br></td>
+<td style="text-align: left;" class="RegistroTabla">PISO 
+CAJA 616
+PLANTA 1 A Y B
+MERCANCIA ASEGURADA CON NO. PÓLIZA: 14 - 38031 DE HDI SEGUROS<br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">224614-TC<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla">22/05/2026<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">21601<br></td>
+<td style="text-align: left;" class="RegistroTabla">DISTRIBUCION INTERCERAMIC<br></td>
+<td style="text-align: right;" class="RegistroTabla">$33,900.00<br></td><td style="text-align: right;" class="RegistroTabla">$5,424.00<br></td><td style="text-align: center;" class="RegistroTabla">$1,356.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">$37,968.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">PESOS<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">YESICA BEZANILLA<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">79137<br></td>
+<td style="text-align: left;" class="RegistroTabla">67404<br></td>
+<td style="text-align: left;" class="RegistroTabla">CHIHUAHUA, CHIHUAHUA<br></td>
+<td style="text-align: left;" class="RegistroTabla">JILOTEPEC, MEXICO&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">214<br></td>
+<td style="text-align: left;" class="RegistroTabla">INTECERAMIC JILOTEPEC EJIDO COSCOMATE<br></td>
+<td style="text-align: left;" class="RegistroTabla">2906563<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 224/ 277<br></td>
+<td style="text-align: left;" class="RegistroTabla">609<br></td>
+<td style="text-align: left;" class="RegistroTabla">602<numerooperador>617<br></numerooperador></td>
+<td style="text-align: left;" class="RegistroTabla"> DELGADO SIQUEIROS AGUSTIN/ MIJARES RODRIGUEZ MIGUEL ANGEL<br></td>
+<td style="text-align: left;" class="RegistroTabla">PISO 
+CAJA 609
+PLANTA 1 Y 5
+MERCANCIA ASEGURADA CON NO. PÓLIZA: 14 - 38031 DE HDI SEGUROS<br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">224615-TC<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">21601<br></td>
+<td style="text-align: left;" class="RegistroTabla">DISTRIBUCION INTERCERAMIC<br></td>
+<td style="text-align: right;" class="RegistroTabla">$33,900.00<br></td><td style="text-align: right;" class="RegistroTabla">$5,424.00<br></td><td style="text-align: center;" class="RegistroTabla">$1,356.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">$37,968.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">PESOS<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">YESICA BEZANILLA<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">79133<br></td>
+<td style="text-align: left;" class="RegistroTabla">67400<br></td>
+<td style="text-align: left;" class="RegistroTabla">CHIHUAHUA, CHIHUAHUA<br></td>
+<td style="text-align: left;" class="RegistroTabla">CIUDAD DE MEXICO&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">1732<br></td>
+<td style="text-align: left;" class="RegistroTabla">DIST INTERCERAMIC/ LA CANTERA/ CHIHUAHUA, CHIHUAHUA / CIUDAD DE MEXICO<br></td>
+<td style="text-align: left;" class="RegistroTabla">2906758<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 193/ 247<br></td>
+<td style="text-align: left;" class="RegistroTabla">610<br></td>
+<td style="text-align: left;" class="RegistroTabla">243<numerooperador>638<br></numerooperador></td>
+<td style="text-align: left;" class="RegistroTabla"> QUEZADA CARO JUAN MANUEL/ RUIZ GONZALEZ HECTOR ROMAN<br></td>
+<td style="text-align: left;" class="RegistroTabla">PISO 
+CAJA 610
+PLANTA 5
+MERCANCIA ASEGURADA CON NO. PÓLIZA: 14 - 38031 DE HDI SEGUROS<br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">101107-TJ<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla">16/05/2026<br></td>
+<td style="text-align: left;" class="RegistroTabla">16/05/2026<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">128885<br></td>
+<td style="text-align: left;" class="RegistroTabla">COPELAND LP - EMERALD JV HOLDINGS LP<br></td>
+<td style="text-align: right;" class="RegistroTabla">$214.82<br></td><td style="text-align: right;" class="RegistroTabla">$0.00<br></td><td style="text-align: center;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">$214.82<br></td>
+<td style="text-align: left;" class="RegistroTabla">DÓLARES<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">JORGE TELLEZ<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">31582<br></td>
+<td style="text-align: left;" class="RegistroTabla">19120<br></td>
+<td style="text-align: left;" class="RegistroTabla">EL PASO TEXAS<br></td>
+<td style="text-align: left;" class="RegistroTabla">CIUDAD JUAREZ CHIHUAHUA&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">1540<br></td>
+<td style="text-align: left;" class="RegistroTabla">COPELAND USA/ IMPORTACION FRONTERA /COPELAND- TERMOCONTROLES/ EL PASO/ CIUDAD JUAREZ<br></td>
+<td style="text-align: left;" class="RegistroTabla">2015306425<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 146<br></td>
+<td style="text-align: left;" class="RegistroTabla">5336<br></td>
+<td style="text-align: left;" class="RegistroTabla">486<br></td>
+<td style="text-align: left;" class="RegistroTabla"> VARGAS SANCHEZ EMMANUEL<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">224616-TC<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">21601<br></td>
+<td style="text-align: left;" class="RegistroTabla">DISTRIBUCION INTERCERAMIC<br></td>
+<td style="text-align: right;" class="RegistroTabla">$33,900.00<br></td><td style="text-align: right;" class="RegistroTabla">$5,424.00<br></td><td style="text-align: center;" class="RegistroTabla">$1,356.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">$37,968.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">PESOS<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">YESICA BEZANILLA<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">79132<br></td>
+<td style="text-align: left;" class="RegistroTabla">67399<br></td>
+<td style="text-align: left;" class="RegistroTabla">CHIHUAHUA, CHIHUAHUA<br></td>
+<td style="text-align: left;" class="RegistroTabla">CIUDAD DE MEXICO&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">1732<br></td>
+<td style="text-align: left;" class="RegistroTabla">DIST INTERCERAMIC/ LA CANTERA/ CHIHUAHUA, CHIHUAHUA / CIUDAD DE MEXICO<br></td>
+<td style="text-align: left;" class="RegistroTabla">2906764<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 180/ 261<br></td>
+<td style="text-align: left;" class="RegistroTabla">720<br></td>
+<td style="text-align: left;" class="RegistroTabla">525<numerooperador>648<br></numerooperador></td>
+<td style="text-align: left;" class="RegistroTabla"> PEREZ ACOSTA LEOPOLDO/ RAMOS MARES JULIO CESAR<br></td>
+<td style="text-align: left;" class="RegistroTabla">PISO 
+CAJA 720
+PLANTA 1
+MERCANCIA ASEGURADA CON NO. PÓLIZA: 14 - 38031 DE HDI SEGUROS<br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">101108-TJ<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla">16/05/2026<br></td>
+<td style="text-align: left;" class="RegistroTabla">16/05/2026<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">84501<br></td>
+<td style="text-align: left;" class="RegistroTabla">WESTROCK CP LLC            EL PASO 4375<br></td>
+<td style="text-align: right;" class="RegistroTabla">$222.57<br></td><td style="text-align: right;" class="RegistroTabla">$0.00<br></td><td style="text-align: center;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">$222.57<br></td>
+<td style="text-align: left;" class="RegistroTabla">DÓLARES<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">JORGE TELLEZ<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">31583<br></td>
+<td style="text-align: left;" class="RegistroTabla">19121<br></td>
+<td style="text-align: left;" class="RegistroTabla">EL PASO, TX<br></td>
+<td style="text-align: left;" class="RegistroTabla">JUAREZ, CHIHUAHUA&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">6<br></td>
+<td style="text-align: left;" class="RegistroTabla">WR/ IMPORTACION AUTOFLETERA (ZARAGOZA) / EL PASO / CIUDAD JUAREZ<br></td>
+<td style="text-align: left;" class="RegistroTabla">437502657769<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 145<br></td>
+<td style="text-align: left;" class="RegistroTabla">5300<br></td>
+<td style="text-align: left;" class="RegistroTabla">543<br></td>
+<td style="text-align: left;" class="RegistroTabla"> RODRIGUEZ RAMIREZ OSWALDO FRANCISCO<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">224617-TC<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">128703<br></td>
+<td style="text-align: left;" class="RegistroTabla">ENVASES UNIVERSALES<br></td>
+<td style="text-align: right;" class="RegistroTabla">$40,600.00<br></td><td style="text-align: right;" class="RegistroTabla">$6,496.00<br></td><td style="text-align: center;" class="RegistroTabla">$1,624.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">$45,472.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">PESOS<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">05/07/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">YESICA BEZANILLA<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">79147<br></td>
+<td style="text-align: left;" class="RegistroTabla">67409<br></td>
+<td style="text-align: left;" class="RegistroTabla">SAN NICOLAS DE LOS GARZA, NUEVO LEON<br></td>
+<td style="text-align: left;" class="RegistroTabla">EL PASO, TX&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">2327<br></td>
+<td style="text-align: left;" class="RegistroTabla">ENVASES UNIVERSALES/ ALLEN/ SAN NICOLAS DE LOS GARZA, NUEVO LEON / EL PASO, TX<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 291<br></td>
+<td style="text-align: left;" class="RegistroTabla">663<br></td>
+<td style="text-align: left;" class="RegistroTabla">431<br></td>
+<td style="text-align: left;" class="RegistroTabla"> PEREZ SOLIS JUAN JOSE<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">224618-TC<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">30101<br></td>
+<td style="text-align: left;" class="RegistroTabla">COMERCIALIZADORA ELORO<br></td>
+<td style="text-align: right;" class="RegistroTabla">$1.00<br></td><td style="text-align: right;" class="RegistroTabla">$0.16<br></td><td style="text-align: center;" class="RegistroTabla">$0.04<br></td>
+<td style="text-align: left;" class="RegistroTabla">$1.12<br></td>
+<td style="text-align: left;" class="RegistroTabla">PESOS<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">YESICA BEZANILLA<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">79148<br></td>
+<td style="text-align: left;" class="RegistroTabla">67410<br></td>
+<td style="text-align: left;" class="RegistroTabla">ECATEPEC DE MORELOS, MEXICO<br></td>
+<td style="text-align: left;" class="RegistroTabla">CHIHUAHUA, CHIHUAHUA&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">684<br></td>
+<td style="text-align: left;" class="RegistroTabla">COMERCIALIZADORA ELORO/ CEDIS CUU/ ECATEPEC DE MORELOS, MEXICO / CHIHUAHUA, CHIHUAHUA<br></td>
+<td style="text-align: left;" class="RegistroTabla">1540708<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 278<br></td>
+<td style="text-align: left;" class="RegistroTabla">738<br></td>
+<td style="text-align: left;" class="RegistroTabla">442<br></td>
+<td style="text-align: left;" class="RegistroTabla"> FRIAS OROZCO ROSENDO TRINIDAD<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">224619-TC<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">30101<br></td>
+<td style="text-align: left;" class="RegistroTabla">COMERCIALIZADORA ELORO<br></td>
+<td style="text-align: right;" class="RegistroTabla">$1.00<br></td><td style="text-align: right;" class="RegistroTabla">$0.16<br></td><td style="text-align: center;" class="RegistroTabla">$0.04<br></td>
+<td style="text-align: left;" class="RegistroTabla">$1.12<br></td>
+<td style="text-align: left;" class="RegistroTabla">PESOS<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">YESICA BEZANILLA<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">79149<br></td>
+<td style="text-align: left;" class="RegistroTabla">67411<br></td>
+<td style="text-align: left;" class="RegistroTabla">ECATEPEC DE MORELOS, MEXICO<br></td>
+<td style="text-align: left;" class="RegistroTabla">CD JUAREZ CHIHUAHUA&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">685<br></td>
+<td style="text-align: left;" class="RegistroTabla">COMERCIALIZADORA ELORO/ CEDIS/ ECATEPEC DE MORELOS, MEXICO / CD JUAREZ CHIHUAHUA<br></td>
+<td style="text-align: left;" class="RegistroTabla">1540723<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 267<br></td>
+<td style="text-align: left;" class="RegistroTabla">683<br></td>
+<td style="text-align: left;" class="RegistroTabla">556<br></td>
+<td style="text-align: left;" class="RegistroTabla"> ENRIQUEZ CHAVEZ LUCIA MARGARITA<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">224620-TC<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">90601<br></td>
+<td style="text-align: left;" class="RegistroTabla">MANUFACTURAS ESTAMPADAS<br></td>
+<td style="text-align: right;" class="RegistroTabla">$13,500.00<br></td><td style="text-align: right;" class="RegistroTabla">$2,160.00<br></td><td style="text-align: center;" class="RegistroTabla">$540.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">$15,120.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">PESOS<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">YESICA BEZANILLA<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">79150<br></td>
+<td style="text-align: left;" class="RegistroTabla">67412<br></td>
+<td style="text-align: left;" class="RegistroTabla">EL PASO, TX<br></td>
+<td style="text-align: left;" class="RegistroTabla">CHIHUAHUA, CHIHUAHUA&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">3294<br></td>
+<td style="text-align: left;" class="RegistroTabla">EL PASO, TX / CHIHUAHUA, CHIHUAHUA<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 148/ 241<br></td>
+<td style="text-align: left;" class="RegistroTabla">729<br></td>
+<td style="text-align: left;" class="RegistroTabla">474<numerooperador>493<br></numerooperador></td>
+<td style="text-align: left;" class="RegistroTabla"> ESPINOSA JAIME/ RUIZ ARREDONDO HECTOR ARMANDO<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">224621-TC<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">23113<br></td>
+<td style="text-align: left;" class="RegistroTabla">DESARROLLO LOGISTICO<br></td>
+<td style="text-align: right;" class="RegistroTabla">$43,000.00<br></td><td style="text-align: right;" class="RegistroTabla">$6,880.00<br></td><td style="text-align: center;" class="RegistroTabla">$1,720.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">$48,160.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">PESOS<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">YESICA BEZANILLA<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">79151<br></td>
+<td style="text-align: left;" class="RegistroTabla">67413<br></td>
+<td style="text-align: left;" class="RegistroTabla">SAN JOSE ITURBIDE, GUANAJUATO<br></td>
+<td style="text-align: left;" class="RegistroTabla">CHIHUAHUA, CHIHUAHUA&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">2916<br></td>
+<td style="text-align: left;" class="RegistroTabla">COLGATE/PORTEO/ SAN JOSE ITURBIDE, GUANAJUATO / CHIHUAHUA, CHIHUAHUA<br></td>
+<td style="text-align: left;" class="RegistroTabla">260347743<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 207<br></td>
+<td style="text-align: left;" class="RegistroTabla">530<br></td>
+<td style="text-align: left;" class="RegistroTabla">319<br></td>
+<td style="text-align: left;" class="RegistroTabla"> SOTO DURAN EVER IVAN<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">224622-TC<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">21601<br></td>
+<td style="text-align: left;" class="RegistroTabla">DISTRIBUCION INTERCERAMIC<br></td>
+<td style="text-align: right;" class="RegistroTabla">$33,900.00<br></td><td style="text-align: right;" class="RegistroTabla">$5,424.00<br></td><td style="text-align: center;" class="RegistroTabla">$1,356.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">$37,968.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">PESOS<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">YESICA BEZANILLA<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">79143<br></td>
+<td style="text-align: left;" class="RegistroTabla">67406<br></td>
+<td style="text-align: left;" class="RegistroTabla">CHIHUAHUA, CHIHUAHUA<br></td>
+<td style="text-align: left;" class="RegistroTabla">TECAMAC, MEXICO&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">63<br></td>
+<td style="text-align: left;" class="RegistroTabla">INTERCERAMIC  CHIHUAHUA / TECAMAC PACHUCA<br></td>
+<td style="text-align: left;" class="RegistroTabla">2906565<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 195/ 236<br></td>
+<td style="text-align: left;" class="RegistroTabla">521<br></td>
+<td style="text-align: left;" class="RegistroTabla">34<numerooperador>662<br></numerooperador></td>
+<td style="text-align: left;" class="RegistroTabla"> GOMEZ PARRA DANIEL ROMUALDO/ VAZQUEZ GONZALEZ JESUS<br></td>
+<td style="text-align: left;" class="RegistroTabla">PISO 
+CAJA 521
+PLANTA 1 Y 5
+MERCANCIA ASEGURADA CON NO. PÓLIZA: 14 - 38031 DE HDI SEGUROS<br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">224623-TC<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">21601<br></td>
+<td style="text-align: left;" class="RegistroTabla">DISTRIBUCION INTERCERAMIC<br></td>
+<td style="text-align: right;" class="RegistroTabla">$33,900.00<br></td><td style="text-align: right;" class="RegistroTabla">$5,424.00<br></td><td style="text-align: center;" class="RegistroTabla">$1,356.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">$37,968.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">PESOS<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">YESICA BEZANILLA<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">79144<br></td>
+<td style="text-align: left;" class="RegistroTabla">67407<br></td>
+<td style="text-align: left;" class="RegistroTabla">CHIHUAHUA, CHIHUAHUA<br></td>
+<td style="text-align: left;" class="RegistroTabla">CIUDAD DE MEXICO&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">1732<br></td>
+<td style="text-align: left;" class="RegistroTabla">DIST INTERCERAMIC/ LA CANTERA/ CHIHUAHUA, CHIHUAHUA / CIUDAD DE MEXICO<br></td>
+<td style="text-align: left;" class="RegistroTabla">2906772<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 186/ 220<br></td>
+<td style="text-align: left;" class="RegistroTabla">531<br></td>
+<td style="text-align: left;" class="RegistroTabla">654<numerooperador>695<br></numerooperador></td>
+<td style="text-align: left;" class="RegistroTabla"> LOERA FELIX LUIS ALBERTO/ MOLINA DIAZ ROIMER RAMON<br></td>
+<td style="text-align: left;" class="RegistroTabla">PISO 
+CAJA 531
+PLANTA 5
+MERCANCIA ASEGURADA CON NO. PÓLIZA: 14 - 38031 DE HDI SEGUROS<br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">224624-TC<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">21601<br></td>
+<td style="text-align: left;" class="RegistroTabla">DISTRIBUCION INTERCERAMIC<br></td>
+<td style="text-align: right;" class="RegistroTabla">$33,900.00<br></td><td style="text-align: right;" class="RegistroTabla">$5,424.00<br></td><td style="text-align: center;" class="RegistroTabla">$1,356.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">$37,968.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">PESOS<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">YESICA BEZANILLA<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">79145<br></td>
+<td style="text-align: left;" class="RegistroTabla">67408<br></td>
+<td style="text-align: left;" class="RegistroTabla">CHIHUAHUA, CHIHUAHUA<br></td>
+<td style="text-align: left;" class="RegistroTabla">CIUDAD DE MEXICO&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">212<br></td>
+<td style="text-align: left;" class="RegistroTabla">INTERCERAMIC BOMBA CHALCO - CHIHUAHUA, CHIHUAHUA / CIUDAD DE MEXICO<br></td>
+<td style="text-align: left;" class="RegistroTabla">2906554<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 193<br></td>
+<td style="text-align: left;" class="RegistroTabla">550<br></td>
+<td style="text-align: left;" class="RegistroTabla">243<br></td>
+<td style="text-align: left;" class="RegistroTabla"> RUIZ GONZALEZ HECTOR ROMAN<br></td>
+<td style="text-align: left;" class="RegistroTabla">PISO 
+CAJA 550
+PLANTA 1 Y 5
+MERCANCIA ASEGURADA CON NO. PÓLIZA: 14 - 38031 DE HDI SEGUROS<br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">224625-TC<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">22/05/2026<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">84801<br></td>
+<td style="text-align: left;" class="RegistroTabla">COMERCIALIZADORA INTERCERAMIC<br></td>
+<td style="text-align: right;" class="RegistroTabla">$13,325.00<br></td><td style="text-align: right;" class="RegistroTabla">$2,132.00<br></td><td style="text-align: center;" class="RegistroTabla">$533.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">$14,924.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">PESOS<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">YESICA BEZANILLA<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">79155<br></td>
+<td style="text-align: left;" class="RegistroTabla">67414<br></td>
+<td style="text-align: left;" class="RegistroTabla">EL PASO, TX<br></td>
+<td style="text-align: left;" class="RegistroTabla">CHIHUAHUA, CHIHUAHUA&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">2379<br></td>
+<td style="text-align: left;" class="RegistroTabla">EL PASO, TX / CHIHUAHUA, CHIH<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 146/ 209<br></td>
+<td style="text-align: left;" class="RegistroTabla">722<br></td>
+<td style="text-align: left;" class="RegistroTabla">486<numerooperador>568<br></numerooperador></td>
+<td style="text-align: left;" class="RegistroTabla"> PEREZ PALMA JESUS HECTOR DANIEL/ VARGAS SANCHEZ EMMANUEL<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">224626-TC<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">30101<br></td>
+<td style="text-align: left;" class="RegistroTabla">COMERCIALIZADORA ELORO<br></td>
+<td style="text-align: right;" class="RegistroTabla">$1.00<br></td><td style="text-align: right;" class="RegistroTabla">$0.16<br></td><td style="text-align: center;" class="RegistroTabla">$0.04<br></td>
+<td style="text-align: left;" class="RegistroTabla">$1.12<br></td>
+<td style="text-align: left;" class="RegistroTabla">PESOS<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">YESICA BEZANILLA<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">79158<br></td>
+<td style="text-align: left;" class="RegistroTabla">67415<br></td>
+<td style="text-align: left;" class="RegistroTabla">ECATEPEC DE MORELOS, MEXICO<br></td>
+<td style="text-align: left;" class="RegistroTabla">CHIHUAHUA, CHIHUAHUA&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">684<br></td>
+<td style="text-align: left;" class="RegistroTabla">COMERCIALIZADORA ELORO/ CEDIS CUU/ ECATEPEC DE MORELOS, MEXICO / CHIHUAHUA, CHIHUAHUA<br></td>
+<td style="text-align: left;" class="RegistroTabla">1540725<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 203<br></td>
+<td style="text-align: left;" class="RegistroTabla">554<br></td>
+<td style="text-align: left;" class="RegistroTabla">681<br></td>
+<td style="text-align: left;" class="RegistroTabla"> MEDINA CARRILLO AARON ALBERTO<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">101109-TJ<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">84501<br></td>
+<td style="text-align: left;" class="RegistroTabla">WESTROCK CP LLC            EL PASO 4375<br></td>
+<td style="text-align: right;" class="RegistroTabla">$96.44<br></td><td style="text-align: right;" class="RegistroTabla">$15.43<br></td><td style="text-align: center;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">$111.87<br></td>
+<td style="text-align: left;" class="RegistroTabla">DÓLARES<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">JORGE TELLEZ<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">31584<br></td>
+<td style="text-align: left;" class="RegistroTabla">12398<br></td>
+<td style="text-align: left;" class="RegistroTabla">CIUDAD JUAREZ CHIHUAHUA<br></td>
+<td style="text-align: left;" class="RegistroTabla">CIUDAD JUAREZ CHIHUAHUA&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">699<br></td>
+<td style="text-align: left;" class="RegistroTabla">WR/ LOCAL WERNER 6/ CIUDAD JUAREZ/ CIUDAD JUAREZ<br></td>
+<td style="text-align: left;" class="RegistroTabla">437502657793<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 171<br></td>
+<td style="text-align: left;" class="RegistroTabla">5307<br></td>
+<td style="text-align: left;" class="RegistroTabla">559<br></td>
+<td style="text-align: left;" class="RegistroTabla"> BRIONES CHAVIRA ARNOLDO<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">101110-TJ<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">128767<br></td>
+<td style="text-align: left;" class="RegistroTabla">THERM-O-DISC, INC.<br></td>
+<td style="text-align: right;" class="RegistroTabla">$210.00<br></td><td style="text-align: right;" class="RegistroTabla">$0.00<br></td><td style="text-align: center;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">$210.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">DÓLARES<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">JORGE TELLEZ<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">31585<br></td>
+<td style="text-align: left;" class="RegistroTabla">19122<br></td>
+<td style="text-align: left;" class="RegistroTabla">EL PASO, TX<br></td>
+<td style="text-align: left;" class="RegistroTabla">JUAREZ,CHIHUAHUA&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">3191<br></td>
+<td style="text-align: left;" class="RegistroTabla">PROTRANS - CONTROLES DE TEMP.,, EL PASO TX / JUAREZ, CHIH<br></td>
+<td style="text-align: left;" class="RegistroTabla">SBJ26036<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 141<br></td>
+<td style="text-align: left;" class="RegistroTabla">5347<br></td>
+<td style="text-align: left;" class="RegistroTabla">223<br></td>
+<td style="text-align: left;" class="RegistroTabla"> SALAZAR LOPEZ GILBERTO<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">224627-TC<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">128870<br></td>
+<td style="text-align: left;" class="RegistroTabla">SMURFIT CARTON Y PAPEL DE MEXICO<br></td>
+<td style="text-align: right;" class="RegistroTabla">$6,600.00<br></td><td style="text-align: right;" class="RegistroTabla">$1,056.00<br></td><td style="text-align: center;" class="RegistroTabla">$264.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">$7,392.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">PESOS<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">YESICA BEZANILLA<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">79160<br></td>
+<td style="text-align: left;" class="RegistroTabla">67416<br></td>
+<td style="text-align: left;" class="RegistroTabla">CHIHUAHUA, CHIHUAHUA<br></td>
+<td style="text-align: left;" class="RegistroTabla">DELICIAS, CHIHUAHUA&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">1337<br></td>
+<td style="text-align: left;" class="RegistroTabla">SMURFIT/ MEAD JOHNSON/ CHIHUAHUA/ DELICIAS, CHIHUAHUA<br></td>
+<td style="text-align: left;" class="RegistroTabla">4371912 - 4371922<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 189<br></td>
+<td style="text-align: left;" class="RegistroTabla">656<br></td>
+<td style="text-align: left;" class="RegistroTabla">504<br></td>
+<td style="text-align: left;" class="RegistroTabla"> GONZALEZ CARRILLO ALVARO<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">224628-TC<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">3602<br></td>
+<td style="text-align: left;" class="RegistroTabla">PONDERCEL<br></td>
+<td style="text-align: right;" class="RegistroTabla">$19,156.00<br></td><td style="text-align: right;" class="RegistroTabla">$3,064.96<br></td><td style="text-align: center;" class="RegistroTabla">$736.24<br></td>
+<td style="text-align: left;" class="RegistroTabla">$21,484.72<br></td>
+<td style="text-align: left;" class="RegistroTabla">PESOS<br></td>
+<td style="text-align: left;" class="RegistroTabla">Cancelada<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">YESICA BEZANILLA<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">79162<br></td>
+<td style="text-align: left;" class="RegistroTabla">67417<br></td>
+<td style="text-align: left;" class="RegistroTabla">EL PASO, TX<br></td>
+<td style="text-align: left;" class="RegistroTabla">ANAHUAC CHIHUAHUA&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">352<br></td>
+<td style="text-align: left;" class="RegistroTabla">PONDERCEL/ MASTER FIBERS/ EL PASO, TX / ANAHUAC CHIHUAHUA<br></td>
+<td style="text-align: left;" class="RegistroTabla">FIA1003389<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 144<br></td>
+<td style="text-align: left;" class="RegistroTabla">US102<br></td>
+<td style="text-align: left;" class="RegistroTabla">375<br></td>
+<td style="text-align: left;" class="RegistroTabla"> SANCHEZ GARCIA JESUS MIGUEL<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">101111-TJ<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">128955<br></td>
+<td style="text-align: left;" class="RegistroTabla">C/O GEORGIA PACIFIC CORP<br></td>
+<td style="text-align: right;" class="RegistroTabla">$325.00<br></td><td style="text-align: right;" class="RegistroTabla">$0.00<br></td><td style="text-align: center;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">$325.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">DÓLARES<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">05/07/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">JORGE TELLEZ<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">31586<br></td>
+<td style="text-align: left;" class="RegistroTabla">19123<br></td>
+<td style="text-align: left;" class="RegistroTabla">NUEVO MEXICO<br></td>
+<td style="text-align: left;" class="RegistroTabla">JUAREZ, CHIHUAHUA&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">2533<br></td>
+<td style="text-align: left;" class="RegistroTabla">GEORGIA PACIFIC / MOLDURAS, PRODUCTOS Y SERVICIOS<br></td>
+<td style="text-align: left;" class="RegistroTabla">ST2631285<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 143<br></td>
+<td style="text-align: left;" class="RegistroTabla">5325<br></td>
+<td style="text-align: left;" class="RegistroTabla">338<br></td>
+<td style="text-align: left;" class="RegistroTabla"> ESCALANTE GONZALEZ OMAR<br></td>
+<td style="text-align: left;" class="RegistroTabla">IN 26 07 3435 6021600
+A1 26 07 3435 6021650
+<br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">224629-TC<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">3602<br></td>
+<td style="text-align: left;" class="RegistroTabla">PONDERCEL<br></td>
+<td style="text-align: right;" class="RegistroTabla">$19,156.00<br></td><td style="text-align: right;" class="RegistroTabla">$3,064.96<br></td><td style="text-align: center;" class="RegistroTabla">$736.24<br></td>
+<td style="text-align: left;" class="RegistroTabla">$21,484.72<br></td>
+<td style="text-align: left;" class="RegistroTabla">PESOS<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">YESICA BEZANILLA<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">79162<br></td>
+<td style="text-align: left;" class="RegistroTabla">67417<br></td>
+<td style="text-align: left;" class="RegistroTabla">EL PASO, TX<br></td>
+<td style="text-align: left;" class="RegistroTabla">ANAHUAC CHIHUAHUA&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">352<br></td>
+<td style="text-align: left;" class="RegistroTabla">PONDERCEL/ MASTER FIBERS/ EL PASO, TX / ANAHUAC CHIHUAHUA<br></td>
+<td style="text-align: left;" class="RegistroTabla">FIA1003389<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 144<br></td>
+<td style="text-align: left;" class="RegistroTabla">US102<br></td>
+<td style="text-align: left;" class="RegistroTabla">375<br></td>
+<td style="text-align: left;" class="RegistroTabla"> SANCHEZ GARCIA JESUS MIGUEL<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">224630-TC<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">128767<br></td>
+<td style="text-align: left;" class="RegistroTabla">THERM-O-DISC, INC.<br></td>
+<td style="text-align: right;" class="RegistroTabla">$908.00<br></td><td style="text-align: right;" class="RegistroTabla">$0.00<br></td><td style="text-align: center;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">$908.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">DÓLARES<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">YESICA BEZANILLA<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">79164<br></td>
+<td style="text-align: left;" class="RegistroTabla">67419<br></td>
+<td style="text-align: left;" class="RegistroTabla">EL PASO, TX<br></td>
+<td style="text-align: left;" class="RegistroTabla">DELICIAS, CHIHUAHUA&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">3193<br></td>
+<td style="text-align: left;" class="RegistroTabla">EL PASO, TX / DELICIAS, CHIHUAHUA<br></td>
+<td style="text-align: left;" class="RegistroTabla">SBD26036<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 245<br></td>
+<td style="text-align: left;" class="RegistroTabla">US100<br></td>
+<td style="text-align: left;" class="RegistroTabla">347<br></td>
+<td style="text-align: left;" class="RegistroTabla"> MEDRANO ORTIZ JOSUE<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">224631-TC<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla">17/04/2026<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/04/2026<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">128884<br></td>
+<td style="text-align: left;" class="RegistroTabla">COPELAND CORPORATE DE MEXICO<br></td>
+<td style="text-align: right;" class="RegistroTabla">$2,577.93<br></td><td style="text-align: right;" class="RegistroTabla">$412.47<br></td><td style="text-align: center;" class="RegistroTabla">$102.52<br></td>
+<td style="text-align: left;" class="RegistroTabla">$2,887.88<br></td>
+<td style="text-align: left;" class="RegistroTabla">DÓLARES<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">17/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">ROSELY PAYAN<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">34<br></td><td style="text-align: left;" class="RegistroTabla">77485<br></td>
+<td style="text-align: left;" class="RegistroTabla">66149<br></td>
+<td style="text-align: left;" class="RegistroTabla">GUADALAJARA, JALISCO<br></td>
+<td style="text-align: left;" class="RegistroTabla">EL PASO, TX&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">1559<br></td>
+<td style="text-align: left;" class="RegistroTabla">COPELAND DE MEXICO/ GUADALAJARA, JALISCO / EL PASO, TX<br></td>
+<td style="text-align: left;" class="RegistroTabla">2015035724<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 288/ 294<br></td>
+<td style="text-align: left;" class="RegistroTabla">743<br></td>
+<td style="text-align: left;" class="RegistroTabla">433<numerooperador>435<br></numerooperador></td>
+<td style="text-align: left;" class="RegistroTabla"> ARZOLA VARELA EDUARDO/ ROMERO MENDOZA JUAN<br></td>
+<td style="text-align: left;" class="RegistroTabla">26 07 3989 6007729<br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">224632-TC<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">114301<br></td>
+<td style="text-align: left;" class="RegistroTabla">ILCHISA, INC<br></td>
+<td style="text-align: right;" class="RegistroTabla">$1,100.00<br></td><td style="text-align: right;" class="RegistroTabla">$0.00<br></td><td style="text-align: center;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">$1,100.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">DÓLARES<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">YESICA BEZANILLA<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">79163<br></td>
+<td style="text-align: left;" class="RegistroTabla">67418<br></td>
+<td style="text-align: left;" class="RegistroTabla">EL PASO, TX<br></td>
+<td style="text-align: left;" class="RegistroTabla">CUAUHTEMOC, CHIHUAHUA&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">140<br></td>
+<td style="text-align: left;" class="RegistroTabla">ILAS - EL PASO, TX / CUAUHTEMOC, CHIHUAHUA<br></td>
+<td style="text-align: left;" class="RegistroTabla">28003087<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 165<br></td>
+<td style="text-align: left;" class="RegistroTabla">625<br></td>
+<td style="text-align: left;" class="RegistroTabla">193<br></td>
+<td style="text-align: left;" class="RegistroTabla"> LAZCANO SALCIDO FRANCISCO ARTURO<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">224633-TC<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: left;" class="RegistroTabla">22/05/2026<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">128885<br></td>
+<td style="text-align: left;" class="RegistroTabla">COPELAND LP - EMERALD JV HOLDINGS LP<br></td>
+<td style="text-align: right;" class="RegistroTabla">$715.70<br></td><td style="text-align: right;" class="RegistroTabla">$0.00<br></td><td style="text-align: center;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">$715.70<br></td>
+<td style="text-align: left;" class="RegistroTabla">DÓLARES<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">YESICA BEZANILLA<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">79165<br></td>
+<td style="text-align: left;" class="RegistroTabla">67420<br></td>
+<td style="text-align: left;" class="RegistroTabla">EL PASO, TX<br></td>
+<td style="text-align: left;" class="RegistroTabla">CHIHUAHUA, CHIHUAHUA&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">1586<br></td>
+<td style="text-align: left;" class="RegistroTabla">COPELAND - TERMOTEC,, EL PASO, TX / CHIHUAHUA, CHIH<br></td>
+<td style="text-align: left;" class="RegistroTabla">2015308853<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 294<br></td>
+<td style="text-align: left;" class="RegistroTabla">739<br></td>
+<td style="text-align: left;" class="RegistroTabla">433<br></td>
+<td style="text-align: left;" class="RegistroTabla"> ARZOLA VARELA EDUARDO<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">005812-IC<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">96901<br></td>
+<td style="text-align: left;" class="RegistroTabla">COMERCIALIZADORA KEES<br></td>
+<td style="text-align: right;" class="RegistroTabla">$1,700.00<br></td><td style="text-align: right;" class="RegistroTabla">$272.00<br></td><td style="text-align: center;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">$1,972.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">PESOS<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">GERMAN CHAPARRO LOZANO<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">224634-TC<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">84501<br></td>
+<td style="text-align: left;" class="RegistroTabla">WESTROCK CP LLC            EL PASO 4375<br></td>
+<td style="text-align: right;" class="RegistroTabla">$790.35<br></td><td style="text-align: right;" class="RegistroTabla">$0.00<br></td><td style="text-align: center;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">$790.35<br></td>
+<td style="text-align: left;" class="RegistroTabla">DÓLARES<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">YESICA BEZANILLA<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">79166<br></td>
+<td style="text-align: left;" class="RegistroTabla">67421<br></td>
+<td style="text-align: left;" class="RegistroTabla">EL PASO, TX<br></td>
+<td style="text-align: left;" class="RegistroTabla">CHIHUAHUA, CHIHUAHUA&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">55<br></td>
+<td style="text-align: left;" class="RegistroTabla">WR/ IMPORTACION AFC (ZARAGOZA)/  EL PASO, TX / CHIHUAHUA<br></td>
+<td style="text-align: left;" class="RegistroTabla">437502657226<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 172<br></td>
+<td style="text-align: left;" class="RegistroTabla">726<br></td>
+<td style="text-align: left;" class="RegistroTabla">554<br></td>
+<td style="text-align: left;" class="RegistroTabla"> GARCIA CAMPOS JORGE<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">224635-TC<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">128885<br></td>
+<td style="text-align: left;" class="RegistroTabla">COPELAND LP - EMERALD JV HOLDINGS LP<br></td>
+<td style="text-align: right;" class="RegistroTabla">$715.70<br></td><td style="text-align: right;" class="RegistroTabla">$0.00<br></td><td style="text-align: center;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">$715.70<br></td>
+<td style="text-align: left;" class="RegistroTabla">DÓLARES<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">YESICA BEZANILLA<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">79167<br></td>
+<td style="text-align: left;" class="RegistroTabla">67422<br></td>
+<td style="text-align: left;" class="RegistroTabla">EL PASO, TX<br></td>
+<td style="text-align: left;" class="RegistroTabla">CHIHUAHUA, CHIHUAHUA&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">1586<br></td>
+<td style="text-align: left;" class="RegistroTabla">COPELAND - TERMOTEC,, EL PASO, TX / CHIHUAHUA, CHIH<br></td>
+<td style="text-align: left;" class="RegistroTabla">2015305493<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 226<br></td>
+<td style="text-align: left;" class="RegistroTabla">747<br></td>
+<td style="text-align: left;" class="RegistroTabla">508<br></td>
+<td style="text-align: left;" class="RegistroTabla"> SAUCEDO GONZALEZ HECTOR EFRAIN<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">224636-TC<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">113301<br></td>
+<td style="text-align: left;" class="RegistroTabla">PAPELES Y CONVERSIONES DE MEXICO<br></td>
+<td style="text-align: right;" class="RegistroTabla">$14,900.00<br></td><td style="text-align: right;" class="RegistroTabla">$2,384.00<br></td><td style="text-align: center;" class="RegistroTabla">$596.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">$16,688.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">PESOS<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">YESICA BEZANILLA<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">79168<br></td>
+<td style="text-align: left;" class="RegistroTabla">67423<br></td>
+<td style="text-align: left;" class="RegistroTabla">JUAREZ, CHIHUAHUA<br></td>
+<td style="text-align: left;" class="RegistroTabla">CHIHUAHUA, CHIHUAHUA&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">792<br></td>
+<td style="text-align: left;" class="RegistroTabla">INGENIERIA DE EMPAQUE - JUAREZ, CHIHUAHUA / CHIHUAHUA, CHIHUAHUA<br></td>
+<td style="text-align: left;" class="RegistroTabla">CDJ44508<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 295<br></td>
+<td style="text-align: left;" class="RegistroTabla">629<br></td>
+<td style="text-align: left;" class="RegistroTabla">563<br></td>
+<td style="text-align: left;" class="RegistroTabla"> FIERRO LARA MARIO ALBERTO<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">224637-TC<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">113301<br></td>
+<td style="text-align: left;" class="RegistroTabla">PAPELES Y CONVERSIONES DE MEXICO<br></td>
+<td style="text-align: right;" class="RegistroTabla">$12,400.00<br></td><td style="text-align: right;" class="RegistroTabla">$1,984.00<br></td><td style="text-align: center;" class="RegistroTabla">$496.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">$13,888.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">PESOS<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">YESICA BEZANILLA<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">79169<br></td>
+<td style="text-align: left;" class="RegistroTabla">67424<br></td>
+<td style="text-align: left;" class="RegistroTabla">JUAREZ, CHIHUAHUA<br></td>
+<td style="text-align: left;" class="RegistroTabla">CHIHUAHUA, CHIHUAHUA&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">69<br></td>
+<td style="text-align: left;" class="RegistroTabla">RUTA  PCM  CD. JUAREZ - CHIHUAHUA, CHIH<br></td>
+<td style="text-align: left;" class="RegistroTabla">CDJ44494<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 285<br></td>
+<td style="text-align: left;" class="RegistroTabla">502<br></td>
+<td style="text-align: left;" class="RegistroTabla">120<br></td>
+<td style="text-align: left;" class="RegistroTabla"> OSUNA AGUILAR JULIO CESAR<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">224638-TC<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla">16/05/2026<br></td>
+<td style="text-align: left;" class="RegistroTabla">18/05/2026<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">96901<br></td>
+<td style="text-align: left;" class="RegistroTabla">COMERCIALIZADORA KEES<br></td>
+<td style="text-align: right;" class="RegistroTabla">$28,500.00<br></td><td style="text-align: right;" class="RegistroTabla">$4,560.00<br></td><td style="text-align: center;" class="RegistroTabla">$1,140.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">$31,920.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">PESOS<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">GERMAN CHAPARRO LOZANO<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">5<br></td><td style="text-align: left;" class="RegistroTabla">78940<br></td>
+<td style="text-align: left;" class="RegistroTabla">67241<br></td>
+<td style="text-align: left;" class="RegistroTabla">TOLUCA, MEXICO<br></td>
+<td style="text-align: left;" class="RegistroTabla">MONTERREY, NUEVO LEON&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">3269<br></td>
+<td style="text-align: left;" class="RegistroTabla">TOLUCA, MEXICO / MONTERREY, NUEVO LEON<br></td>
+<td style="text-align: left;" class="RegistroTabla">21507140<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 206<br></td>
+<td style="text-align: left;" class="RegistroTabla">509<br></td>
+<td style="text-align: left;" class="RegistroTabla">655<br></td>
+<td style="text-align: left;" class="RegistroTabla"> SANTIAGO MARTINEZ GILBERTO<br></td>
+<td style="text-align: left;" class="RegistroTabla">SUSTITUYE A TC-224414<br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">224639-TC<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">23113<br></td>
+<td style="text-align: left;" class="RegistroTabla">DESARROLLO LOGISTICO<br></td>
+<td style="text-align: right;" class="RegistroTabla">$30,000.00<br></td><td style="text-align: right;" class="RegistroTabla">$4,800.00<br></td><td style="text-align: center;" class="RegistroTabla">$1,200.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">$33,600.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">PESOS<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">YESICA BEZANILLA<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">79170<br></td>
+<td style="text-align: left;" class="RegistroTabla">67425<br></td>
+<td style="text-align: left;" class="RegistroTabla">SALINAS VICTORIA, NUEVO LEON<br></td>
+<td style="text-align: left;" class="RegistroTabla">CHIHUAHUA, CHIHUAHUA&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">2762<br></td>
+<td style="text-align: left;" class="RegistroTabla">DESARROLLO LOGISTICO/ OXXO/ SALINAS VICTORIA, NUEVO LEON / CHIHUAHUA, CHIHUAHUA<br></td>
+<td style="text-align: left;" class="RegistroTabla">260348270<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 243<br></td>
+<td style="text-align: left;" class="RegistroTabla">564<br></td>
+<td style="text-align: left;" class="RegistroTabla">483<br></td>
+<td style="text-align: left;" class="RegistroTabla"> ARMENDARIZ GARCIA JUAN CARLOS<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">101112-TJ<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">128885<br></td>
+<td style="text-align: left;" class="RegistroTabla">COPELAND LP - EMERALD JV HOLDINGS LP<br></td>
+<td style="text-align: right;" class="RegistroTabla">$214.82<br></td><td style="text-align: right;" class="RegistroTabla">$0.00<br></td><td style="text-align: center;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">$214.82<br></td>
+<td style="text-align: left;" class="RegistroTabla">DÓLARES<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">DAVID RENTEREIA<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">31587<br></td>
+<td style="text-align: left;" class="RegistroTabla">19124<br></td>
+<td style="text-align: left;" class="RegistroTabla">EL PASO TEXAS<br></td>
+<td style="text-align: left;" class="RegistroTabla">CIUDAD JUAREZ CHIHUAHUA&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">1540<br></td>
+<td style="text-align: left;" class="RegistroTabla">COPELAND USA/ IMPORTACION FRONTERA /COPELAND- TERMOCONTROLES/ EL PASO/ CIUDAD JUAREZ<br></td>
+<td style="text-align: left;" class="RegistroTabla">2015309494<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 164<br></td>
+<td style="text-align: left;" class="RegistroTabla">5331<br></td>
+<td style="text-align: left;" class="RegistroTabla">578<br></td>
+<td style="text-align: left;" class="RegistroTabla"> ROCHA SALVA DAVID FERNANDO<br></td>
+<td style="text-align: left;" class="RegistroTabla">2015309494<br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">224640-TC<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">30101<br></td>
+<td style="text-align: left;" class="RegistroTabla">COMERCIALIZADORA ELORO<br></td>
+<td style="text-align: right;" class="RegistroTabla">$1.00<br></td><td style="text-align: right;" class="RegistroTabla">$0.16<br></td><td style="text-align: center;" class="RegistroTabla">$0.04<br></td>
+<td style="text-align: left;" class="RegistroTabla">$1.12<br></td>
+<td style="text-align: left;" class="RegistroTabla">PESOS<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">YESICA BEZANILLA<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">79171<br></td>
+<td style="text-align: left;" class="RegistroTabla">67426<br></td>
+<td style="text-align: left;" class="RegistroTabla">ECATEPEC DE MORELOS, MEXICO<br></td>
+<td style="text-align: left;" class="RegistroTabla">CD JUAREZ CHIHUAHUA&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">685<br></td>
+<td style="text-align: left;" class="RegistroTabla">COMERCIALIZADORA ELORO/ CEDIS/ ECATEPEC DE MORELOS, MEXICO / CD JUAREZ CHIHUAHUA<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 201<br></td>
+<td style="text-align: left;" class="RegistroTabla">654<br></td>
+<td style="text-align: left;" class="RegistroTabla">687<br></td>
+<td style="text-align: left;" class="RegistroTabla"> RUBIO LUJAN HECTOR ALEJANDRO<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">101113-TJ<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">128884<br></td>
+<td style="text-align: left;" class="RegistroTabla">COPELAND CORPORATE DE MEXICO<br></td>
+<td style="text-align: right;" class="RegistroTabla">$229.82<br></td><td style="text-align: right;" class="RegistroTabla">$36.77<br></td><td style="text-align: center;" class="RegistroTabla">$8.59<br></td>
+<td style="text-align: left;" class="RegistroTabla">$258.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">DÓLARES<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">DAVID RENTEREIA<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">31588<br></td>
+<td style="text-align: left;" class="RegistroTabla">19125<br></td>
+<td style="text-align: left;" class="RegistroTabla">CIUDAD JUAREZ CHIHUAHUA<br></td>
+<td style="text-align: left;" class="RegistroTabla">EL PASO TEXAS&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">1541<br></td>
+<td style="text-align: left;" class="RegistroTabla">COPELAND DE MEXICO/ EXPORTACION COPELAND/ CIUDAD JUAREZ/ EL PASO TEXAS<br></td>
+<td style="text-align: left;" class="RegistroTabla">2015310920<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 164<br></td>
+<td style="text-align: left;" class="RegistroTabla">5321<br></td>
+<td style="text-align: left;" class="RegistroTabla">578<br></td>
+<td style="text-align: left;" class="RegistroTabla"> ROCHA SALVA DAVID FERNANDO<br></td>
+<td style="text-align: left;" class="RegistroTabla">2015310920<br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">224641-TC<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">128875<br></td>
+<td style="text-align: left;" class="RegistroTabla">GLOBALTRANZ MX<br></td>
+<td style="text-align: right;" class="RegistroTabla">$70,000.00<br></td><td style="text-align: right;" class="RegistroTabla">$11,200.00<br></td><td style="text-align: center;" class="RegistroTabla">$2,800.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">$78,400.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">PESOS<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">YESICA BEZANILLA<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">79172<br></td>
+<td style="text-align: left;" class="RegistroTabla">67427<br></td>
+<td style="text-align: left;" class="RegistroTabla">PUEBLA PUEBLA<br></td>
+<td style="text-align: left;" class="RegistroTabla">EL PASO, TX&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">3256<br></td>
+<td style="text-align: left;" class="RegistroTabla">PUEBLA PUEBLA / EL PASO, TX<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 246<br></td>
+<td style="text-align: left;" class="RegistroTabla">532<br></td>
+<td style="text-align: left;" class="RegistroTabla">641<br></td>
+<td style="text-align: left;" class="RegistroTabla"> SALASAR ESPARZA JOEL<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">224642-TC<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">128786<br></td>
+<td style="text-align: left;" class="RegistroTabla">KUEHNE + NAGEL FORWARDING<br></td>
+<td style="text-align: right;" class="RegistroTabla">$33,100.00<br></td><td style="text-align: right;" class="RegistroTabla">$5,296.00<br></td><td style="text-align: center;" class="RegistroTabla">$1,324.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">$37,072.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">PESOS<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">RAMON ZUBIA<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">79173<br></td>
+<td style="text-align: left;" class="RegistroTabla">67428<br></td>
+<td style="text-align: left;" class="RegistroTabla">TIJUANA, BAJA CALIFORNIA<br></td>
+<td style="text-align: left;" class="RegistroTabla">CIUDAD JUAREZ CHIHUAHUA&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">1283<br></td>
+<td style="text-align: left;" class="RegistroTabla">KUEHNE/ NEXTEER/ TIJUANA, BAJA CALIFORNIA / CIUDAD JUAREZ CHIHUAHUA<br></td>
+<td style="text-align: left;" class="RegistroTabla">FANU1275185<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 238<br></td>
+<td style="text-align: left;" class="RegistroTabla">647<br></td>
+<td style="text-align: left;" class="RegistroTabla">101<br></td>
+<td style="text-align: left;" class="RegistroTabla"> GOMEZ CENICEROS ALEJANDRO<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">224643-TC<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">128814<br></td>
+<td style="text-align: left;" class="RegistroTabla">RFL LOGISTICS<br></td>
+<td style="text-align: right;" class="RegistroTabla">$29,000.00<br></td><td style="text-align: right;" class="RegistroTabla">$4,640.00<br></td><td style="text-align: center;" class="RegistroTabla">$1,160.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">$32,480.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">PESOS<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">RAMON ZUBIA<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">79174<br></td>
+<td style="text-align: left;" class="RegistroTabla">67429<br></td>
+<td style="text-align: left;" class="RegistroTabla">AZCAPOTZALCO, DISTRITO FEDERAL<br></td>
+<td style="text-align: left;" class="RegistroTabla">MONTERREY, NUEVO LEON&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">3286<br></td>
+<td style="text-align: left;" class="RegistroTabla">AZCAPOTZALCO, DISTRITO FEDERAL / MONTERREY, NUEVO LEON<br></td>
+<td style="text-align: left;" class="RegistroTabla">47349<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 262<br></td>
+<td style="text-align: left;" class="RegistroTabla">678<br></td>
+<td style="text-align: left;" class="RegistroTabla">601<br></td>
+<td style="text-align: left;" class="RegistroTabla"> GONZALEZ PEREZ JULIO CESAR<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">224644-TC<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">101901<br></td>
+<td style="text-align: left;" class="RegistroTabla">DIESEL GLOBAL LOGISTICS, INC.<br></td>
+<td style="text-align: right;" class="RegistroTabla">$2,294.00<br></td><td style="text-align: right;" class="RegistroTabla">$367.04<br></td><td style="text-align: center;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">$2,661.04<br></td>
+<td style="text-align: left;" class="RegistroTabla">DÓLARES<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">RAMON ZUBIA<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">79175<br></td>
+<td style="text-align: left;" class="RegistroTabla">67430<br></td>
+<td style="text-align: left;" class="RegistroTabla">QUERETARO, QUERETARO<br></td>
+<td style="text-align: left;" class="RegistroTabla">CHIHUAHUA, CHIHUAHUA&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">3<br></td>
+<td style="text-align: left;" class="RegistroTabla">DIESEL GLOBAL/ TROQUELADORA- BWI/ QUERETARO/ CHIHUAHUA, CHIHUAHUA<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 223<br></td>
+<td style="text-align: left;" class="RegistroTabla">541<br></td>
+<td style="text-align: left;" class="RegistroTabla">683<br></td>
+<td style="text-align: left;" class="RegistroTabla"> CARRILLO DEL HIERRO DAVID<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">224645-TC<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">151<br></td>
+<td style="text-align: left;" class="RegistroTabla">CARGOBOT GLOBAL SERVICES<br></td>
+<td style="text-align: right;" class="RegistroTabla">$48,000.00<br></td><td style="text-align: right;" class="RegistroTabla">$7,680.00<br></td><td style="text-align: center;" class="RegistroTabla">$1,920.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">$53,760.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">PESOS<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">18/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">RAMON ZUBIA<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">79176<br></td>
+<td style="text-align: left;" class="RegistroTabla">67431<br></td>
+<td style="text-align: left;" class="RegistroTabla">TEPEJI DEL RIO DE OCAMPO, HIDALGO<br></td>
+<td style="text-align: left;" class="RegistroTabla">CHIHUAHUA, CHIHUAHUA&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">3290<br></td>
+<td style="text-align: left;" class="RegistroTabla">COSTCO/ TEPEJI DEL RIO DE OCAMPO, HIDALGO / CHIHUAHUA, CHIHUAHUA<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 252<br></td>
+<td style="text-align: left;" class="RegistroTabla">557<br></td>
+<td style="text-align: left;" class="RegistroTabla">41<br></td>
+<td style="text-align: left;" class="RegistroTabla"> CARRANZA MARTINEZ JESUS<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">101114-TJ<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">128955<br></td>
+<td style="text-align: left;" class="RegistroTabla">C/O GEORGIA PACIFIC CORP<br></td>
+<td style="text-align: right;" class="RegistroTabla">$325.00<br></td><td style="text-align: right;" class="RegistroTabla">$0.00<br></td><td style="text-align: center;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">$325.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">DÓLARES<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">05/07/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">DAVID RENTEREIA<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">31589<br></td>
+<td style="text-align: left;" class="RegistroTabla">19126<br></td>
+<td style="text-align: left;" class="RegistroTabla">NUEVO MEXICO<br></td>
+<td style="text-align: left;" class="RegistroTabla">JUAREZ, CHIHUAHUA&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">2533<br></td>
+<td style="text-align: left;" class="RegistroTabla">GEORGIA PACIFIC / MOLDURAS, PRODUCTOS Y SERVICIOS<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 146<br></td>
+<td style="text-align: left;" class="RegistroTabla">5324<br></td>
+<td style="text-align: left;" class="RegistroTabla">193<br></td>
+<td style="text-align: left;" class="RegistroTabla"> LAZCANO SALCIDO FRANCISCO ARTURO<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">224646-TC<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">151<br></td>
+<td style="text-align: left;" class="RegistroTabla">CARGOBOT GLOBAL SERVICES<br></td>
+<td style="text-align: right;" class="RegistroTabla">$58,000.00<br></td><td style="text-align: right;" class="RegistroTabla">$9,280.00<br></td><td style="text-align: center;" class="RegistroTabla">$2,320.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">$64,960.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">PESOS<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">18/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">RAMON ZUBIA<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">79177<br></td>
+<td style="text-align: left;" class="RegistroTabla">67432<br></td>
+<td style="text-align: left;" class="RegistroTabla">TEPEJI DEL RIO DE OCAMPO, HIDALGO<br></td>
+<td style="text-align: left;" class="RegistroTabla">JUAREZ, CHIHUAHUA&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">3291<br></td>
+<td style="text-align: left;" class="RegistroTabla">COSTCO/ TEPEJI DEL RIO DE OCAMPO, HIDALGO / JUAREZ, CHIHUAHUA<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 287<br></td>
+<td style="text-align: left;" class="RegistroTabla">657<br></td>
+<td style="text-align: left;" class="RegistroTabla">545<br></td>
+<td style="text-align: left;" class="RegistroTabla"> ESPARZA MEZA DANIEL<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">101115-TJ<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">84501<br></td>
+<td style="text-align: left;" class="RegistroTabla">WESTROCK CP LLC            EL PASO 4375<br></td>
+<td style="text-align: right;" class="RegistroTabla">$96.44<br></td><td style="text-align: right;" class="RegistroTabla">$15.43<br></td><td style="text-align: center;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">$111.87<br></td>
+<td style="text-align: left;" class="RegistroTabla">DÓLARES<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">DAVID RENTEREIA<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">31590<br></td>
+<td style="text-align: left;" class="RegistroTabla">12399<br></td>
+<td style="text-align: left;" class="RegistroTabla">CIUDAD JUAREZ CHIHUAHUA<br></td>
+<td style="text-align: left;" class="RegistroTabla">CIUDAD JUAREZ CHIHUAHUA&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">137<br></td>
+<td style="text-align: left;" class="RegistroTabla">WR/ LOCALPETRO PAC/ CIUDAD JUAREZ/ CIUDAD JUAREZ<br></td>
+<td style="text-align: left;" class="RegistroTabla">437502657794<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 176<br></td>
+<td style="text-align: left;" class="RegistroTabla">5327<br></td>
+<td style="text-align: left;" class="RegistroTabla">559<br></td>
+<td style="text-align: left;" class="RegistroTabla"> BRIONES CHAVIRA ARNOLDO<br></td>
+<td style="text-align: left;" class="RegistroTabla">437502657794<br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">005813-IC<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">67602<br></td>
+<td style="text-align: left;" class="RegistroTabla">GRUPO NACIONAL PROVINCIAL<br></td>
+<td style="text-align: right;" class="RegistroTabla">$663,160.39<br></td><td style="text-align: right;" class="RegistroTabla">$35,503.81<br></td><td style="text-align: center;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">$698,664.20<br></td>
+<td style="text-align: left;" class="RegistroTabla">PESOS<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">GERMAN CHAPARRO LOZANO<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">101116-TJ<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">84501<br></td>
+<td style="text-align: left;" class="RegistroTabla">WESTROCK CP LLC            EL PASO 4375<br></td>
+<td style="text-align: right;" class="RegistroTabla">$222.57<br></td><td style="text-align: right;" class="RegistroTabla">$0.00<br></td><td style="text-align: center;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">$222.57<br></td>
+<td style="text-align: left;" class="RegistroTabla">DÓLARES<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">DAVID RENTEREIA<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">31591<br></td>
+<td style="text-align: left;" class="RegistroTabla">19127<br></td>
+<td style="text-align: left;" class="RegistroTabla">EL PASO, TX<br></td>
+<td style="text-align: left;" class="RegistroTabla">JUAREZ, CHIHUAHUA&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">6<br></td>
+<td style="text-align: left;" class="RegistroTabla">WR/ IMPORTACION AUTOFLETERA (ZARAGOZA) / EL PASO / CIUDAD JUAREZ<br></td>
+<td style="text-align: left;" class="RegistroTabla">437502657708<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 145<br></td>
+<td style="text-align: left;" class="RegistroTabla">5322<br></td>
+<td style="text-align: left;" class="RegistroTabla">543<br></td>
+<td style="text-align: left;" class="RegistroTabla"> RODRIGUEZ RAMIREZ OSWALDO FRANCISCO<br></td>
+<td style="text-align: left;" class="RegistroTabla">437502657708<br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">224647-TC<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">68801<br></td>
+<td style="text-align: left;" class="RegistroTabla">COPAMEX INDUSTRIAS<br></td>
+<td style="text-align: right;" class="RegistroTabla">$33,781.84<br></td><td style="text-align: right;" class="RegistroTabla">$5,405.09<br></td><td style="text-align: center;" class="RegistroTabla">$1,235.27<br></td>
+<td style="text-align: left;" class="RegistroTabla">$37,951.66<br></td>
+<td style="text-align: left;" class="RegistroTabla">PESOS<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">JORGE SALAIS<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">79180<br></td>
+<td style="text-align: left;" class="RegistroTabla">67435<br></td>
+<td style="text-align: left;" class="RegistroTabla">CHIHUAHUA, CHIHUAHUA<br></td>
+<td style="text-align: left;" class="RegistroTabla">TEPOTZOTLAN, MEXICO&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">781<br></td>
+<td style="text-align: left;" class="RegistroTabla">COPAMEX INDUSTRIAS/ CARTRO SAPI/ CHIHUAHUA, CHIHUAHUA / TEPOTZOTLAN<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 268<br></td>
+<td style="text-align: left;" class="RegistroTabla">679<br></td>
+<td style="text-align: left;" class="RegistroTabla">16<br></td>
+<td style="text-align: left;" class="RegistroTabla"> JIMENEZ CORDOVA JORGE LUIS<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">224648-TC<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla">22/05/2026<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">128884<br></td>
+<td style="text-align: left;" class="RegistroTabla">COPELAND CORPORATE DE MEXICO<br></td>
+<td style="text-align: right;" class="RegistroTabla">$715.70<br></td><td style="text-align: right;" class="RegistroTabla">$114.51<br></td><td style="text-align: center;" class="RegistroTabla">$28.63<br></td>
+<td style="text-align: left;" class="RegistroTabla">$801.58<br></td>
+<td style="text-align: left;" class="RegistroTabla">DÓLARES<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">JORGE SALAIS<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">79179<br></td>
+<td style="text-align: left;" class="RegistroTabla">67434<br></td>
+<td style="text-align: left;" class="RegistroTabla">CHIHUAHUA, CHIHUAHUA<br></td>
+<td style="text-align: left;" class="RegistroTabla">EL PASO, TX&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">1552<br></td>
+<td style="text-align: left;" class="RegistroTabla">COPELAND DE MEXICO/ COPELAND EXPORTACION/ CHIHUAHUA, CHIH / EL PASO, TX<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 296<br></td>
+<td style="text-align: left;" class="RegistroTabla">US109<br></td>
+<td style="text-align: left;" class="RegistroTabla">304<br></td>
+<td style="text-align: left;" class="RegistroTabla"> PONCE ESTRADA CARLOS<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">224649-TC<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">68801<br></td>
+<td style="text-align: left;" class="RegistroTabla">COPAMEX INDUSTRIAS<br></td>
+<td style="text-align: right;" class="RegistroTabla">$35,299.00<br></td><td style="text-align: right;" class="RegistroTabla">$5,647.84<br></td><td style="text-align: center;" class="RegistroTabla">$1,287.96<br></td>
+<td style="text-align: left;" class="RegistroTabla">$39,658.88<br></td>
+<td style="text-align: left;" class="RegistroTabla">PESOS<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">JORGE SALAIS<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">79181<br></td>
+<td style="text-align: left;" class="RegistroTabla">67436<br></td>
+<td style="text-align: left;" class="RegistroTabla">ANAHUAC CHIHUAHUA<br></td>
+<td style="text-align: left;" class="RegistroTabla">AZCAPOTZALCO, DISTRITO FEDERAL&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">306<br></td>
+<td style="text-align: left;" class="RegistroTabla">COPAMEX INDUSTRIAS/ CORRUGADOS/ ANAHUAC CHIHUAHUA / AZCAPOTZALCO, DISTRITO FEDERAL<br></td>
+<td style="text-align: left;" class="RegistroTabla">47072<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 210<br></td>
+<td style="text-align: left;" class="RegistroTabla">555<br></td>
+<td style="text-align: left;" class="RegistroTabla">663<br></td>
+<td style="text-align: left;" class="RegistroTabla"> ANDRADE LOPEZ JULIO CESAR<br></td>
+<td style="text-align: left;" class="RegistroTabla">RCH-66290<br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">224650-TC<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">128870<br></td>
+<td style="text-align: left;" class="RegistroTabla">SMURFIT CARTON Y PAPEL DE MEXICO<br></td>
+<td style="text-align: right;" class="RegistroTabla">$26,807.00<br></td><td style="text-align: right;" class="RegistroTabla">$4,289.12<br></td><td style="text-align: center;" class="RegistroTabla">$1,072.28<br></td>
+<td style="text-align: left;" class="RegistroTabla">$30,023.84<br></td>
+<td style="text-align: left;" class="RegistroTabla">PESOS<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">JORGE SALAIS<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">79182<br></td>
+<td style="text-align: left;" class="RegistroTabla">67437<br></td>
+<td style="text-align: left;" class="RegistroTabla">CHIHUAHUA, CHIHUAHUA<br></td>
+<td style="text-align: left;" class="RegistroTabla">MONTERREY, NUEVO LEON&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">1740<br></td>
+<td style="text-align: left;" class="RegistroTabla">SMURFIT/ WALMART/ CHIHUAHUA, CHIHUAHUA / MONTERREY, NUEVO LEON<br></td>
+<td style="text-align: left;" class="RegistroTabla">RN129437<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 227<br></td>
+<td style="text-align: left;" class="RegistroTabla">533<br></td>
+<td style="text-align: left;" class="RegistroTabla">616<br></td>
+<td style="text-align: left;" class="RegistroTabla"> CARO RIVERA PEDRO<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">224651-TC<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla">22/05/2026<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">101901<br></td>
+<td style="text-align: left;" class="RegistroTabla">DIESEL GLOBAL LOGISTICS, INC.<br></td>
+<td style="text-align: right;" class="RegistroTabla">$612.00<br></td><td style="text-align: right;" class="RegistroTabla">$97.92<br></td><td style="text-align: center;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">$709.92<br></td>
+<td style="text-align: left;" class="RegistroTabla">DÓLARES<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">JORGE SALAIS<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">79136<br></td>
+<td style="text-align: left;" class="RegistroTabla">67403<br></td>
+<td style="text-align: left;" class="RegistroTabla">CIUDAD JUAREZ CHIHUAHUA<br></td>
+<td style="text-align: left;" class="RegistroTabla">CHIHUAHUA, CHIHUAHUA&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">2778<br></td>
+<td style="text-align: left;" class="RegistroTabla">DIESEL GLOBAL LOGISTICS/ ACELEC / CIUDAD JUAREZ CHIHUAHUA/ CHIHUAHUA, CHIHUAHUA<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 282<br></td>
+<td style="text-align: left;" class="RegistroTabla">B503<br></td>
+<td style="text-align: left;" class="RegistroTabla">449<br></td>
+<td style="text-align: left;" class="RegistroTabla"> HARO VALADEZ MARTIN EDUARDO<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">224652-TC<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">23113<br></td>
+<td style="text-align: left;" class="RegistroTabla">DESARROLLO LOGISTICO<br></td>
+<td style="text-align: right;" class="RegistroTabla">$29,500.00<br></td><td style="text-align: right;" class="RegistroTabla">$4,720.00<br></td><td style="text-align: center;" class="RegistroTabla">$1,180.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">$33,040.00<br></td>
+<td style="text-align: left;" class="RegistroTabla">PESOS<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">JORGE SALAIS<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">79183<br></td>
+<td style="text-align: left;" class="RegistroTabla">67438<br></td>
+<td style="text-align: left;" class="RegistroTabla">SALINAS VICTORIA, NUEVO LEON<br></td>
+<td style="text-align: left;" class="RegistroTabla">CHIHUAHUA, CHIHUAHUA&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">2762<br></td>
+<td style="text-align: left;" class="RegistroTabla">DESARROLLO LOGISTICO/ OXXO/ SALINAS VICTORIA, NUEVO LEON / CHIHUAHUA, CHIHUAHUA<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 283<br></td>
+<td style="text-align: left;" class="RegistroTabla">727<br></td>
+<td style="text-align: left;" class="RegistroTabla">571<br></td>
+<td style="text-align: left;" class="RegistroTabla"> IBARRA CALIXTRO JOSE ENRIQUE<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">101117-TJ<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">128884<br></td>
+<td style="text-align: left;" class="RegistroTabla">COPELAND CORPORATE DE MEXICO<br></td>
+<td style="text-align: right;" class="RegistroTabla">$134.83<br></td><td style="text-align: right;" class="RegistroTabla">$21.57<br></td><td style="text-align: center;" class="RegistroTabla">$5.39<br></td>
+<td style="text-align: left;" class="RegistroTabla">$151.01<br></td>
+<td style="text-align: left;" class="RegistroTabla">DÓLARES<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">DAVID RENTEREIA<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">31592<br></td>
+<td style="text-align: left;" class="RegistroTabla">12400<br></td>
+<td style="text-align: left;" class="RegistroTabla">CIUDAD JUAREZ CHIHUAHUA<br></td>
+<td style="text-align: left;" class="RegistroTabla">CIUDAD JUAREZ CHIHUAHUA&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">1542<br></td>
+<td style="text-align: left;" class="RegistroTabla">COPELAND DE MEXICO/ LOCAL EPL- TERMOCONTROLES/ CIUDAD JUAREZ/ CIUDAD JUAREZ<br></td>
+<td style="text-align: left;" class="RegistroTabla">2015309564<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 191<br></td>
+<td style="text-align: left;" class="RegistroTabla">5343<br></td>
+<td style="text-align: left;" class="RegistroTabla">356<br></td>
+<td style="text-align: left;" class="RegistroTabla"> RIVERA NUÑEZ JESUS MANUEL<br></td>
+<td style="text-align: left;" class="RegistroTabla">2015309564<br></td>
+</tr><tr>
+<td style="text-align: center;" class="RegistroTabla">224653-TC<br></td>
+<td style="text-align: left;" class="RegistroTabla">21/05/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla">22/05/2026<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">128884<br></td>
+<td style="text-align: left;" class="RegistroTabla">COPELAND CORPORATE DE MEXICO<br></td>
+<td style="text-align: right;" class="RegistroTabla">$715.70<br></td><td style="text-align: right;" class="RegistroTabla">$114.51<br></td><td style="text-align: center;" class="RegistroTabla">$28.63<br></td>
+<td style="text-align: left;" class="RegistroTabla">$801.58<br></td>
+<td style="text-align: left;" class="RegistroTabla">DÓLARES<br></td>
+<td style="text-align: left;" class="RegistroTabla">Pendiente de Pago<br></td>
+<td style="text-align: left;" class="RegistroTabla">20/06/2026<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td><td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">$0.00<br></td>
+<td style="text-align: center;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">JORGE SALAIS<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td>
+<td style="text-align: left;" class="RegistroTabla">0<br></td><td style="text-align: left;" class="RegistroTabla">79178<br></td>
+<td style="text-align: left;" class="RegistroTabla">67433<br></td>
+<td style="text-align: left;" class="RegistroTabla">CHIHUAHUA, CHIHUAHUA<br></td>
+<td style="text-align: left;" class="RegistroTabla">EL PASO, TX&nbsp;<br></td>
+<td style="text-align: left;" class="RegistroTabla">1552<br></td>
+<td style="text-align: left;" class="RegistroTabla">COPELAND DE MEXICO/ COPELAND EXPORTACION/ CHIHUAHUA, CHIH / EL PASO, TX<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+<td style="text-align: left;" class="RegistroTabla"> 281<br></td>
+<td style="text-align: left;" class="RegistroTabla">733<br></td>
+<td style="text-align: left;" class="RegistroTabla">424<br></td>
+<td style="text-align: left;" class="RegistroTabla"> LOPEZ GOMEZ NOEL<br></td>
+<td style="text-align: left;" class="RegistroTabla"><br></td>
+</tr></body></table></html>

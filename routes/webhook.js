@@ -5,6 +5,7 @@ const express = require("express");
 const router = express.Router();
 
 const { enviarMensajeWhatsApp } = require("../services/whatsappService");
+const { buscarFactura } = require("../services/excelService");
 // VALIDACIÓN META WEBHOOK
 router.get("/webhook", (req, res) => {
 
@@ -56,14 +57,38 @@ router.post("/webhook", async (req, res) => {
 
         const texto = mensaje.text?.body || "";
 
-        await enviarMensajeWhatsApp(
+      const factura = texto.match(/\d+/)?.[0];
 
-            numero,
+if (!factura) {
 
-            `Hola, recibí tu mensaje correctamente: ${texto}`
+    await enviarMensajeWhatsApp(
+        numero,
+        "Envía la consulta así: factura 12345"
+    );
 
-        );
+    return res.sendStatus(200);
+}
 
+const datosFactura = buscarFactura(factura);
+
+if (!datosFactura) {
+
+    await enviarMensajeWhatsApp(
+        numero,
+        `No encontré información para la factura ${factura}`
+    );
+
+    return res.sendStatus(200);
+}
+
+const respuesta = `
+Factura: ${factura}
+Unidad: ${datosFactura.Unidad || "Sin dato"}
+Cliente: ${datosFactura.Cliente || "Sin dato"}
+Estatus: ${datosFactura.Estatus || "Sin dato"}
+`;
+
+await enviarMensajeWhatsApp(numero, respuesta); 
         res.sendStatus(200);
 
     } catch (error) {
