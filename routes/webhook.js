@@ -83,9 +83,12 @@ if (!datosFactura) {
 
 const respuesta = `
 Factura: ${factura}
-Unidad: ${datosFactura.Unidad || "Sin dato"}
 Cliente: ${datosFactura.Cliente || "Sin dato"}
-Estatus: ${datosFactura.Estatus || "Sin dato"}
+Origen: ${datosFactura.Origen || "Sin dato"}
+Destino: ${datosFactura.Destino || "Sin dato"}
+Unidad: ${datosFactura.Unidad || "Sin dato"}
+Remolque: ${datosFactura.Remolque || "Sin dato"}
+Chofer: ${datosFactura.Chofer || "Sin dato"}
 `;
 
 await enviarMensajeWhatsApp(numero, respuesta); 
