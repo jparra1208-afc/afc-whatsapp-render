@@ -2,9 +2,11 @@ const XLSX = require("xlsx");
 const path = require("path");
 
 function normalizar(valor) {
+
     return String(valor || "")
         .trim()
         .toUpperCase();
+
 }
 
 function buscarFactura(facturaBuscada) {
@@ -30,11 +32,24 @@ function buscarFactura(facturaBuscada) {
 
     const resultado = data.find(row => {
 
-        return normalizar(row.Factura) === facturaNormalizada;
+        return (
+
+            normalizar(row.Factura).includes(facturaNormalizada) ||
+
+            normalizar(row["No. Factura"]).includes(facturaNormalizada) ||
+
+            normalizar(row["Factura #"]).includes(facturaNormalizada) ||
+
+            normalizar(row.Folio).includes(facturaNormalizada) ||
+
+            normalizar(row.Documento).includes(facturaNormalizada)
+
+        );
 
     });
 
     return resultado || null;
+
 }
 
 module.exports = {

@@ -88,7 +88,7 @@ Origen: ${datosFactura.Origen || "Sin dato"}
 Destino: ${datosFactura.Destino || "Sin dato"}
 Unidad: ${datosFactura.Unidad || "Sin dato"}
 Remolque: ${datosFactura.Remolque || "Sin dato"}
-Chofer: ${datosFactura.Chofer || "Sin dato"}
+Chofer: ${datosFactura.Chofer || "Sin dato"}git
 `;
 
 await enviarMensajeWhatsApp(numero, respuesta); 
