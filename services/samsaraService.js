@@ -57,7 +57,7 @@ async function obtenerGPSUnidad(unidadBuscada) {
         velocidad: gps.speedMilesPerHour,
         direccion: gps.reverseGeo?.formattedLocation || "Sin dirección",
         tiempo: gps.time,
-        mapa: `https://www.google.com/maps?q=${gps.latitude},${gps.longitude}`
+        mapa: `https://cloud.samsara.com/o/9006365/devices/${vehiculo.id}/vehicle?end_ms=${Date.now()}`
     };
 }
 
