@@ -23,18 +23,20 @@ async function obtenerGPSUnidad(unidadBuscada) {
     );
 
     const vehiculos = response.data.data || [];
+
     console.log("Unidad buscada en Samsara:", unidadNormalizada);
     console.log("Total vehículos Samsara:", vehiculos.length);
     console.log("Primeros vehículos Samsara:", vehiculos.slice(0, 20).map(v => v.name));
-    const vehiculo = vehiculos.find(v => {
-        return normalizar(v.name).includes(unidadNormalizada);
-    });
+
+    const vehiculo = vehiculos.find(v =>
+        normalizar(v.name).includes(unidadNormalizada)
+    );
 
     if (!vehiculo) {
         return null;
     }
 
-    const gps = vehiculo.gps?.[0];
+    const gps = Array.isArray(vehiculo.gps) ? vehiculo.gps[0] : vehiculo.gps;
 
     if (!gps) {
         return {
