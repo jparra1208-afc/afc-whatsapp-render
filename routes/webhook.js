@@ -44,7 +44,10 @@ router.post("/webhook", async (req, res) => {
         console.log(JSON.stringify(req.body, null, 2));
 
         const value = req.body.entry?.[0]?.changes?.[0]?.value;
-
+if (value?.statuses) {
+    console.log("Evento de estatus recibido, se ignora.");
+    return res.sendStatus(200);
+}
         const mensaje = value?.messages?.[0];
 
         if (!mensaje) {
