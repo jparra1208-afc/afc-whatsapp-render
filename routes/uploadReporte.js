@@ -1,0 +1,151 @@
+const express = require("express");
+const multer = require("multer");
+const path = require("path");
+const fs = require("fs");
+const XLSX = require("xlsx");
+
+const router = express.Router();
+
+const upload = multer({
+    dest: "uploads/"
+});
+
+const API_UPLOAD_TOKEN = process.env.API_UPLOAD_TOKEN;
+
+function normalizar(valor) {
+    return String(valor || "")
+        .trim()
+        .toUpperCase()
+        .replace(/\s+/g, "");
+}
+
+function obtenerValor(row, nombreColumna) {
+    const key = Object.keys(row).find(k =>
+        normalizar(k) === normalizar(nombreColumna)
+    );
+
+    return key ? row[key] : "";
+}
+
+function validarExcel(rutaArchivo) {
+
+    const workbook = XLSX.readFile(rutaArchivo);
+
+    const sheetName = workbook.SheetNames[0];
+
+    const sheet = workbook.Sheets[sheetName];
+
+    const data = XLSX.utils.sheet_to_json(sheet, {
+        defval: ""
+    });
+
+    if (!data.length) {
+        throw new Error("El Excel no contiene registros.");
+    }
+
+    const columnasRequeridas = [
+        "Factura",
+        "Cliente",
+        "Origen Ruta",
+        "Destino Ruta",
+        "Unidad",
+        "Remolque",
+        "Chofer"
+    ];
+
+    const primeraFila = data[0];
+
+    for (const columna of columnasRequeridas) {
+
+        const existeColumna = Object.keys(primeraFila).some(k =>
+            normalizar(k) === normalizar(columna)
+        );
+
+        if (!existeColumna) {
+            throw new Error(`No existe la columna requerida: ${columna}`);
+        }
+
+    }
+
+    return {
+        totalRegistros: data.length,
+        columnas: Object.keys(primeraFila)
+    };
+
+}
+
+router.post("/api/subir-reporte", upload.single("archivo"), async (req, res) => {
+
+    try {
+
+        const token = req.headers["x-api-token"];
+
+        if (!API_UPLOAD_TOKEN || token !== API_UPLOAD_TOKEN) {
+
+            return res.status(401).json({
+                ok: false,
+                mensaje: "No autorizado"
+            });
+
+        }
+
+        if (!req.file) {
+
+            return res.status(400).json({
+                ok: false,
+                mensaje: "No se recibió archivo"
+            });
+
+        }
+
+        const extension = path.extname(req.file.originalname).toLowerCase();
+
+        if (extension !== ".xlsx") {
+
+            fs.unlinkSync(req.file.path);
+
+            return res.status(400).json({
+                ok: false,
+                mensaje: "Solo se permiten archivos .xlsx"
+            });
+
+        }
+
+        const validacion = validarExcel(req.file.path);
+
+        const destino = path.join(
+            __dirname,
+            "..",
+            "gm",
+            "reporte.xlsx"
+        );
+
+        fs.copyFileSync(req.file.path, destino);
+
+        fs.unlinkSync(req.file.path);
+
+        console.log("Reporte actualizado correctamente");
+
+        return res.json({
+            ok: true,
+            mensaje: "Reporte actualizado correctamente",
+            validacion
+        });
+
+    } catch (error) {
+
+        console.error(
+            "Error subiendo reporte:",
+            error.message
+        );
+
+        return res.status(500).json({
+            ok: false,
+            mensaje: error.message
+        });
+
+    }
+
+});
+
+module.exports = router;
