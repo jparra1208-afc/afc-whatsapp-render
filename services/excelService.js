@@ -8,6 +8,14 @@ function normalizar(valor) {
         .replace(/\s+/g, "");
 }
 
+function obtenerValor(row, nombreColumna) {
+    const key = Object.keys(row).find(k =>
+        normalizar(k) === normalizar(nombreColumna)
+    );
+
+    return key ? row[key] : "";
+}
+
 function buscarFactura(facturaBuscada) {
     const rutaExcel = path.join(__dirname, "..", "gm", "reporte.xlsx");
 
@@ -29,7 +37,7 @@ function buscarFactura(facturaBuscada) {
     console.log("Factura buscada:", facturaNormalizada);
 
     const resultado = data.find(row => {
-        const facturaExcel = normalizar(row.Factura);
+        const facturaExcel = normalizar(obtenerValor(row, "Factura"));
 
         console.log("Comparando con factura Excel:", facturaExcel);
 
@@ -38,7 +46,19 @@ function buscarFactura(facturaBuscada) {
 
     console.log("Resultado encontrado:", resultado || "NO ENCONTRADO");
 
-    return resultado || null;
+    if (!resultado) {
+        return null;
+    }
+
+    return {
+        Factura: obtenerValor(resultado, "Factura"),
+        Cliente: obtenerValor(resultado, "Cliente"),
+        Origen: obtenerValor(resultado, "Origen Ruta"),
+        Destino: obtenerValor(resultado, "Destino Ruta"),
+        Unidad: obtenerValor(resultado, "Unidad"),
+        Remolque: obtenerValor(resultado, "Remolque"),
+        Chofer: obtenerValor(resultado, "Chofer")
+    };
 }
 
 module.exports = {
