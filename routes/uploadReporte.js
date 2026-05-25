@@ -28,11 +28,8 @@ function obtenerValor(row, nombreColumna) {
 }
 
 function validarExcel(rutaArchivo) {
-
     const workbook = XLSX.readFile(rutaArchivo);
-
     const sheetName = workbook.SheetNames[0];
-
     const sheet = workbook.Sheets[sheetName];
 
     const data = XLSX.utils.sheet_to_json(sheet, {
@@ -56,7 +53,6 @@ function validarExcel(rutaArchivo) {
     const primeraFila = data[0];
 
     for (const columna of columnasRequeridas) {
-
         const existeColumna = Object.keys(primeraFila).some(k =>
             normalizar(k) === normalizar(columna)
         );
@@ -64,51 +60,44 @@ function validarExcel(rutaArchivo) {
         if (!existeColumna) {
             throw new Error(`No existe la columna requerida: ${columna}`);
         }
-
     }
 
     return {
         totalRegistros: data.length,
         columnas: Object.keys(primeraFila)
     };
-
 }
 
 router.post("/api/subir-reporte", upload.single("archivo"), async (req, res) => {
-
     try {
-
         const token = req.headers["x-api-token"];
 
         if (!API_UPLOAD_TOKEN || token !== API_UPLOAD_TOKEN) {
-
             return res.status(401).json({
                 ok: false,
                 mensaje: "No autorizado"
             });
-
         }
 
         if (!req.file) {
-
             return res.status(400).json({
                 ok: false,
                 mensaje: "No se recibió archivo"
             });
-
         }
 
         const extension = path.extname(req.file.originalname).toLowerCase();
 
-        if (extension !== ".xlsx") {
-
+        if (
+            extension !== ".xlsx" &&
+            extension !== ".xls"
+        ) {
             fs.unlinkSync(req.file.path);
 
             return res.status(400).json({
                 ok: false,
-                mensaje: "Solo se permiten archivos .xlsx"
+                mensaje: "Solo se permiten archivos Excel .xls o .xlsx"
             });
-
         }
 
         const validacion = validarExcel(req.file.path);
@@ -121,7 +110,6 @@ router.post("/api/subir-reporte", upload.single("archivo"), async (req, res) => 
         );
 
         fs.copyFileSync(req.file.path, destino);
-
         fs.unlinkSync(req.file.path);
 
         console.log("Reporte actualizado correctamente");
@@ -129,23 +117,25 @@ router.post("/api/subir-reporte", upload.single("archivo"), async (req, res) => 
         return res.json({
             ok: true,
             mensaje: "Reporte actualizado correctamente",
+            archivoOriginal: req.file.originalname,
             validacion
         });
 
     } catch (error) {
-
         console.error(
             "Error subiendo reporte:",
             error.message
         );
 
+        if (req.file?.path && fs.existsSync(req.file.path)) {
+            fs.unlinkSync(req.file.path);
+        }
+
         return res.status(500).json({
             ok: false,
             mensaje: error.message
         });
-
     }
-
 });
 
 module.exports = router;
