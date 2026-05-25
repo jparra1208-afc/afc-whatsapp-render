@@ -5,6 +5,7 @@ const router = express.Router();
 
 const { enviarMensajeWhatsApp } = require("../services/whatsappService");
 const { buscarFactura } = require("../services/excelService");
+const { obtenerGPSUnidad } = require("../services/samsaraService");
 
 // VALIDACIÓN META WEBHOOK
 router.get("/webhook", (req, res) => {
@@ -73,7 +74,20 @@ router.post("/webhook", async (req, res) => {
             return res.sendStatus(200);
         }
 
-        const respuesta = `
+        let infoSamsara = null;
+
+        if (datosFactura.Unidad) {
+            try {
+                infoSamsara = await obtenerGPSUnidad(datosFactura.Unidad);
+            } catch (errorSamsara) {
+                console.error(
+                    "Error consultando Samsara:",
+                    errorSamsara.response?.data || errorSamsara.message
+                );
+            }
+        }
+
+        let respuesta = `
 Factura: ${datosFactura.Factura || factura}
 Cliente: ${datosFactura.Cliente || "Sin dato"}
 Origen: ${datosFactura.Origen || "Sin dato"}
@@ -82,6 +96,35 @@ Unidad: ${datosFactura.Unidad || "Sin dato"}
 Remolque: ${datosFactura.Remolque || "Sin dato"}
 Chofer: ${datosFactura.Chofer || "Sin dato"}
 `;
+
+        if (infoSamsara?.gpsDisponible) {
+            respuesta += `
+
+Ubicación actual:
+${infoSamsara.direccion}
+
+Velocidad:
+${infoSamsara.velocidad || 0} mph
+
+Última actualización:
+${infoSamsara.tiempo}
+
+Mapa:
+${infoSamsara.mapa}
+`;
+        } else if (infoSamsara?.encontrado) {
+            respuesta += `
+
+Samsara:
+Unidad encontrada, pero sin GPS disponible.
+`;
+        } else {
+            respuesta += `
+
+Samsara:
+No encontré la unidad en Samsara.
+`;
+        }
 
         await enviarMensajeWhatsApp(numero, respuesta);
 
