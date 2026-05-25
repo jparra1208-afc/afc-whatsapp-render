@@ -50,7 +50,10 @@ router.post("/webhook", async (req, res) => {
         console.log("Mensaje real recibido:", texto);
         console.log("Número origen:", numero);
 
-        const factura = texto.match(/\d+/)?.[0];
+        const factura = texto
+          .toUpperCase()
+         .replace("FACTURA", "")
+         .trim();
 
         if (!factura) {
             await enviarMensajeWhatsApp(
