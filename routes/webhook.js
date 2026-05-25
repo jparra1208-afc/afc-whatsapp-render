@@ -50,15 +50,55 @@ router.post("/webhook", async (req, res) => {
         console.log("Mensaje real recibido:", texto);
         console.log("Número origen:", numero);
 
+        const textoNormalizado = texto
+            .trim()
+            .toLowerCase();
+
+        if (
+            textoNormalizado === "hola" ||
+            textoNormalizado === "menu" ||
+            textoNormalizado === "menú" ||
+            textoNormalizado === "ayuda" ||
+            textoNormalizado === "inicio"
+        ) {
+            const bienvenida = `
+🚛 Bienvenido al asistente automático de Autofletes Chihuahua (AFC)
+
+Puedes consultar el estatus de tu embarque en tiempo real.
+
+📦 ¿Cómo consultar una factura?
+
+Envía el número de factura así:
+
+factura 224652-TC
+
+El sistema mostrará:
+
+✅ Cliente
+✅ Origen y destino
+✅ Unidad asignada
+✅ Remolque
+✅ Operador
+✅ Ubicación GPS
+✅ Link directo Samsara
+
+⚡ Disponible 24/7
+`;
+
+            await enviarMensajeWhatsApp(numero, bienvenida);
+
+            return res.sendStatus(200);
+        }
+
         const factura = texto
-          .toUpperCase()
-         .replace("FACTURA", "")
-         .trim();
+            .toUpperCase()
+            .replace("FACTURA", "")
+            .trim();
 
         if (!factura) {
             await enviarMensajeWhatsApp(
                 numero,
-                "Envía la consulta así: factura 12345"
+                "Envía la consulta así: factura 224652-TC"
             );
 
             return res.sendStatus(200);
@@ -92,9 +132,13 @@ router.post("/webhook", async (req, res) => {
 
         let respuesta = `
 Factura: ${datosFactura.Factura || factura}
+
 Cliente: ${datosFactura.Cliente || "Sin dato"}
+
 Origen: ${datosFactura.Origen || "Sin dato"}
+
 Destino: ${datosFactura.Destino || "Sin dato"}
+
 Unidad: ${datosFactura.Unidad || "Sin dato"}
 Remolque: ${datosFactura.Remolque || "Sin dato"}
 Chofer: ${datosFactura.Chofer || "Sin dato"}
