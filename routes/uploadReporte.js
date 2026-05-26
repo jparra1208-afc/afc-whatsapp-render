@@ -137,5 +137,47 @@ router.post("/api/subir-reporte", upload.single("archivo"), async (req, res) => 
         });
     }
 });
+router.get("/api/reporte-activo", (req, res) => {
+    try {
+        const rutaReporte = path.join(__dirname, "..", "gm", "reporte.xlsx");
 
+        if (!fs.existsSync(rutaReporte)) {
+            return res.status(404).json({
+                ok: false,
+                mensaje: "No existe reporte activo"
+            });
+        }
+
+        const stats = fs.statSync(rutaReporte);
+
+        const workbook = XLSX.readFile(rutaReporte);
+        const sheetName = workbook.SheetNames[0];
+        const sheet = workbook.Sheets[sheetName];
+
+        const data = XLSX.utils.sheet_to_json(sheet, {
+            defval: ""
+        });
+
+        const facturas = data
+            .map(row => obtenerValor(row, "Factura"))
+            .filter(Boolean);
+
+        return res.json({
+            ok: true,
+            archivoActivo: "gm/reporte.xlsx",
+            fechaModificacionServidor: stats.mtime,
+            totalRegistros: data.length,
+            primeraFactura: facturas[0] || null,
+            ultimaFactura: facturas[facturas.length - 1] || null,
+            hoja: sheetName,
+            columnas: Object.keys(data[0] || {})
+        });
+
+    } catch (error) {
+        return res.status(500).json({
+            ok: false,
+            mensaje: error.message
+        });
+    }
+});
 module.exports = router;
