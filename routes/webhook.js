@@ -1,5 +1,29 @@
 require("dotenv").config();
+    function normalizarTexto(valor) {
+    return String(valor || "")
+        .trim()
+        .toUpperCase()
+        .replace(/\s+/g, " ");
+}
 
+    function obtenerClienteAutorizado(numero) {
+    const configuracion = process.env.CLIENTES_AUTORIZADOS || "";
+
+    const reglas = configuracion
+        .split(";")
+        .map(r => r.trim())
+        .filter(Boolean);
+
+    for (const regla of reglas) {
+        const [telefono, cliente] = regla.split("=");
+
+        if (telefono?.trim() === numero) {
+            return cliente?.trim() || "";
+        }
+    }
+
+    return "";
+}
 const express = require("express");
 const router = express.Router();
 
@@ -131,7 +155,20 @@ El sistema mostrará:
 
             return res.sendStatus(200);
         }
+        const clienteAutorizado = obtenerClienteAutorizado(numero);
+        const clienteFactura = datosFactura.Cliente || "";
 
+        if (
+           normalizarTexto(clienteAutorizado) !== "TODOS" &&
+           normalizarTexto(clienteFactura) !== normalizarTexto(clienteAutorizado)
+        ) {
+           await enviarMensajeWhatsApp(
+               numero,
+               "No tienes autorización para consultar esta factura. Contacta a Autofletes Chihuahua."
+    );
+
+           return res.sendStatus(200);
+}
         let infoSamsara = null;
 
         if (datosFactura.Unidad) {
