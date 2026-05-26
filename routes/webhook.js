@@ -1,29 +1,5 @@
 require("dotenv").config();
-    function normalizarTexto(valor) {
-    return String(valor || "")
-        .trim()
-        .toUpperCase()
-        .replace(/\s+/g, " ");
-}
 
-    function obtenerClienteAutorizado(numero) {
-    const configuracion = process.env.CLIENTES_AUTORIZADOS || "";
-
-    const reglas = configuracion
-        .split(";")
-        .map(r => r.trim())
-        .filter(Boolean);
-
-    for (const regla of reglas) {
-        const [telefono, cliente] = regla.split("=");
-
-        if (telefono?.trim() === numero) {
-            return cliente?.trim() || "";
-        }
-    }
-
-    return "";
-}
 const express = require("express");
 const router = express.Router();
 
@@ -40,8 +16,10 @@ router.get("/webhook", (req, res) => {
     const challenge = req.query["hub.challenge"];
 
     if (mode && token) {
+
         if (mode === "subscribe" && token === verify_token) {
             console.log("WEBHOOK VERIFICADO");
+
             return res.status(200).send(challenge);
         }
 
@@ -53,39 +31,47 @@ router.get("/webhook", (req, res) => {
 
 // RECIBIR MENSAJES
 router.post("/webhook", async (req, res) => {
+
     try {
+
         const value = req.body.entry?.[0]?.changes?.[0]?.value;
 
         if (value?.statuses) {
+
             console.log("Evento de estatus recibido, se ignora.");
+
             return res.sendStatus(200);
         }
 
         const mensaje = value?.messages?.[0];
 
         if (!mensaje) {
+
             console.log("Evento sin mensaje, se ignora.");
+
             return res.sendStatus(200);
         }
 
         const numero = mensaje.from;
         const texto = mensaje.text?.body || "";
 
+        // VALIDACIÓN TELÉFONOS AUTORIZADOS
         const telefonosAutorizados = (
-    process.env.TELEFONOS_AUTORIZADOS || ""
-)
-    .split(",")
-    .map(t => t.trim());
+            process.env.TELEFONOS_AUTORIZADOS || ""
+        )
+            .split(",")
+            .map(t => t.trim());
 
-if (!telefonosAutorizados.includes(numero)) {
+        if (!telefonosAutorizados.includes(numero)) {
 
-    await enviarMensajeWhatsApp(
-        numero,
-        "No tienes autorización para consultar información. Contacta a Autofletes Chihuahua."
-    );
+            await enviarMensajeWhatsApp(
+                numero,
+                "No tienes autorización para consultar información. Contacta a Autofletes Chihuahua."
+            );
 
-    return res.sendStatus(200);
-}
+            return res.sendStatus(200);
+        }
+
         console.log("Mensaje real recibido:", texto);
         console.log("Número origen:", numero);
 
@@ -93,6 +79,7 @@ if (!telefonosAutorizados.includes(numero)) {
             .trim()
             .toLowerCase();
 
+        // MENÚ DE BIENVENIDA
         if (
             textoNormalizado === "hola" ||
             textoNormalizado === "menu" ||
@@ -100,6 +87,7 @@ if (!telefonosAutorizados.includes(numero)) {
             textoNormalizado === "ayuda" ||
             textoNormalizado === "inicio"
         ) {
+
             const bienvenida = `
 🚛 Bienvenido al asistente automático de Autofletes Chihuahua (AFC)
 
@@ -124,17 +112,22 @@ El sistema mostrará:
 ⚡ Disponible 24/7
 `;
 
-            await enviarMensajeWhatsApp(numero, bienvenida);
+            await enviarMensajeWhatsApp(
+                numero,
+                bienvenida
+            );
 
             return res.sendStatus(200);
         }
 
+        // EXTRAER FACTURA
         const factura = texto
             .toUpperCase()
             .replace("FACTURA", "")
             .trim();
 
         if (!factura) {
+
             await enviarMensajeWhatsApp(
                 numero,
                 "Envía la consulta así: factura 224652-TC"
@@ -145,9 +138,11 @@ El sistema mostrará:
 
         console.log("Factura extraída:", factura);
 
+        // BUSCAR FACTURA
         const datosFactura = buscarFactura(factura);
 
         if (!datosFactura) {
+
             await enviarMensajeWhatsApp(
                 numero,
                 `No encontré información para la factura ${factura}`
@@ -155,26 +150,20 @@ El sistema mostrará:
 
             return res.sendStatus(200);
         }
-        const clienteAutorizado = obtenerClienteAutorizado(numero);
-        const clienteFactura = datosFactura.Cliente || "";
 
-        if (
-           normalizarTexto(clienteAutorizado) !== "TODOS" &&
-           normalizarTexto(clienteFactura) !== normalizarTexto(clienteAutorizado)
-        ) {
-           await enviarMensajeWhatsApp(
-               numero,
-               "No tienes autorización para consultar esta factura. Contacta a Autofletes Chihuahua."
-    );
-
-           return res.sendStatus(200);
-}
+        // CONSULTAR SAMSARA
         let infoSamsara = null;
 
         if (datosFactura.Unidad) {
+
             try {
-                infoSamsara = await obtenerGPSUnidad(datosFactura.Unidad);
+
+                infoSamsara = await obtenerGPSUnidad(
+                    datosFactura.Unidad
+                );
+
             } catch (errorSamsara) {
+
                 console.error(
                     "Error consultando Samsara:",
                     errorSamsara.response?.data || errorSamsara.message
@@ -182,6 +171,7 @@ El sistema mostrará:
             }
         }
 
+        // RESPUESTA
         let respuesta = `
 Factura: ${datosFactura.Factura || factura}
 
@@ -192,11 +182,14 @@ Origen: ${datosFactura.Origen || "Sin dato"}
 Destino: ${datosFactura.Destino || "Sin dato"}
 
 Unidad: ${datosFactura.Unidad || "Sin dato"}
+
 Remolque: ${datosFactura.Remolque || "Sin dato"}
+
 Chofer: ${datosFactura.Chofer || "Sin dato"}
 `;
 
         if (infoSamsara?.gpsDisponible) {
+
             respuesta += `
 
 Ubicación actual:
@@ -211,13 +204,17 @@ ${infoSamsara.tiempo}
 Mapa:
 ${infoSamsara.mapa}
 `;
+
         } else if (infoSamsara?.encontrado) {
+
             respuesta += `
 
 Samsara:
 Unidad encontrada, pero sin GPS disponible.
 `;
+
         } else {
+
             respuesta += `
 
 Samsara:
@@ -225,17 +222,21 @@ No encontré la unidad en Samsara.
 `;
         }
 
-        await enviarMensajeWhatsApp(numero, respuesta);
+        await enviarMensajeWhatsApp(
+            numero,
+            respuesta
+        );
 
-        res.sendStatus(200);
+        return res.sendStatus(200);
 
     } catch (error) {
+
         console.error(
             "Error procesando webhook:",
             error.response?.data || error.message
         );
 
-        res.sendStatus(200);
+        return res.sendStatus(200);
     }
 });
 
