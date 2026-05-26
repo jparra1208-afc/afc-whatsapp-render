@@ -47,6 +47,21 @@ router.post("/webhook", async (req, res) => {
         const numero = mensaje.from;
         const texto = mensaje.text?.body || "";
 
+        const telefonosAutorizados = (
+    process.env.TELEFONOS_AUTORIZADOS || ""
+)
+    .split(",")
+    .map(t => t.trim());
+
+if (!telefonosAutorizados.includes(numero)) {
+
+    await enviarMensajeWhatsApp(
+        numero,
+        "No tienes autorización para consultar información. Contacta a Autofletes Chihuahua."
+    );
+
+    return res.sendStatus(200);
+}
         console.log("Mensaje real recibido:", texto);
         console.log("Número origen:", numero);
 
