@@ -5,6 +5,7 @@ const cors = require("cors");
 
 const webhookRoutes = require("./routes/webhook");
 const uploadReporteRoutes = require("./routes/uploadReporte");
+const trackRoutes = require("./routes/track");
 
 const app = express();
 
@@ -13,11 +14,10 @@ app.use(express.json());
 
 app.use("/", webhookRoutes);
 app.use("/", uploadReporteRoutes);
+app.use("/", trackRoutes);
 
 const PORT = process.env.PORT || 10000;
 
 app.listen(PORT, () => {
-
     console.log(`Servidor AFC activo puerto ${PORT}`);
-
 });
