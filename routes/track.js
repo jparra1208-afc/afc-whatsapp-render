@@ -59,7 +59,10 @@ router.get("/track/:factura", async (req, res) => {
             padding: 16px;
             text-align: center;
         }
-
+        .logo {
+            max-width: 180px;
+            margin-bottom: 10px;
+        }
         .header h2 {
             margin: 0;
         }
@@ -90,10 +93,11 @@ router.get("/track/:factura", async (req, res) => {
 </head>
 <body>
 
-    <div class="header">
-        <h2>Seguimiento AFC</h2>
-        <p>Factura ${datosFactura.Factura || factura}</p>
-    </div>
+<div class="header">
+    <img src="/img/logo-afc.png" class="logo" alt="AFC" />
+    <h2>Seguimiento AFC</h2>
+    <p>Factura ${datosFactura.Factura || factura}</p>
+</div>
 
     <div class="info">
         <p><strong>Cliente:</strong> ${datosFactura.Cliente || "Sin dato"}</p>
