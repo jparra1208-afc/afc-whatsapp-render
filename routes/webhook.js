@@ -16,10 +16,8 @@ router.get("/webhook", (req, res) => {
     const challenge = req.query["hub.challenge"];
 
     if (mode && token) {
-
         if (mode === "subscribe" && token === verify_token) {
             console.log("WEBHOOK VERIFICADO");
-
             return res.status(200).send(challenge);
         }
 
@@ -31,24 +29,18 @@ router.get("/webhook", (req, res) => {
 
 // RECIBIR MENSAJES
 router.post("/webhook", async (req, res) => {
-
     try {
-
         const value = req.body.entry?.[0]?.changes?.[0]?.value;
 
         if (value?.statuses) {
-
             console.log("Evento de estatus recibido, se ignora.");
-
             return res.sendStatus(200);
         }
 
         const mensaje = value?.messages?.[0];
 
         if (!mensaje) {
-
             console.log("Evento sin mensaje, se ignora.");
-
             return res.sendStatus(200);
         }
 
@@ -63,7 +55,6 @@ router.post("/webhook", async (req, res) => {
             .map(t => t.trim());
 
         if (!telefonosAutorizados.includes(numero)) {
-
             await enviarMensajeWhatsApp(
                 numero,
                 "No tienes autorización para consultar información. Contacta a Autofletes Chihuahua."
@@ -87,7 +78,6 @@ router.post("/webhook", async (req, res) => {
             textoNormalizado === "ayuda" ||
             textoNormalizado === "inicio"
         ) {
-
             const bienvenida = `
 🚛 Bienvenido al asistente automático de Autofletes Chihuahua (AFC)
 
@@ -107,15 +97,13 @@ El sistema mostrará:
 ✅ Remolque
 ✅ Operador
 ✅ Ubicación GPS
-✅ Link directo Samsara
+✅ Link público AFC de seguimiento
+✅ Link interno Samsara
 
 ⚡ Disponible 24/7
 `;
 
-            await enviarMensajeWhatsApp(
-                numero,
-                bienvenida
-            );
+            await enviarMensajeWhatsApp(numero, bienvenida);
 
             return res.sendStatus(200);
         }
@@ -127,7 +115,6 @@ El sistema mostrará:
             .trim();
 
         if (!factura) {
-
             await enviarMensajeWhatsApp(
                 numero,
                 "Envía la consulta así: factura 224652-TC"
@@ -142,7 +129,6 @@ El sistema mostrará:
         const datosFactura = buscarFactura(factura);
 
         if (!datosFactura) {
-
             await enviarMensajeWhatsApp(
                 numero,
                 `No encontré información para la factura ${factura}`
@@ -151,19 +137,16 @@ El sistema mostrará:
             return res.sendStatus(200);
         }
 
+        // LINK PÚBLICO AFC
+        const linkAFC = `https://afc-whatsapp-render.onrender.com/track/${encodeURIComponent(datosFactura.Factura || factura)}`;
+
         // CONSULTAR SAMSARA
         let infoSamsara = null;
 
         if (datosFactura.Unidad) {
-
             try {
-
-                infoSamsara = await obtenerGPSUnidad(
-                    datosFactura.Unidad
-                );
-
+                infoSamsara = await obtenerGPSUnidad(datosFactura.Unidad);
             } catch (errorSamsara) {
-
                 console.error(
                     "Error consultando Samsara:",
                     errorSamsara.response?.data || errorSamsara.message
@@ -189,7 +172,6 @@ Chofer: ${datosFactura.Chofer || "Sin dato"}
 `;
 
         if (infoSamsara?.gpsDisponible) {
-
             respuesta += `
 
 Ubicación actual:
@@ -201,36 +183,39 @@ ${infoSamsara.velocidad || 0} mph
 Última actualización:
 ${infoSamsara.tiempo}
 
-Mapa:
+Seguimiento AFC:
+${linkAFC}
+
+Mapa interno Samsara:
 ${infoSamsara.mapa}
 `;
 
         } else if (infoSamsara?.encontrado) {
-
             respuesta += `
 
 Samsara:
 Unidad encontrada, pero sin GPS disponible.
+
+Seguimiento AFC:
+${linkAFC}
 `;
 
         } else {
-
             respuesta += `
 
 Samsara:
 No encontré la unidad en Samsara.
+
+Seguimiento AFC:
+${linkAFC}
 `;
         }
 
-        await enviarMensajeWhatsApp(
-            numero,
-            respuesta
-        );
+        await enviarMensajeWhatsApp(numero, respuesta);
 
         return res.sendStatus(200);
 
     } catch (error) {
-
         console.error(
             "Error procesando webhook:",
             error.response?.data || error.message
