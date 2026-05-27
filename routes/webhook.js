@@ -138,7 +138,11 @@ El sistema mostrará:
         }
 
         // LINK PÚBLICO AFC
-        const linkAFC = `https://afc-whatsapp-render.onrender.com/track/${encodeURIComponent(datosFactura.Factura || factura)}`;
+        const facturaLink = String(datosFactura.Factura || factura)
+    .trim()
+    .replace(/\s+/g, "");
+
+const linkAFC = `https://afc-whatsapp-render.onrender.com/track/${encodeURIComponent(facturaLink)}`;
 
         // CONSULTAR SAMSARA
         let infoSamsara = null;
@@ -155,61 +159,60 @@ El sistema mostrará:
         }
 
         // RESPUESTA
-        let respuesta = `
-Factura: ${datosFactura.Factura || factura}
+        let respuesta =
+`🚛 FACTURA ${datosFactura.Factura || factura}
 
-Cliente: ${datosFactura.Cliente || "Sin dato"}
+👤 Cliente: ${datosFactura.Cliente || "Sin dato"}
 
-Origen: ${datosFactura.Origen || "Sin dato"}
+📍 Origen: ${datosFactura.Origen || "Sin dato"}
 
-Destino: ${datosFactura.Destino || "Sin dato"}
+🏁 Destino: ${datosFactura.Destino || "Sin dato"}
 
-Unidad: ${datosFactura.Unidad || "Sin dato"}
+🚚 Unidad: ${datosFactura.Unidad || "Sin dato"}
 
-Remolque: ${datosFactura.Remolque || "Sin dato"}
+📦 Remolque: ${datosFactura.Remolque || "Sin dato"}
 
-Chofer: ${datosFactura.Chofer || "Sin dato"}
-`;
+👨 Operador: ${datosFactura.Chofer || "Sin dato"}`;
+if (infoSamsara?.gpsDisponible) {
 
-        if (infoSamsara?.gpsDisponible) {
-            respuesta += `
+    respuesta += `
 
-Ubicación actual:
+📡 Ubicación:
 ${infoSamsara.direccion}
 
-Velocidad:
-${infoSamsara.velocidad || 0} mph
+⚡ Velocidad: ${infoSamsara.velocidad || 0} mph
 
-Última actualización:
+🕒 Última actualización:
 ${infoSamsara.tiempo}
 
-Seguimiento AFC:
+🌐 Seguimiento AFC:
 ${linkAFC}
 
-Mapa interno Samsara:
-${infoSamsara.mapa}
-`;
+🛰️ Samsara:
+${infoSamsara.mapa}`;
 
-        } else if (infoSamsara?.encontrado) {
-            respuesta += `
+} else if (infoSamsara?.encontrado) {
 
-Samsara:
+    respuesta += `
+
+🛰️ Samsara:
 Unidad encontrada, pero sin GPS disponible.
 
-Seguimiento AFC:
-${linkAFC}
-`;
+🌐 Seguimiento AFC:
+${linkAFC}`;
 
-        } else {
-            respuesta += `
+} else {
 
-Samsara:
+    respuesta += `
+
+🛰️ Samsara:
 No encontré la unidad en Samsara.
 
-Seguimiento AFC:
-${linkAFC}
-`;
-        }
+🌐 Seguimiento AFC:
+${linkAFC}`;
+}
+       
+        
 
         await enviarMensajeWhatsApp(numero, respuesta);
 
