@@ -163,15 +163,11 @@ const linkAFC = `https://afc-whatsapp-render.onrender.com/track/${encodeURICompo
 `🚛 FACTURA ${datosFactura.Factura || factura}
 
 👤 Cliente: ${datosFactura.Cliente || "Sin dato"}
-
 📍 Origen: ${datosFactura.Origen || "Sin dato"}
-
 🏁 Destino: ${datosFactura.Destino || "Sin dato"}
 
 🚚 Unidad: ${datosFactura.Unidad || "Sin dato"}
-
 📦 Remolque: ${datosFactura.Remolque || "Sin dato"}
-
 👨 Operador: ${datosFactura.Chofer || "Sin dato"}`;
 if (infoSamsara?.gpsDisponible) {
 
