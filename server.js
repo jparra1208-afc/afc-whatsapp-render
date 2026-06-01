@@ -2,7 +2,7 @@ require("dotenv").config();
 
 const express = require("express");
 const cors = require("cors");
-const path = require("path"); // <-- AGREGAR
+const path = require("path"); 
 
 const webhookRoutes = require("./routes/webhook");
 const uploadReporteRoutes = require("./routes/uploadReporte");
@@ -10,13 +10,15 @@ const trackRoutes = require("./routes/track");
 
 const app = express();
 
-app.use(cors());
-app.use(express.json());
-app.use(express.static("public"));
+
 
 app.use("/", webhookRoutes);
 app.use("/", uploadReporteRoutes);
 app.use("/", trackRoutes);
+
+app.use(cors());
+app.use(express.json());
+app.use(express.static("public"));
 
 // ===============================
 // DESCARGAR CSV DE CONSULTAS
@@ -32,7 +34,9 @@ app.get("/consultas-csv", (req, res) => {
     });
 });
 // ===============================
-
+app.use("/", webhookRoutes);
+app.use("/", uploadReporteRoutes);
+app.use("/", trackRoutes);
 const PORT = process.env.PORT || 10000;
 
 app.listen(PORT, () => {

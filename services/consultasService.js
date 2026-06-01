@@ -19,8 +19,10 @@ async function registrarConsulta(data) {
         .map(valor => `"${String(valor).replace(/"/g, '""')}"`)
         .join(",") + "\n";
         fs.mkdirSync(path.dirname(archivo), { recursive: true });
+        console.log("📁 Archivo CSV:", archivo);
+        console.log("📝 Datos recibidos:", data);
         fs.appendFileSync(archivo, linea, "utf8");
-
+        
         console.log("✅ Consulta registrada en CSV");
     } catch (error) {
         console.error("❌ Error registrando consulta:", error.message);
