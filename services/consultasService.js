@@ -6,16 +6,25 @@ const archivo = path.join(__dirname, "..", "logs", "consultas.csv");
 async function registrarConsulta(data) {
     try {
         const linea = [
-            new Date().toISOString(),
-            data.telefono || "",
-            data.cliente || "",
-            data.factura || "",
-            data.unidad || "",
-            data.remolque || "",
-            data.consulta_tipo || "FACTURA",
-            data.resultado || "",
-            data.link_samsara || ""
-        ]
+    new Date().toLocaleString("es-MX", {
+        timeZone: "America/Chihuahua",
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false
+    }).replace(",", ""),
+    data.telefono || "",
+    data.cliente || "",
+    data.factura || "",
+    data.unidad || "",
+    data.remolque || "",
+    data.consulta_tipo || "FACTURA",
+    data.resultado || "",
+    data.link_samsara || ""
+]
         .map(valor => `"${String(valor).replace(/"/g, '""')}"`)
         .join(",") + "\n";
         fs.mkdirSync(path.dirname(archivo), { recursive: true });
