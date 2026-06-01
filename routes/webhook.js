@@ -30,6 +30,8 @@ router.get("/webhook", (req, res) => {
 // RECIBIR MENSAJES
 router.post("/webhook", async (req, res) => {
     try {
+        console.log("📦 BODY COMPLETO META:");
+        console.log(JSON.stringify(req.body, null, 2));
         const value = req.body?.entry?.[0]?.changes?.[0]?.value;
 
         if (!value) {
