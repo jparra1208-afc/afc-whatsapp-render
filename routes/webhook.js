@@ -7,6 +7,8 @@ const { enviarMensajeWhatsApp } = require("../services/whatsappService");
 const { buscarFactura } = require("../services/excelService");
 const { obtenerGPSUnidad } = require("../services/samsaraService");
 const { registrarConsulta } = require("../services/consultasService");
+const { obtenerLiveShareUnidad } = require("../services/samsaraLiveShareService");
+
 // VALIDACIÓN META WEBHOOK
 router.get("/webhook", (req, res) => {
     const verify_token = process.env.VERIFY_TOKEN;
@@ -30,8 +32,8 @@ router.get("/webhook", (req, res) => {
 // RECIBIR MENSAJES
 router.post("/webhook", async (req, res) => {
     try {
-        console.log("📦 BODY COMPLETO META:");
-        console.log(JSON.stringify(req.body, null, 2));
+       
+
         const value = req.body?.entry?.[0]?.changes?.[0]?.value;
 
         if (!value) {
@@ -44,13 +46,13 @@ router.post("/webhook", async (req, res) => {
             return res.sendStatus(200);
         }
 
-      
         const mensaje = value?.messages?.[0];
 
-if (!mensaje) {
-    console.log("Evento sin mensaje, se ignora.");
-    return res.sendStatus(200);
-}
+        if (!mensaje) {
+            console.log("Evento sin mensaje, se ignora.");
+            return res.sendStatus(200);
+        }
+
         const numero = mensaje.from;
         const texto = mensaje.text?.body || "";
 
@@ -73,9 +75,7 @@ if (!mensaje) {
         console.log("Mensaje real recibido:", texto);
         console.log("Número origen:", numero);
 
-        const textoNormalizado = texto
-            .trim()
-            .toLowerCase();
+        const textoNormalizado = texto.trim().toLowerCase();
 
         // MENÚ DE BIENVENIDA
         if (
@@ -105,13 +105,12 @@ El sistema mostrará:
 ✅ Operador
 ✅ Ubicación GPS
 ✅ Link público AFC de seguimiento
-✅ Link interno Samsara
+✅ Link público Samsara Live Sharing
 
 ⚡ Disponible 24/7
 `;
 
             await enviarMensajeWhatsApp(numero, bienvenida);
-
             return res.sendStatus(200);
         }
 
@@ -135,35 +134,36 @@ El sistema mostrará:
         // BUSCAR FACTURA
         const datosFactura = buscarFactura(factura);
 
-       if (!datosFactura) {
-    await enviarMensajeWhatsApp(
-        numero,
-        `No encontré información para la factura ${factura}`
-    );
+        if (!datosFactura) {
+            await enviarMensajeWhatsApp(
+                numero,
+                `No encontré información para la factura ${factura}`
+            );
 
-    await registrarConsulta({
-        telefono: numero,
-        cliente: "",
-        factura: factura,
-        unidad: "",
-        remolque: "",
-        consulta_tipo: "FACTURA",
-        resultado: "FACTURA_NO_ENCONTRADA",
-        link_samsara: ""
-    });
+            await registrarConsulta({
+                telefono: numero,
+                cliente: "",
+                factura: factura,
+                unidad: "",
+                remolque: "",
+                consulta_tipo: "FACTURA",
+                resultado: "FACTURA_NO_ENCONTRADA",
+                link_samsara: ""
+            });
 
-    return res.sendStatus(200);
-}
+            return res.sendStatus(200);
+        }
 
         // LINK PÚBLICO AFC
         const facturaLink = String(datosFactura.Factura || factura)
-    .trim()
-    .replace(/\s+/g, "");
+            .trim()
+            .replace(/\s+/g, "");
 
-const linkAFC = `https://afc-whatsapp-render.onrender.com/track/${encodeURIComponent(facturaLink)}`;
+        const linkAFC = `https://afc-whatsapp-render.onrender.com/track/${encodeURIComponent(facturaLink)}`;
 
         // CONSULTAR SAMSARA
         let infoSamsara = null;
+        let liveShareUrl = null;
 
         if (datosFactura.Unidad) {
             try {
@@ -172,6 +172,15 @@ const linkAFC = `https://afc-whatsapp-render.onrender.com/track/${encodeURICompo
                 console.error(
                     "Error consultando Samsara:",
                     errorSamsara.response?.data || errorSamsara.message
+                );
+            }
+
+            try {
+                liveShareUrl = await obtenerLiveShareUnidad(datosFactura.Unidad);
+            } catch (errorLiveShare) {
+                console.error(
+                    "Error consultando Live Sharing Samsara:",
+                    errorLiveShare.response?.data || errorLiveShare.message
                 );
             }
         }
@@ -187,9 +196,9 @@ const linkAFC = `https://afc-whatsapp-render.onrender.com/track/${encodeURICompo
 🚚 Unidad: ${datosFactura.Unidad || "Sin dato"}
 📦 Remolque: ${datosFactura.Remolque || "Sin dato"}
 👨 Operador: ${datosFactura.Chofer || "Sin dato"}`;
-if (infoSamsara?.gpsDisponible) {
 
-    respuesta += `
+        if (infoSamsara?.gpsDisponible) {
+            respuesta += `
 
 📡 Ubicación:
 ${infoSamsara.direccion}
@@ -202,47 +211,50 @@ ${infoSamsara.tiempo}
 🌐 Seguimiento AFC:
 ${linkAFC}
 
-🛰️ Samsara:
-${infoSamsara.mapa}`;
+🛰️ Samsara Live Sharing:
+${liveShareUrl || infoSamsara.mapa}`;
 
-} else if (infoSamsara?.encontrado) {
-
-    respuesta += `
+        } else if (infoSamsara?.encontrado) {
+            respuesta += `
 
 🛰️ Samsara:
 Unidad encontrada, pero sin GPS disponible.
 
 🌐 Seguimiento AFC:
-${linkAFC}`;
+${linkAFC}
 
-} else {
+🛰️ Samsara Live Sharing:
+${liveShareUrl || infoSamsara.mapa || "No disponible"}`;
 
-    respuesta += `
+        } else {
+            respuesta += `
 
 🛰️ Samsara:
 No encontré la unidad en Samsara.
+🛰️ Samsara Live Sharing:
+${liveShareUrl || "No disponible"}
 
 🌐 Seguimiento AFC:
 ${linkAFC}`;
-}
-       
-        
+        }
 
         await enviarMensajeWhatsApp(numero, respuesta);
-await registrarConsulta({
-    telefono: numero,
-    cliente: datosFactura.Cliente || "",
-    factura: datosFactura.Factura || factura,
-    unidad: datosFactura.Unidad || "",
-    remolque: datosFactura.Remolque || "",
-    consulta_tipo: "FACTURA",
-    resultado: infoSamsara?.gpsDisponible
-        ? "EXITOSA_CON_GPS"
-        : infoSamsara?.encontrado
-            ? "EXITOSA_SIN_GPS"
-            : "EXITOSA_SIN_SAMSARA",
-    link_samsara: infoSamsara?.mapa || linkAFC
-});
+
+        await registrarConsulta({
+            telefono: numero,
+            cliente: datosFactura.Cliente || "",
+            factura: datosFactura.Factura || factura,
+            unidad: datosFactura.Unidad || "",
+            remolque: datosFactura.Remolque || "",
+            consulta_tipo: "FACTURA",
+            resultado: infoSamsara?.gpsDisponible
+                ? "EXITOSA_CON_GPS"
+                : infoSamsara?.encontrado
+                    ? "EXITOSA_SIN_GPS"
+                    : "EXITOSA_SIN_SAMSARA",
+            link_samsara: liveShareUrl || infoSamsara?.mapa || linkAFC
+        });
+
         return res.sendStatus(200);
 
     } catch (error) {
