@@ -6,7 +6,7 @@ const router = express.Router();
 const { enviarMensajeWhatsApp } = require("../services/whatsappService");
 const { buscarFactura } = require("../services/excelService");
 const { obtenerGPSUnidad } = require("../services/samsaraService");
-
+const { registrarConsulta } = require("../services/consultasService");
 // VALIDACIÓN META WEBHOOK
 router.get("/webhook", (req, res) => {
     const verify_token = process.env.VERIFY_TOKEN;
@@ -30,20 +30,25 @@ router.get("/webhook", (req, res) => {
 // RECIBIR MENSAJES
 router.post("/webhook", async (req, res) => {
     try {
-        const value = req.body.entry?.[0]?.changes?.[0]?.value;
+        const value = req.body?.entry?.[0]?.changes?.[0]?.value;
+
+        if (!value) {
+            console.log("⚠️ POST recibido sin estructura válida de Meta, se ignora.");
+            return res.sendStatus(200);
+        }
 
         if (value?.statuses) {
             console.log("Evento de estatus recibido, se ignora.");
             return res.sendStatus(200);
         }
 
+      
         const mensaje = value?.messages?.[0];
 
-        if (!mensaje) {
-            console.log("Evento sin mensaje, se ignora.");
-            return res.sendStatus(200);
-        }
-
+if (!mensaje) {
+    console.log("Evento sin mensaje, se ignora.");
+    return res.sendStatus(200);
+}
         const numero = mensaje.from;
         const texto = mensaje.text?.body || "";
 
@@ -128,14 +133,25 @@ El sistema mostrará:
         // BUSCAR FACTURA
         const datosFactura = buscarFactura(factura);
 
-        if (!datosFactura) {
-            await enviarMensajeWhatsApp(
-                numero,
-                `No encontré información para la factura ${factura}`
-            );
+       if (!datosFactura) {
+    await enviarMensajeWhatsApp(
+        numero,
+        `No encontré información para la factura ${factura}`
+    );
 
-            return res.sendStatus(200);
-        }
+    await registrarConsulta({
+        telefono: numero,
+        cliente: "",
+        factura: factura,
+        unidad: "",
+        remolque: "",
+        consulta_tipo: "FACTURA",
+        resultado: "FACTURA_NO_ENCONTRADA",
+        link_samsara: ""
+    });
+
+    return res.sendStatus(200);
+}
 
         // LINK PÚBLICO AFC
         const facturaLink = String(datosFactura.Factura || factura)
@@ -211,7 +227,20 @@ ${linkAFC}`;
         
 
         await enviarMensajeWhatsApp(numero, respuesta);
-
+await registrarConsulta({
+    telefono: numero,
+    cliente: datosFactura.Cliente || "",
+    factura: datosFactura.Factura || factura,
+    unidad: datosFactura.Unidad || "",
+    remolque: datosFactura.Remolque || "",
+    consulta_tipo: "FACTURA",
+    resultado: infoSamsara?.gpsDisponible
+        ? "EXITOSA_CON_GPS"
+        : infoSamsara?.encontrado
+            ? "EXITOSA_SIN_GPS"
+            : "EXITOSA_SIN_SAMSARA",
+    link_samsara: infoSamsara?.mapa || linkAFC
+});
         return res.sendStatus(200);
 
     } catch (error) {
