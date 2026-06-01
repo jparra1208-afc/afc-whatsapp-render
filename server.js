@@ -11,11 +11,6 @@ const trackRoutes = require("./routes/track");
 const app = express();
 
 
-
-app.use("/", webhookRoutes);
-app.use("/", uploadReporteRoutes);
-app.use("/", trackRoutes);
-
 app.use(cors());
 app.use(express.json());
 app.use(express.static("public"));
