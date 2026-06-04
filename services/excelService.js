@@ -16,6 +16,13 @@ function obtenerValor(row, nombreColumna) {
     return key ? row[key] : "";
 }
 
+function separarUnidades(valor) {
+    return String(valor || "")
+        .split(/[\/,]/)
+        .map(v => v.trim())
+        .filter(Boolean);
+}
+
 function buscarFactura(facturaBuscada) {
     const rutaExcel = path.join(__dirname, "..", "gm", "reporte.xlsx");
 
@@ -50,17 +57,23 @@ function buscarFactura(facturaBuscada) {
         return null;
     }
 
+    const unidad = obtenerValor(resultado, "Unidad");
+    const remolque = obtenerValor(resultado, "Remolque");
+
     return {
         Factura: obtenerValor(resultado, "Factura"),
         Cliente: obtenerValor(resultado, "Cliente"),
         Origen: obtenerValor(resultado, "Origen Ruta"),
         Destino: obtenerValor(resultado, "Destino Ruta"),
-        Unidad: obtenerValor(resultado, "Unidad"),
-        Remolque: obtenerValor(resultado, "Remolque"),
+        Unidad: unidad,
+        UnidadesLista: separarUnidades(unidad),
+        Remolque: remolque,
+        RemolquesLista: separarUnidades(remolque),
         Chofer: obtenerValor(resultado, "Chofer")
     };
 }
 
 module.exports = {
-    buscarFactura
+    buscarFactura,
+    separarUnidades
 };
