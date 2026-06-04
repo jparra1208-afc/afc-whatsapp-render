@@ -9,6 +9,65 @@ const { obtenerGPSUnidad } = require("../services/samsaraService");
 const { registrarConsulta } = require("../services/consultasService");
 const { obtenerLiveShareUnidad } = require("../services/samsaraLiveShareService");
 
+function limpiarLista(valores) {
+    return (valores || [])
+        .map(v => String(v || "").trim())
+        .filter(Boolean);
+}
+
+async function obtenerLiveSharingPrioridad(datosFactura) {
+    const remolques = limpiarLista(datosFactura.RemolquesLista);
+    const unidades = limpiarLista(datosFactura.UnidadesLista);
+
+    const links = [];
+
+    for (const remolque of remolques) {
+        const link = await obtenerLiveShareUnidad(remolque);
+
+        if (link) {
+            links.push({
+                tipo: "Remolque",
+                numero: remolque,
+                link
+            });
+        }
+    }
+
+    if (links.length > 0) {
+        return {
+            fuente: "REMOLQUE",
+            links
+        };
+    }
+
+    for (const unidad of unidades) {
+        const link = await obtenerLiveShareUnidad(unidad);
+
+        if (link) {
+            links.push({
+                tipo: "Unidad",
+                numero: unidad,
+                link
+            });
+        }
+    }
+
+    return {
+        fuente: links.length > 0 ? "UNIDAD" : "NO_DISPONIBLE",
+        links
+    };
+}
+
+function formatearLinksLiveSharing(resultadoLiveSharing) {
+    if (!resultadoLiveSharing || resultadoLiveSharing.links.length === 0) {
+        return "No disponible";
+    }
+
+    return resultadoLiveSharing.links
+        .map(item => `${item.tipo} ${item.numero}:\n${item.link}`)
+        .join("\n\n");
+}
+
 // VALIDACIÓN META WEBHOOK
 router.get("/webhook", (req, res) => {
     const verify_token = process.env.VERIFY_TOKEN;
@@ -32,8 +91,6 @@ router.get("/webhook", (req, res) => {
 // RECIBIR MENSAJES
 router.post("/webhook", async (req, res) => {
     try {
-       
-
         const value = req.body?.entry?.[0]?.changes?.[0]?.value;
 
         if (!value) {
@@ -56,7 +113,6 @@ router.post("/webhook", async (req, res) => {
         const numero = mensaje.from;
         const texto = mensaje.text?.body || "";
 
-        // VALIDACIÓN TELÉFONOS AUTORIZADOS
         const telefonosAutorizados = (
             process.env.TELEFONOS_AUTORIZADOS || ""
         )
@@ -77,7 +133,6 @@ router.post("/webhook", async (req, res) => {
 
         const textoNormalizado = texto.trim().toLowerCase();
 
-        // MENÚ DE BIENVENIDA
         if (
             textoNormalizado === "hola" ||
             textoNormalizado === "menu" ||
@@ -114,7 +169,6 @@ El sistema mostrará:
             return res.sendStatus(200);
         }
 
-        // EXTRAER FACTURA
         const factura = texto
             .toUpperCase()
             .replace("FACTURA", "")
@@ -131,7 +185,6 @@ El sistema mostrará:
 
         console.log("Factura extraída:", factura);
 
-        // BUSCAR FACTURA
         const datosFactura = buscarFactura(factura);
 
         if (!datosFactura) {
@@ -154,38 +207,50 @@ El sistema mostrará:
             return res.sendStatus(200);
         }
 
-        // LINK PÚBLICO AFC
         const facturaLink = String(datosFactura.Factura || factura)
             .trim()
             .replace(/\s+/g, "");
 
         const linkAFC = `https://afc-whatsapp-render.onrender.com/track/${encodeURIComponent(facturaLink)}`;
 
-        // CONSULTAR SAMSARA
         let infoSamsara = null;
-        let liveShareUrl = null;
 
-        if (datosFactura.Unidad) {
+        const unidadConsultaGPS =
+            datosFactura.UnidadesLista?.[0] ||
+            datosFactura.Unidad;
+
+        if (unidadConsultaGPS) {
             try {
-                infoSamsara = await obtenerGPSUnidad(datosFactura.Unidad);
+                infoSamsara = await obtenerGPSUnidad(unidadConsultaGPS);
             } catch (errorSamsara) {
                 console.error(
                     "Error consultando Samsara:",
                     errorSamsara.response?.data || errorSamsara.message
                 );
             }
-
-            try {
-                liveShareUrl = await obtenerLiveShareUnidad(datosFactura.Unidad);
-            } catch (errorLiveShare) {
-                console.error(
-                    "Error consultando Live Sharing Samsara:",
-                    errorLiveShare.response?.data || errorLiveShare.message
-                );
-            }
         }
 
-        // RESPUESTA
+        let resultadoLiveSharing = {
+            fuente: "NO_DISPONIBLE",
+            links: []
+        };
+
+        try {
+            resultadoLiveSharing = await obtenerLiveSharingPrioridad(datosFactura);
+            console.log("Live Sharing fuente:", resultadoLiveSharing.fuente);
+            console.log("Live Sharing links:", resultadoLiveSharing.links);
+        } catch (errorLiveShare) {
+            console.error(
+                "Error consultando Live Sharing Samsara:",
+                errorLiveShare.response?.data || errorLiveShare.message
+            );
+        }
+
+        const textoLiveSharing = formatearLinksLiveSharing(resultadoLiveSharing);
+
+        const primerLiveSharing =
+            resultadoLiveSharing.links?.[0]?.link || null;
+
         let respuesta =
 `🚛 FACTURA ${datosFactura.Factura || factura}
 
@@ -212,7 +277,7 @@ ${infoSamsara.tiempo}
 ${linkAFC}
 
 🛰️ Samsara Live Sharing:
-${liveShareUrl || infoSamsara.mapa}`;
+${textoLiveSharing}`;
 
         } else if (infoSamsara?.encontrado) {
             respuesta += `
@@ -224,15 +289,16 @@ Unidad encontrada, pero sin GPS disponible.
 ${linkAFC}
 
 🛰️ Samsara Live Sharing:
-${liveShareUrl || infoSamsara.mapa || "No disponible"}`;
+${textoLiveSharing}`;
 
         } else {
             respuesta += `
 
 🛰️ Samsara:
 No encontré la unidad en Samsara.
+
 🛰️ Samsara Live Sharing:
-${liveShareUrl || "No disponible"}
+${textoLiveSharing}
 
 🌐 Seguimiento AFC:
 ${linkAFC}`;
@@ -252,7 +318,7 @@ ${linkAFC}`;
                 : infoSamsara?.encontrado
                     ? "EXITOSA_SIN_GPS"
                     : "EXITOSA_SIN_SAMSARA",
-            link_samsara: liveShareUrl || infoSamsara?.mapa || linkAFC
+            link_samsara: primerLiveSharing || infoSamsara?.mapa || linkAFC
         });
 
         return res.sendStatus(200);
