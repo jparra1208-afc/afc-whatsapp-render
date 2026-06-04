@@ -187,6 +187,10 @@ El sistema mostrará:
 
         const datosFactura = buscarFactura(factura);
 
+        console.log("DEBUG Remolque:", datosFactura?.Remolque);
+        console.log("DEBUG RemolquesLista:", datosFactura?.RemolquesLista);
+        console.log("DEBUG Unidad:", datosFactura?.Unidad);
+        console.log("DEBUG UnidadesLista:", datosFactura?.UnidadesLista);
         if (!datosFactura) {
             await enviarMensajeWhatsApp(
                 numero,
@@ -237,6 +241,8 @@ El sistema mostrará:
 
         try {
             resultadoLiveSharing = await obtenerLiveSharingPrioridad(datosFactura);
+
+            console.log("DEBUG Resultado LiveSharing:", JSON.stringify(resultadoLiveSharing, null, 2));
             console.log("Live Sharing fuente:", resultadoLiveSharing.fuente);
             console.log("Live Sharing links:", resultadoLiveSharing.links);
         } catch (errorLiveShare) {
