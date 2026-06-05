@@ -159,7 +159,6 @@ El sistema mostrará:
 ✅ Remolque
 ✅ Operador
 ✅ Ubicación GPS
-✅ Link público AFC de seguimiento
 ✅ Link público Samsara Live Sharing
 
 ⚡ Disponible 24/7
@@ -219,20 +218,27 @@ El sistema mostrará:
 
         let infoSamsara = null;
 
-        const unidadConsultaGPS =
-            datosFactura.UnidadesLista?.[0] ||
-            datosFactura.Unidad;
+const activoConsultaGPS =
+    datosFactura.RemolquesLista?.[0] ||
+    datosFactura.Remolque ||
+    datosFactura.UnidadesLista?.[0] ||
+    datosFactura.Unidad;
 
-        if (unidadConsultaGPS) {
-            try {
-                infoSamsara = await obtenerGPSUnidad(unidadConsultaGPS);
-            } catch (errorSamsara) {
-                console.error(
-                    "Error consultando Samsara:",
-                    errorSamsara.response?.data || errorSamsara.message
-                );
-            }
-        }
+console.log("GPS consultado para:", activoConsultaGPS);
+
+if (activoConsultaGPS) {
+    try {
+        infoSamsara = await obtenerGPSUnidad(activoConsultaGPS);
+
+        console.log("Resultado GPS:", infoSamsara);
+
+    } catch (errorSamsara) {
+        console.error(
+            "Error consultando Samsara:",
+            errorSamsara.response?.data || errorSamsara.message
+        );
+    }
+}
 
         let resultadoLiveSharing = {
             fuente: "NO_DISPONIBLE",
@@ -274,13 +280,12 @@ El sistema mostrará:
 📡 Ubicación:
 ${infoSamsara.direccion}
 
-⚡ Velocidad: ${infoSamsara.velocidad || 0} mph
+
 
 🕒 Última actualización:
 ${infoSamsara.tiempo}
 
-🌐 Seguimiento AFC:
-${linkAFC}
+
 
 🛰️ Samsara Live Sharing:
 ${textoLiveSharing}`;
@@ -291,8 +296,7 @@ ${textoLiveSharing}`;
 🛰️ Samsara:
 Unidad encontrada, pero sin GPS disponible.
 
-🌐 Seguimiento AFC:
-${linkAFC}
+
 
 🛰️ Samsara Live Sharing:
 ${textoLiveSharing}`;
@@ -304,11 +308,10 @@ ${textoLiveSharing}`;
 No encontré la unidad en Samsara.
 
 🛰️ Samsara Live Sharing:
-${textoLiveSharing}
+${textoLiveSharing}`;
 
-🌐 Seguimiento AFC:
-${linkAFC}`;
         }
+        
 
         await enviarMensajeWhatsApp(numero, respuesta);
 
