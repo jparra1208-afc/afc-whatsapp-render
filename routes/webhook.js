@@ -274,29 +274,9 @@ if (activoConsultaGPS) {
 📦 Remolque: ${datosFactura.Remolque || "Sin dato"}
 👨 Operador: ${datosFactura.Chofer || "Sin dato"}`;
 
-        if (infoSamsara?.gpsDisponible) {
-
     respuesta += `
-
-📡 Ubicación de la carga:
-${infoSamsara.direccion}
-
-🕒 Última actualización:
-${infoSamsara.tiempo}
-
-🛰️ Seguimiento de la carga:
-${textoLiveSharing}`;
-
-} else {
-
-    respuesta += `
-
-📡 Ubicación de la carga:
-No disponible por el momento.
-
-🛰️ Seguimiento de la carga:
-${textoLiveSharing}`;
-}
+    🛰️ Seguimiento de la carga:
+    ${textoLiveSharing}`;
         
 
         await enviarMensajeWhatsApp(numero, respuesta);
