@@ -275,42 +275,28 @@ if (activoConsultaGPS) {
 👨 Operador: ${datosFactura.Chofer || "Sin dato"}`;
 
         if (infoSamsara?.gpsDisponible) {
-            respuesta += `
 
-📡 Ubicación:
+    respuesta += `
+
+📡 Ubicación de la carga:
 ${infoSamsara.direccion}
-
-
 
 🕒 Última actualización:
 ${infoSamsara.tiempo}
 
-
-
-🛰️ Samsara Live Sharing:
+🛰️ Seguimiento de la carga:
 ${textoLiveSharing}`;
 
-        } else if (infoSamsara?.encontrado) {
-            respuesta += `
+} else {
 
-🛰️ Samsara:
-Unidad encontrada, pero sin GPS disponible.
+    respuesta += `
 
+📡 Ubicación de la carga:
+No disponible por el momento.
 
-
-🛰️ Samsara Live Sharing:
+🛰️ Seguimiento de la carga:
 ${textoLiveSharing}`;
-
-        } else {
-            respuesta += `
-
-🛰️ Samsara:
-No encontré la unidad en Samsara.
-
-🛰️ Samsara Live Sharing:
-${textoLiveSharing}`;
-
-        }
+}
         
 
         await enviarMensajeWhatsApp(numero, respuesta);
