@@ -10,8 +10,6 @@ const upload = multer({
     dest: "uploads/"
 });
 
-const API_UPLOAD_TOKEN = process.env.API_UPLOAD_TOKEN;
-
 function normalizar(valor) {
     return String(valor || "")
         .trim()
@@ -70,9 +68,16 @@ function validarExcel(rutaArchivo) {
 
 router.post("/api/subir-reporte", upload.single("archivo"), async (req, res) => {
     try {
-        const token = req.headers["x-api-token"];
+        const token = String(req.headers["x-api-token"] || "").trim();
+        const apiToken = String(process.env.API_UPLOAD_TOKEN || "").trim();
 
-        if (!API_UPLOAD_TOKEN || token !== API_UPLOAD_TOKEN) {
+        console.log("=================================");
+        console.log("Token recibido:", token);
+        console.log("Token configurado existe:", Boolean(apiToken));
+        console.log("Coinciden:", token === apiToken);
+        console.log("=================================");
+
+        if (!apiToken || token !== apiToken) {
             return res.status(401).json({
                 ok: false,
                 mensaje: "No autorizado"
@@ -88,10 +93,7 @@ router.post("/api/subir-reporte", upload.single("archivo"), async (req, res) => 
 
         const extension = path.extname(req.file.originalname).toLowerCase();
 
-        if (
-            extension !== ".xlsx" &&
-            extension !== ".xls"
-        ) {
+        if (extension !== ".xlsx" && extension !== ".xls") {
             fs.unlinkSync(req.file.path);
 
             return res.status(400).json({
@@ -137,6 +139,7 @@ router.post("/api/subir-reporte", upload.single("archivo"), async (req, res) => 
         });
     }
 });
+
 router.get("/api/reporte-activo", (req, res) => {
     try {
         const rutaReporte = path.join(__dirname, "..", "gm", "reporte.xlsx");
@@ -180,4 +183,5 @@ router.get("/api/reporte-activo", (req, res) => {
         });
     }
 });
+
 module.exports = router;
