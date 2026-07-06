@@ -59,7 +59,13 @@ function buscarFactura(facturaBuscada) {
 
     const unidad = obtenerValor(resultado, "Unidad");
     const remolque = obtenerValor(resultado, "Remolque");
-
+    console.log("==============================");
+    console.log("Factura encontrada:", obtenerValor(resultado, "Factura"));
+    console.log("Fecha de Llegada:", obtenerValor(resultado, "Fecha de Llegada"));
+    console.log("Fecha de Llega:", obtenerValor(resultado, "Fecha de Llega"));
+    console.log("Fecha Llegada:", obtenerValor(resultado, "Fecha Llegada"));
+    console.log("Resultado completo:", resultado);
+    console.log("==============================");
     return {
         Factura: obtenerValor(resultado, "Factura"),
         Cliente: obtenerValor(resultado, "Cliente"),
