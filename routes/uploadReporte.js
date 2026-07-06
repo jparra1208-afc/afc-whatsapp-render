@@ -71,11 +71,7 @@ router.post("/api/subir-reporte", upload.single("archivo"), async (req, res) => 
         const token = String(req.headers["x-api-token"] || "").trim();
         const apiToken = String(process.env.API_UPLOAD_TOKEN || "").trim();
 
-        console.log("=================================");
-        console.log("Token recibido:", token);
-        console.log("Token configurado existe:", Boolean(apiToken));
-        console.log("Coinciden:", token === apiToken);
-        console.log("=================================");
+    
 
         if (!apiToken || token !== apiToken) {
             return res.status(401).json({
