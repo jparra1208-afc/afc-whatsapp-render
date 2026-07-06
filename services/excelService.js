@@ -23,6 +23,24 @@ function separarUnidades(valor) {
         .filter(Boolean);
 }
 
+function formatearFechaExcel(valor) {
+    if (!valor) return "";
+
+    if (typeof valor === "number") {
+        const fecha = XLSX.SSF.parse_date_code(valor);
+
+        if (!fecha) return "";
+
+        const dia = String(fecha.d).padStart(2, "0");
+        const mes = String(fecha.m).padStart(2, "0");
+        const anio = fecha.y;
+
+        return `${dia}/${mes}/${anio}`;
+    }
+
+    return String(valor).trim();
+}
+
 function buscarFactura(facturaBuscada) {
     const rutaExcel = path.join(__dirname, "..", "gm", "reporte.xlsx");
 
@@ -59,27 +77,29 @@ function buscarFactura(facturaBuscada) {
 
     const unidad = obtenerValor(resultado, "Unidad");
     const remolque = obtenerValor(resultado, "Remolque");
-    console.log("==============================");
-    console.log("Factura encontrada:", obtenerValor(resultado, "Factura"));
-    console.log("Fecha de Llegada:", obtenerValor(resultado, "Fecha de Llegada"));
-    console.log("Fecha de Llega:", obtenerValor(resultado, "Fecha de Llega"));
-    console.log("Fecha Llegada:", obtenerValor(resultado, "Fecha Llegada"));
-    console.log("Resultado completo:", resultado);
-    console.log("==============================");
-    return {
-        Factura: obtenerValor(resultado, "Factura"),
-        Cliente: obtenerValor(resultado, "Cliente"),
-        Origen: obtenerValor(resultado, "Origen Ruta"),
-        Destino: obtenerValor(resultado, "Destino Ruta"),
-        Unidad: unidad,
-        UnidadesLista: separarUnidades(unidad),
-        Remolque: remolque,
-        RemolquesLista: separarUnidades(remolque),
-        Chofer: obtenerValor(resultado, "Chofer"),
-        FechaLlegada:
+
+    const fechaLlegada = formatearFechaExcel(
         obtenerValor(resultado, "Fecha de Llegada") ||
         obtenerValor(resultado, "Fecha de Llega") ||
         obtenerValor(resultado, "Fecha Llegada")
+    );
+
+    console.log("==============================");
+    console.log("Factura encontrada:", obtenerValor(resultado, "Factura"));
+    console.log("FechaLlegada formateada:", fechaLlegada);
+    console.log("==============================");
+
+    return {
+        Factura: String(obtenerValor(resultado, "Factura") || "").trim(),
+        Cliente: String(obtenerValor(resultado, "Cliente") || "").trim(),
+        Origen: String(obtenerValor(resultado, "Origen Ruta") || "").trim(),
+        Destino: String(obtenerValor(resultado, "Destino Ruta") || "").trim(),
+        Unidad: String(unidad || "").trim(),
+        UnidadesLista: separarUnidades(unidad),
+        Remolque: String(remolque || "").trim(),
+        RemolquesLista: separarUnidades(remolque),
+        Chofer: String(obtenerValor(resultado, "Chofer") || "").trim(),
+        FechaLlegada: fechaLlegada
     };
 }
 
