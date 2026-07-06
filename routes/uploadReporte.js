@@ -25,6 +25,15 @@ function obtenerValor(row, nombreColumna) {
     return key ? row[key] : "";
 }
 
+function obtenerFechaLlegada(row) {
+    return (
+        obtenerValor(row, "Fecha de Llega") ||
+        obtenerValor(row, "Fecha de Llegada") ||
+        obtenerValor(row, "Fecha Llegada") ||
+        obtenerValor(row, "Fecha de Lleg")
+    );
+}
+
 function validarExcel(rutaArchivo) {
     const workbook = XLSX.readFile(rutaArchivo);
     const sheetName = workbook.SheetNames[0];
@@ -60,6 +69,15 @@ function validarExcel(rutaArchivo) {
         }
     }
 
+    const existeFechaLlegada = Object.keys(primeraFila).some(k =>
+        ["Fecha de Llega", "Fecha de Llegada", "Fecha Llegada", "Fecha de Lleg"]
+            .some(nombre => normalizar(k) === normalizar(nombre))
+    );
+
+    if (!existeFechaLlegada) {
+        throw new Error("No existe la columna requerida: Fecha de Llega / Fecha de Llegada");
+    }
+
     return {
         totalRegistros: data.length,
         columnas: Object.keys(primeraFila)
@@ -70,8 +88,6 @@ router.post("/api/subir-reporte", upload.single("archivo"), async (req, res) => 
     try {
         const token = String(req.headers["x-api-token"] || "").trim();
         const apiToken = String(process.env.API_UPLOAD_TOKEN || "").trim();
-
-    
 
         if (!apiToken || token !== apiToken) {
             return res.status(401).json({
@@ -161,6 +177,14 @@ router.get("/api/reporte-activo", (req, res) => {
             .map(row => obtenerValor(row, "Factura"))
             .filter(Boolean);
 
+        const facturaPrueba = data.find(row =>
+            normalizar(obtenerValor(row, "Factura")) === normalizar("226625-TC")
+        );
+
+        const fechaLlegadaPrueba = facturaPrueba
+            ? obtenerFechaLlegada(facturaPrueba)
+            : "";
+
         return res.json({
             ok: true,
             archivoActivo: "gm/reporte.xlsx",
@@ -169,7 +193,9 @@ router.get("/api/reporte-activo", (req, res) => {
             primeraFactura: facturas[0] || null,
             ultimaFactura: facturas[facturas.length - 1] || null,
             hoja: sheetName,
-            columnas: Object.keys(data[0] || {})
+            columnas: Object.keys(data[0] || {}),
+            facturaPrueba: facturaPrueba ? obtenerValor(facturaPrueba, "Factura") : null,
+            fechaLlegadaPrueba: fechaLlegadaPrueba || null
         });
 
     } catch (error) {
