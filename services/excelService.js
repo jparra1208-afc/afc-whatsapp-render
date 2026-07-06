@@ -69,7 +69,11 @@ function buscarFactura(facturaBuscada) {
         UnidadesLista: separarUnidades(unidad),
         Remolque: remolque,
         RemolquesLista: separarUnidades(remolque),
-        Chofer: obtenerValor(resultado, "Chofer")
+        Chofer: obtenerValor(resultado, "Chofer"),
+        FechaLlegada:
+        obtenerValor(resultado, "Fecha de Llegada") ||
+        obtenerValor(resultado, "Fecha de Llega") ||
+        obtenerValor(resultado, "Fecha Llegada")
     };
 }
 
