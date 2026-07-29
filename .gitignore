@@ -1,2 +1,26 @@
-node_modules
+# Dependencias
+node_modules/
+
+# Variables de entorno y secretos
 .env
+.env.*
+!.env.example
+
+# Reporte operativo de GM Transport
+gm/reporte.xlsx
+
+# Registros operativos
+logs/
+*.csv
+
+# Archivos temporales y de Live Share
+liveshare.txt
+live-sharing-samsara.csv
+
+# Archivos recibidos temporalmente
+uploads/
+
+# Logs y temporales del sistema
+*.log
+Thumbs.db
+.DS_Store
