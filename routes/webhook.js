@@ -1,127 +1,320 @@
+
 require("dotenv").config();
 
 const express = require("express");
+
 const router = express.Router();
 
-const { enviarMensajeWhatsApp } = require("../services/whatsappService");
-const { buscarFactura } = require("../services/excelService");
-const { obtenerGPSUnidad } = require("../services/samsaraService");
-const { registrarConsulta } = require("../services/consultasService");
-const { obtenerLiveShareUnidad } = require("../services/samsaraLiveShareService");
+const {
+    enviarMensajeWhatsApp
+} = require("../services/whatsappService");
+
+const {
+    buscarFactura
+} = require("../services/excelService");
+
+const {
+    obtenerGPSUnidad
+} = require("../services/samsaraService");
+
+const {
+    registrarConsulta
+} = require("../services/consultasService");
+
+const {
+    obtenerLiveShareUnidad
+} = require("../services/samsaraLiveShareService");
+
+
+// ============================================
+// LIMPIAR LISTAS
+// ============================================
 
 function limpiarLista(valores) {
+
     return (valores || [])
         .map(v => String(v || "").trim())
         .filter(Boolean);
+
 }
 
+
+// ============================================
+// OBTENER LIVE SHARING
+// PRIORIDAD: REMOLQUE
+// ============================================
+
 async function obtenerLiveSharingPrioridad(datosFactura) {
-    const remolques = limpiarLista(datosFactura.RemolquesLista);
-    const unidades = limpiarLista(datosFactura.UnidadesLista);
+
+    const remolques = limpiarLista(
+        datosFactura.RemolquesLista
+    );
+
+    const unidades = limpiarLista(
+        datosFactura.UnidadesLista
+    );
+
     const links = [];
 
+    // PRIMERO BUSCAR REMOLQUES
+
     for (const remolque of remolques) {
-        const link = await obtenerLiveShareUnidad(remolque);
-        if (link) links.push({ tipo: "Remolque", numero: remolque, link });
+
+        const link = await obtenerLiveShareUnidad(
+            remolque
+        );
+
+        if (link) {
+
+            links.push({
+                tipo: "Remolque",
+                numero: remolque,
+                link
+            });
+
+        }
+
     }
 
     if (links.length > 0) {
-        return { fuente: "REMOLQUE", links };
+
+        return {
+            fuente: "REMOLQUE",
+            links
+        };
+
     }
 
+    // RESPALDO: BUSCAR UNIDADES
+
     for (const unidad of unidades) {
-        const link = await obtenerLiveShareUnidad(unidad);
-        if (link) links.push({ tipo: "Unidad", numero: unidad, link });
+
+        const link = await obtenerLiveShareUnidad(
+            unidad
+        );
+
+        if (link) {
+
+            links.push({
+                tipo: "Unidad",
+                numero: unidad,
+                link
+            });
+
+        }
+
     }
 
     return {
-        fuente: links.length > 0 ? "UNIDAD" : "NO_DISPONIBLE",
+
+        fuente: links.length > 0
+            ? "UNIDAD"
+            : "NO_DISPONIBLE",
+
         links
+
     };
+
 }
 
+
+// ============================================
+// FORMATEAR LINKS SAMSARA
+// ============================================
+
 function formatearLinksLiveSharing(resultadoLiveSharing) {
-    if (!resultadoLiveSharing || resultadoLiveSharing.links.length === 0) {
+
+    if (
+        !resultadoLiveSharing ||
+        resultadoLiveSharing.links.length === 0
+    ) {
+
         return "No disponible";
+
     }
 
     return resultadoLiveSharing.links
-        .map(item => `${item.tipo} ${item.numero}:\n${item.link}`)
+
+        .map(item =>
+            `${item.tipo} ${item.numero}:\n${item.link}`
+        )
+
         .join("\n\n");
+
 }
 
-// VALIDACIÓN META WEBHOOK
+
+// ============================================
+// NUEVA FUNCION
+// FORMATEAR NUMERO DE VIAJE
+// ============================================
+
+function formatearNumeroViaje(datosFactura) {
+
+    const numeroViaje = String(
+        datosFactura.NumeroViaje ?? ""
+    ).trim();
+
+    // SI NO EXISTE, NO MOSTRAR NADA
+
+    if (!numeroViaje) {
+
+        return "";
+
+    }
+
+    // SI EXISTE, MOSTRAR NUMERO DE VIAJE
+
+    return `\n📄 No. Viaje: ${numeroViaje}`;
+
+}
+
+
+// ============================================
+// VALIDACION META WEBHOOK
+// ============================================
+
 router.get("/webhook", (req, res) => {
+
     const verify_token = process.env.VERIFY_TOKEN;
 
     const mode = req.query["hub.mode"];
+
     const token = req.query["hub.verify_token"];
+
     const challenge = req.query["hub.challenge"];
 
     if (mode && token) {
-        if (mode === "subscribe" && token === verify_token) {
+
+        if (
+            mode === "subscribe" &&
+            token === verify_token
+        ) {
+
             console.log("WEBHOOK VERIFICADO");
+
             return res.status(200).send(challenge);
+
         }
 
         return res.sendStatus(403);
+
     }
 
     return res.sendStatus(400);
+
 });
 
-// RECIBIR MENSAJES
+
+// ============================================
+// RECIBIR MENSAJES WHATSAPP
+// ============================================
+
 router.post("/webhook", async (req, res) => {
+
     try {
-        const value = req.body?.entry?.[0]?.changes?.[0]?.value;
+
+        const value =
+            req.body?.entry?.[0]?.changes?.[0]?.value;
 
         if (!value) {
-            console.log("⚠️ POST recibido sin estructura válida de Meta, se ignora.");
+
+            console.log(
+                "POST recibido sin estructura válida de Meta"
+            );
+
             return res.sendStatus(200);
+
         }
 
+        // IGNORAR EVENTOS DE ESTATUS
+
         if (value?.statuses) {
-            console.log("Evento de estatus recibido, se ignora.");
+
+            console.log(
+                "Evento de estatus recibido, se ignora."
+            );
+
             return res.sendStatus(200);
+
         }
 
         const mensaje = value?.messages?.[0];
 
         if (!mensaje) {
-            console.log("Evento sin mensaje, se ignora.");
-            return res.sendStatus(200);
-        }
 
-        const numero = mensaje.from;
-        const texto = mensaje.text?.body || "";
-
-        const telefonosAutorizados = (
-            process.env.TELEFONOS_AUTORIZADOS || ""
-        )
-            .split(",")
-            .map(t => t.trim());
-
-        if (!telefonosAutorizados.includes(numero)) {
-            await enviarMensajeWhatsApp(
-                numero,
-                "No tienes autorización para consultar información. Contacta a Autofletes Chihuahua."
+            console.log(
+                "Evento sin mensaje, se ignora."
             );
 
             return res.sendStatus(200);
+
         }
 
-        console.log("Mensaje real recibido:", texto);
-        console.log("Número origen:", numero);
+        const numero = mensaje.from;
 
-        const textoNormalizado = texto.trim().toLowerCase();
+        const texto = mensaje.text?.body || "";
+
+        // ====================================
+        // VALIDAR TELEFONOS AUTORIZADOS
+        // ====================================
+
+        const telefonosAutorizados = (
+
+            process.env.TELEFONOS_AUTORIZADOS || ""
+
+        )
+
+            .split(",")
+
+            .map(t => t.trim());
+
+        if (!telefonosAutorizados.includes(numero)) {
+
+            await enviarMensajeWhatsApp(
+
+                numero,
+
+                "No tienes autorización para consultar información. Contacta a Autofletes Chihuahua."
+
+            );
+
+            return res.sendStatus(200);
+
+        }
+
+        console.log(
+            "Mensaje real recibido:",
+            texto
+        );
+
+        console.log(
+            "Número origen:",
+            numero
+        );
+
+        const textoNormalizado =
+            texto.trim().toLowerCase();
+
+
+        // ====================================
+        // MENU DE BIENVENIDA
+        // ====================================
 
         if (
+
             textoNormalizado === "hola" ||
+
             textoNormalizado === "menu" ||
+
             textoNormalizado === "menú" ||
+
             textoNormalizado === "ayuda" ||
+
             textoNormalizado === "inicio"
+
         ) {
+
             const bienvenida = `
 🚛 Bienvenido al asistente automático de Autofletes Chihuahua (AFC)
 
@@ -137,69 +330,149 @@ El sistema mostrará:
 
 ✅ Cliente
 ✅ Origen y destino
-✅ Unidad asignada
+✅ Número de viaje (cuando exista)
 ✅ Remolque
-✅ Operador
 ✅ Ubicación GPS
 ✅ Link público Samsara Live Sharing
 
 ⚡ Disponible 24/7
 `;
 
-            await enviarMensajeWhatsApp(numero, bienvenida);
-            return res.sendStatus(200);
-        }
-
-        const factura = texto
-            .toUpperCase()
-            .replace("FACTURA", "")
-            .trim();
-
-        if (!factura) {
             await enviarMensajeWhatsApp(
                 numero,
-                "Envía la consulta así: factura 224652-TC"
+                bienvenida
             );
 
             return res.sendStatus(200);
+
         }
 
-        console.log("Factura extraída:", factura);
+
+        // ====================================
+        // EXTRAER FACTURA
+        // ====================================
+
+        const factura = texto
+
+            .toUpperCase()
+
+            .replace("FACTURA", "")
+
+            .trim();
+
+        if (!factura) {
+
+            await enviarMensajeWhatsApp(
+
+                numero,
+
+                "Envía la consulta así: factura 224652-TC"
+
+            );
+
+            return res.sendStatus(200);
+
+        }
+
+        console.log(
+            "Factura extraída:",
+            factura
+        );
+
+
+        // ====================================
+        // BUSCAR FACTURA EN GM
+        // ====================================
 
         const datosFactura = buscarFactura(factura);
 
         if (!datosFactura) {
+
             await enviarMensajeWhatsApp(
+
                 numero,
+
                 `No encontré información para la factura ${factura}`
+
             );
 
             await registrarConsulta({
+
                 telefono: numero,
+
                 cliente: "",
+
                 factura: factura,
+
                 unidad: "",
+
                 remolque: "",
+
                 consulta_tipo: "FACTURA",
+
                 resultado: "FACTURA_NO_ENCONTRADA",
+
                 link_samsara: ""
+
             });
 
             return res.sendStatus(200);
+
         }
 
-        console.log("DEBUG Remolque:", datosFactura?.Remolque);
-        console.log("DEBUG RemolquesLista:", datosFactura?.RemolquesLista);
-        console.log("DEBUG Unidad:", datosFactura?.Unidad);
-        console.log("DEBUG UnidadesLista:", datosFactura?.UnidadesLista);
-        console.log("DEBUG FechaLlegada:", datosFactura?.FechaLlegada);
 
-        // VALIDAR SI EL VIAJE YA FINALIZÓ EN GM
-        const fechaLlegada = String(datosFactura?.FechaLlegada || "").trim();
+        // ====================================
+        // DEBUG
+        // ====================================
 
-        console.log("VALIDANDO VIAJE FINALIZADO:", fechaLlegada);
+        console.log(
+            "DEBUG Remolque:",
+            datosFactura?.Remolque
+        );
+
+        console.log(
+            "DEBUG RemolquesLista:",
+            datosFactura?.RemolquesLista
+        );
+
+        console.log(
+            "DEBUG Unidad:",
+            datosFactura?.Unidad
+        );
+
+        console.log(
+            "DEBUG UnidadesLista:",
+            datosFactura?.UnidadesLista
+        );
+
+        console.log(
+            "DEBUG No Viaje Cliente:",
+            datosFactura?.NumeroViaje
+        );
+
+        console.log(
+            "DEBUG FechaLlegada:",
+            datosFactura?.FechaLlegada
+        );
+
+
+        // ====================================
+        // VALIDAR VIAJE FINALIZADO
+        // ====================================
+
+        const fechaLlegada = String(
+
+            datosFactura?.FechaLlegada || ""
+
+        ).trim();
+
+        console.log(
+            "VALIDANDO VIAJE FINALIZADO:",
+            fechaLlegada
+        );
 
         if (fechaLlegada.length > 0) {
+
             const respuestaFinalizado =
 `✅ VIAJE FINALIZADO
 
@@ -208,80 +481,192 @@ El sistema mostrará:
 📍 Origen: ${datosFactura.Origen || "Sin dato"}
 🏁 Destino: ${datosFactura.Destino || "Sin dato"}
 
-🚚 Unidad: ${datosFactura.Unidad || "Sin dato"}
-📦 Remolque: ${datosFactura.Remolque || "Sin dato"}
-👨 Operador: ${datosFactura.Chofer || "Sin dato"}
+📦 Remolque: ${datosFactura.Remolque || "Sin dato"}${formatearNumeroViaje(datosFactura)}
 
 📅 Fecha de llegada: ${fechaLlegada}
 
 El viaje ya cuenta con fecha de llegada registrada en GM Transport.`;
 
-            await enviarMensajeWhatsApp(numero, respuestaFinalizado);
+            await enviarMensajeWhatsApp(
+                numero,
+                respuestaFinalizado
+            );
 
             await registrarConsulta({
+
                 telefono: numero,
+
                 cliente: datosFactura.Cliente || "",
+
                 factura: datosFactura.Factura || factura,
+
                 unidad: datosFactura.Unidad || "",
+
                 remolque: datosFactura.Remolque || "",
+
                 consulta_tipo: "FACTURA",
+
                 resultado: "VIAJE_FINALIZADO",
+
                 link_samsara: ""
+
             });
 
             return res.sendStatus(200);
+
         }
 
-        const facturaLink = String(datosFactura.Factura || factura)
+
+        // ====================================
+        // GENERAR LINK AFC
+        // ====================================
+
+        const facturaLink = String(
+
+            datosFactura.Factura || factura
+
+        )
+
             .trim()
+
             .replace(/\s+/g, "");
 
-        const linkAFC = `https://afc-whatsapp-render.onrender.com/track/${encodeURIComponent(facturaLink)}`;
+        const linkAFC =
+            `https://afc-whatsapp-render.onrender.com/track/${encodeURIComponent(facturaLink)}`;
+
+
+        // ====================================
+        // CONSULTAR GPS SAMSARA
+        // ====================================
 
         let infoSamsara = null;
 
         const activoConsultaGPS =
+
             datosFactura.RemolquesLista?.[0] ||
+
             datosFactura.Remolque ||
+
             datosFactura.UnidadesLista?.[0] ||
+
             datosFactura.Unidad;
 
-        console.log("GPS consultado para:", activoConsultaGPS);
+        console.log(
+            "GPS consultado para:",
+            activoConsultaGPS
+        );
 
         if (activoConsultaGPS) {
+
             try {
-                infoSamsara = await obtenerGPSUnidad(activoConsultaGPS);
-                console.log("Resultado GPS:", infoSamsara);
-            } catch (errorSamsara) {
-                console.error(
-                    "Error consultando Samsara:",
-                    errorSamsara.response?.data || errorSamsara.message
+
+                infoSamsara = await obtenerGPSUnidad(
+                    activoConsultaGPS
                 );
+
+                console.log(
+                    "Resultado GPS:",
+                    infoSamsara
+                );
+
+            } catch (errorSamsara) {
+
+                console.error(
+
+                    "Error consultando Samsara:",
+
+                    errorSamsara.response?.data ||
+
+                    errorSamsara.message
+
+                );
+
             }
+
         }
 
+
+        // ====================================
+        // CONSULTAR LIVE SHARING
+        // ====================================
+
         let resultadoLiveSharing = {
+
             fuente: "NO_DISPONIBLE",
+
             links: []
+
         };
 
         try {
-            resultadoLiveSharing = await obtenerLiveSharingPrioridad(datosFactura);
 
-            console.log("DEBUG Resultado LiveSharing:", JSON.stringify(resultadoLiveSharing, null, 2));
-            console.log("Live Sharing fuente:", resultadoLiveSharing.fuente);
-            console.log("Live Sharing links:", resultadoLiveSharing.links);
-        } catch (errorLiveShare) {
-            console.error(
-                "Error consultando Live Sharing Samsara:",
-                errorLiveShare.response?.data || errorLiveShare.message
+            resultadoLiveSharing =
+                await obtenerLiveSharingPrioridad(
+                    datosFactura
+                );
+
+            console.log(
+
+                "DEBUG Resultado LiveSharing:",
+
+                JSON.stringify(
+                    resultadoLiveSharing,
+                    null,
+                    2
+                )
+
             );
+
+            console.log(
+
+                "Live Sharing fuente:",
+
+                resultadoLiveSharing.fuente
+
+            );
+
+            console.log(
+
+                "Live Sharing links:",
+
+                resultadoLiveSharing.links
+
+            );
+
+        } catch (errorLiveShare) {
+
+            console.error(
+
+                "Error consultando Live Sharing Samsara:",
+
+                errorLiveShare.response?.data ||
+
+                errorLiveShare.message
+
+            );
+
         }
 
-        const textoLiveSharing = formatearLinksLiveSharing(resultadoLiveSharing);
+
+        // ====================================
+        // FORMATEAR LINK SAMSARA
+        // ====================================
+
+        const textoLiveSharing =
+            formatearLinksLiveSharing(
+                resultadoLiveSharing
+            );
 
         const primerLiveSharing =
-            resultadoLiveSharing.links?.[0]?.link || null;
+
+            resultadoLiveSharing.links?.[0]?.link ||
+
+            null;
+
+
+        // ====================================
+        // NUEVO MENSAJE WHATSAPP
+        // ====================================
 
         let respuesta =
 `🚛 FACTURA ${datosFactura.Factura || factura}
@@ -290,41 +675,84 @@ El viaje ya cuenta con fecha de llegada registrada en GM Transport.`;
 📍 Origen: ${datosFactura.Origen || "Sin dato"}
 🏁 Destino: ${datosFactura.Destino || "Sin dato"}
 
-🚚 Unidad: ${datosFactura.Unidad || "Sin dato"}
-📦 Remolque: ${datosFactura.Remolque || "Sin dato"}
-👨 Operador: ${datosFactura.Chofer || "Sin dato"}`;
+📦 Remolque: ${datosFactura.Remolque || "Sin dato"}${formatearNumeroViaje(datosFactura)}`;
+
+
+        // ====================================
+        // AGREGAR SEGUIMIENTO
+        // ====================================
 
         respuesta += `
-🛰️ Seguimiento de la carga:
+🔎 Seguimiento de la carga:
 ${textoLiveSharing}`;
 
-        await enviarMensajeWhatsApp(numero, respuesta);
+
+        // ====================================
+        // ENVIAR RESPUESTA WHATSAPP
+        // ====================================
+
+        await enviarMensajeWhatsApp(
+            numero,
+            respuesta
+        );
+
+
+        // ====================================
+        // REGISTRAR CONSULTA CSV
+        // ====================================
 
         await registrarConsulta({
+
             telefono: numero,
+
             cliente: datosFactura.Cliente || "",
+
             factura: datosFactura.Factura || factura,
+
             unidad: datosFactura.Unidad || "",
+
             remolque: datosFactura.Remolque || "",
+
             consulta_tipo: "FACTURA",
+
             resultado: infoSamsara?.gpsDisponible
+
                 ? "EXITOSA_CON_GPS"
+
                 : infoSamsara?.encontrado
+
                     ? "EXITOSA_SIN_GPS"
+
                     : "EXITOSA_SIN_SAMSARA",
-            link_samsara: primerLiveSharing || infoSamsara?.mapa || linkAFC
+
+            link_samsara:
+
+                primerLiveSharing ||
+
+                infoSamsara?.mapa ||
+
+                linkAFC
+
         });
 
         return res.sendStatus(200);
 
     } catch (error) {
+
         console.error(
+
             "Error procesando webhook:",
-            error.response?.data || error.message
+
+            error.response?.data ||
+
+            error.message
+
         );
 
         return res.sendStatus(200);
+
     }
+
 });
 
 module.exports = router;
