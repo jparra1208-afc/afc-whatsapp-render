@@ -1,4 +1,3 @@
-
 require("dotenv").config();
 
 const express = require("express");
@@ -25,6 +24,10 @@ const {
     obtenerLiveShareUnidad
 } = require("../services/samsaraLiveShareService");
 
+const {
+    obtenerUltimaUnidadGM
+} = require("../services/autobotGmService");
+
 
 // ============================================
 // LIMPIAR LISTAS
@@ -41,10 +44,15 @@ function limpiarLista(valores) {
 
 // ============================================
 // OBTENER LIVE SHARING
-// PRIORIDAD: REMOLQUE
+// PRIORIDAD:
+// 1. REMOLQUE
+// 2. ULTIMA UNIDAD ASIGNADA
 // ============================================
 
-async function obtenerLiveSharingPrioridad(datosFactura) {
+async function obtenerLiveSharingPrioridad(
+    datosFactura,
+    ultimaUnidadGM = null
+) {
 
     const remolques = limpiarLista(
         datosFactura.RemolquesLista
@@ -56,7 +64,10 @@ async function obtenerLiveSharingPrioridad(datosFactura) {
 
     const links = [];
 
-    // PRIMERO BUSCAR REMOLQUES
+
+    // ====================================
+    // 1. BUSCAR LIVE SHARING DEL REMOLQUE
+    // ====================================
 
     for (const remolque of remolques) {
 
@@ -76,6 +87,12 @@ async function obtenerLiveSharingPrioridad(datosFactura) {
 
     }
 
+
+    // ====================================
+    // SI EXISTE LIVE SHARING DEL REMOLQUE
+    // SE UTILIZA COMO PRIORIDAD ABSOLUTA
+    // ====================================
+
     if (links.length > 0) {
 
         return {
@@ -85,19 +102,61 @@ async function obtenerLiveSharingPrioridad(datosFactura) {
 
     }
 
-    // RESPALDO: BUSCAR UNIDADES
 
-    for (const unidad of unidades) {
+    // ====================================
+    // 2. FALLBACK:
+    // BUSCAR SOLO LA ULTIMA UNIDAD ASIGNADA
+    // ====================================
+
+    const ultimaUnidadExcel =
+        unidades.length > 0
+            ? unidades[unidades.length - 1]
+            : String(
+                datosFactura.Unidad || ""
+            ).trim();
+
+
+    // Prioridad:
+    // 1. Ultima unidad obtenida desde GM
+    // 2. Ultima unidad del Excel
+
+    const ultimaUnidad =
+        String(
+            ultimaUnidadGM ||
+            ultimaUnidadExcel ||
+            ""
+        ).trim();
+
+
+    console.log(
+        "Live Sharing - tracto seleccionado:",
+        {
+            gm: ultimaUnidadGM,
+            excel: ultimaUnidadExcel,
+            seleccionado: ultimaUnidad,
+            fuente:
+                ultimaUnidadGM
+                    ? "GM"
+                    : "EXCEL"
+        }
+    );
+
+
+    // ====================================
+    // BUSCAR LIVE SHARING DEL TRACTO
+    // ====================================
+
+    if (ultimaUnidad) {
 
         const link = await obtenerLiveShareUnidad(
-            unidad
+            ultimaUnidad
         );
 
         if (link) {
 
             links.push({
                 tipo: "Unidad",
-                numero: unidad,
+                numero: ultimaUnidad,
                 link
             });
 
@@ -105,11 +164,17 @@ async function obtenerLiveSharingPrioridad(datosFactura) {
 
     }
 
+
+    // ====================================
+    // RESULTADO FINAL
+    // ====================================
+
     return {
 
-        fuente: links.length > 0
-            ? "UNIDAD"
-            : "NO_DISPONIBLE",
+        fuente:
+            links.length > 0
+                ? "UNIDAD"
+                : "NO_DISPONIBLE",
 
         links
 
@@ -122,10 +187,13 @@ async function obtenerLiveSharingPrioridad(datosFactura) {
 // FORMATEAR LINKS SAMSARA
 // ============================================
 
-function formatearLinksLiveSharing(resultadoLiveSharing) {
+function formatearLinksLiveSharing(
+    resultadoLiveSharing
+) {
 
     if (
         !resultadoLiveSharing ||
+        !resultadoLiveSharing.links ||
         resultadoLiveSharing.links.length === 0
     ) {
 
@@ -134,18 +202,15 @@ function formatearLinksLiveSharing(resultadoLiveSharing) {
     }
 
     return resultadoLiveSharing.links
-
         .map(item =>
             `${item.tipo} ${item.numero}:\n${item.link}`
         )
-
         .join("\n\n");
 
 }
 
 
 // ============================================
-// NUEVA FUNCION
 // FORMATEAR NUMERO DE VIAJE
 // ============================================
 
@@ -155,7 +220,6 @@ function formatearNumeroViaje(datosFactura) {
         datosFactura.NumeroViaje ?? ""
     ).trim();
 
-    // SI NO EXISTE, NO MOSTRAR NADA
 
     if (!numeroViaje) {
 
@@ -163,7 +227,6 @@ function formatearNumeroViaje(datosFactura) {
 
     }
 
-    // SI EXISTE, MOSTRAR NUMERO DE VIAJE
 
     return `\n📄 No. Viaje: ${numeroViaje}`;
 
@@ -176,13 +239,18 @@ function formatearNumeroViaje(datosFactura) {
 
 router.get("/webhook", (req, res) => {
 
-    const verify_token = process.env.VERIFY_TOKEN;
+    const verify_token =
+        process.env.VERIFY_TOKEN;
 
-    const mode = req.query["hub.mode"];
+    const mode =
+        req.query["hub.mode"];
 
-    const token = req.query["hub.verify_token"];
+    const token =
+        req.query["hub.verify_token"];
 
-    const challenge = req.query["hub.challenge"];
+    const challenge =
+        req.query["hub.challenge"];
+
 
     if (mode && token) {
 
@@ -191,15 +259,20 @@ router.get("/webhook", (req, res) => {
             token === verify_token
         ) {
 
-            console.log("WEBHOOK VERIFICADO");
+            console.log(
+                "WEBHOOK VERIFICADO"
+            );
 
-            return res.status(200).send(challenge);
+            return res
+                .status(200)
+                .send(challenge);
 
         }
 
         return res.sendStatus(403);
 
     }
+
 
     return res.sendStatus(400);
 
@@ -217,6 +290,7 @@ router.post("/webhook", async (req, res) => {
         const value =
             req.body?.entry?.[0]?.changes?.[0]?.value;
 
+
         if (!value) {
 
             console.log(
@@ -227,7 +301,10 @@ router.post("/webhook", async (req, res) => {
 
         }
 
+
+        // ====================================
         // IGNORAR EVENTOS DE ESTATUS
+        // ====================================
 
         if (value?.statuses) {
 
@@ -239,7 +316,10 @@ router.post("/webhook", async (req, res) => {
 
         }
 
-        const mensaje = value?.messages?.[0];
+
+        const mensaje =
+            value?.messages?.[0];
+
 
         if (!mensaje) {
 
@@ -251,47 +331,76 @@ router.post("/webhook", async (req, res) => {
 
         }
 
-        const numero = mensaje.from;
 
-        const texto = mensaje.text?.body || "";
+        const numero =
+            mensaje.from;
+
+        const texto =
+            mensaje.text?.body || "";
+
 
         // ====================================
         // VALIDAR TELEFONOS AUTORIZADOS
         // ====================================
 
+        console.log(
+            "DEBUG ENV EN PETICION:",
+            JSON.stringify(
+                process.env.TELEFONOS_AUTORIZADOS
+            )
+        );
+
+
         const telefonosAutorizados = (
-
             process.env.TELEFONOS_AUTORIZADOS || ""
-
         )
-
             .split(",")
-
             .map(t => t.trim());
 
-        if (!telefonosAutorizados.includes(numero)) {
+
+        console.log(
+            "DEBUG numero recibido:",
+            JSON.stringify(numero)
+        );
+
+
+        console.log(
+            "DEBUG telefonos autorizados:",
+            telefonosAutorizados
+        );
+
+
+        console.log(
+            "DEBUG autorizado:",
+            telefonosAutorizados.includes(numero)
+        );
+
+
+        if (
+            !telefonosAutorizados.includes(numero)
+        ) {
 
             await enviarMensajeWhatsApp(
-
                 numero,
-
                 "No tienes autorización para consultar información. Contacta a Autofletes Chihuahua."
-
             );
 
             return res.sendStatus(200);
 
         }
 
+
         console.log(
             "Mensaje real recibido:",
             texto
         );
 
+
         console.log(
             "Número origen:",
             numero
         );
+
 
         const textoNormalizado =
             texto.trim().toLowerCase();
@@ -302,20 +411,15 @@ router.post("/webhook", async (req, res) => {
         // ====================================
 
         if (
-
             textoNormalizado === "hola" ||
-
             textoNormalizado === "menu" ||
-
             textoNormalizado === "menú" ||
-
             textoNormalizado === "ayuda" ||
-
             textoNormalizado === "inicio"
-
         ) {
 
             const bienvenida = `
+
 🚛 Bienvenido al asistente automático de Autofletes Chihuahua (AFC)
 
 Puedes consultar el estatus de tu embarque en tiempo real.
@@ -329,19 +433,27 @@ factura 224652-TC
 El sistema mostrará:
 
 ✅ Cliente
+
 ✅ Origen y destino
+
 ✅ Número de viaje (cuando exista)
+
 ✅ Remolque
+
 ✅ Ubicación GPS
+
 ✅ Link público Samsara Live Sharing
 
 ⚡ Disponible 24/7
+
 `;
+
 
             await enviarMensajeWhatsApp(
                 numero,
                 bienvenida
             );
+
 
             return res.sendStatus(200);
 
@@ -353,26 +465,22 @@ El sistema mostrará:
         // ====================================
 
         const factura = texto
-
             .toUpperCase()
-
             .replace("FACTURA", "")
-
             .trim();
+
 
         if (!factura) {
 
             await enviarMensajeWhatsApp(
-
                 numero,
-
                 "Envía la consulta así: factura 224652-TC"
-
             );
 
             return res.sendStatus(200);
 
         }
+
 
         console.log(
             "Factura extraída:",
@@ -384,17 +492,25 @@ El sistema mostrará:
         // BUSCAR FACTURA EN GM
         // ====================================
 
-        const datosFactura = buscarFactura(factura);
+        const datosFactura =
+            buscarFactura(factura);
+
+
+        // ====================================
+        // FACTURA NO ENCONTRADA
+        // ====================================
 
         if (!datosFactura) {
 
             await enviarMensajeWhatsApp(
-
                 numero,
-
                 `No encontré información para la factura ${factura}`
-
             );
+
+
+            // ====================================
+            // REGISTRAR CONSULTA CSV
+            // ====================================
 
             await registrarConsulta({
 
@@ -410,15 +526,33 @@ El sistema mostrará:
 
                 consulta_tipo: "FACTURA",
 
-                resultado: "FACTURA_NO_ENCONTRADA",
+                resultado:
+                    "FACTURA_NO_ENCONTRADA",
 
                 link_samsara: ""
 
             });
 
+
             return res.sendStatus(200);
 
         }
+
+
+        // ====================================
+        // OBTENER ULTIMO TRACTO DESDE GM
+        // ====================================
+
+        const ultimaUnidadGM =
+            await obtenerUltimaUnidadGM(
+                datosFactura.Factura || factura
+            );
+
+
+        console.log(
+            "DEBUG Ultima Unidad GM:",
+            ultimaUnidadGM
+        );
 
 
         // ====================================
@@ -430,25 +564,30 @@ El sistema mostrará:
             datosFactura?.Remolque
         );
 
+
         console.log(
             "DEBUG RemolquesLista:",
             datosFactura?.RemolquesLista
         );
+
 
         console.log(
             "DEBUG Unidad:",
             datosFactura?.Unidad
         );
 
+
         console.log(
             "DEBUG UnidadesLista:",
             datosFactura?.UnidadesLista
         );
 
+
         console.log(
             "DEBUG No Viaje Cliente:",
             datosFactura?.NumeroViaje
         );
+
 
         console.log(
             "DEBUG FechaLlegada:",
@@ -460,16 +599,17 @@ El sistema mostrará:
         // VALIDAR VIAJE FINALIZADO
         // ====================================
 
-        const fechaLlegada = String(
+        const fechaLlegada =
+            String(
+                datosFactura?.FechaLlegada || ""
+            ).trim();
 
-            datosFactura?.FechaLlegada || ""
-
-        ).trim();
 
         console.log(
             "VALIDANDO VIAJE FINALIZADO:",
             fechaLlegada
         );
+
 
         if (fechaLlegada.length > 0) {
 
@@ -477,8 +617,11 @@ El sistema mostrará:
 `✅ VIAJE FINALIZADO
 
 🚛 Factura: ${datosFactura.Factura || factura}
+
 👤 Cliente: ${datosFactura.Cliente || "Sin dato"}
+
 📍 Origen: ${datosFactura.Origen || "Sin dato"}
+
 🏁 Destino: ${datosFactura.Destino || "Sin dato"}
 
 📦 Remolque: ${datosFactura.Remolque || "Sin dato"}${formatearNumeroViaje(datosFactura)}
@@ -487,30 +630,40 @@ El sistema mostrará:
 
 El viaje ya cuenta con fecha de llegada registrada en GM Transport.`;
 
+
             await enviarMensajeWhatsApp(
                 numero,
                 respuestaFinalizado
             );
 
+
             await registrarConsulta({
 
                 telefono: numero,
 
-                cliente: datosFactura.Cliente || "",
+                cliente:
+                    datosFactura.Cliente || "",
 
-                factura: datosFactura.Factura || factura,
+                factura:
+                    datosFactura.Factura || factura,
 
-                unidad: datosFactura.Unidad || "",
+                unidad:
+                    datosFactura.Unidad || "",
 
-                remolque: datosFactura.Remolque || "",
+                remolque:
+                    datosFactura.Remolque || "",
 
-                consulta_tipo: "FACTURA",
+                consulta_tipo:
+                    "FACTURA",
 
-                resultado: "VIAJE_FINALIZADO",
+                resultado:
+                    "VIAJE_FINALIZADO",
 
-                link_samsara: ""
+                link_samsara:
+                    ""
 
             });
+
 
             return res.sendStatus(200);
 
@@ -521,15 +674,13 @@ El viaje ya cuenta con fecha de llegada registrada en GM Transport.`;
         // GENERAR LINK AFC
         // ====================================
 
-        const facturaLink = String(
+        const facturaLink =
+            String(
+                datosFactura.Factura || factura
+            )
+                .trim()
+                .replace(/\s+/g, "");
 
-            datosFactura.Factura || factura
-
-        )
-
-            .trim()
-
-            .replace(/\s+/g, "");
 
         const linkAFC =
             `https://afc-whatsapp-render.onrender.com/track/${encodeURIComponent(facturaLink)}`;
@@ -537,48 +688,115 @@ El viaje ya cuenta con fecha de llegada registrada en GM Transport.`;
 
         // ====================================
         // CONSULTAR GPS SAMSARA
+        // PRIORIDAD:
+        // 1. REMOLQUE
+        // 2. ULTIMO TRACTO ASIGNADO
         // ====================================
 
         let infoSamsara = null;
 
-        const activoConsultaGPS =
+        let activoConsultaGPS = null;
 
+        let tipoSeguimientoGPS = null;
+
+        let gpsRemolqueNoDisponible = false;
+
+
+        // ====================================
+        // OBTENER REMOLQUE
+        // ====================================
+
+        const remolqueGPS =
             datosFactura.RemolquesLista?.[0] ||
-
             datosFactura.Remolque ||
+            null;
 
-            datosFactura.UnidadesLista?.[0] ||
 
-            datosFactura.Unidad;
+        // ====================================
+        // OBTENER ULTIMA UNIDAD ASIGNADA
+        // ====================================
+
+        const unidadesGPS =
+            Array.isArray(
+                datosFactura.UnidadesLista
+            )
+                ? datosFactura.UnidadesLista
+                    .filter(Boolean)
+                : [];
+
+
+        const ultimaUnidadExcelGPS =
+            unidadesGPS.length > 0
+                ? unidadesGPS[
+                    unidadesGPS.length - 1
+                ]
+                : datosFactura.Unidad || null;
+
+
+        const ultimaUnidadGPS =
+            ultimaUnidadGM ||
+            ultimaUnidadExcelGPS ||
+            null;
+
 
         console.log(
-            "GPS consultado para:",
-            activoConsultaGPS
+            "GPS - tracto seleccionado:",
+            {
+                gm: ultimaUnidadGM,
+                excel: ultimaUnidadExcelGPS,
+                seleccionado: ultimaUnidadGPS,
+                fuente:
+                    ultimaUnidadGM
+                        ? "GM"
+                        : "EXCEL"
+            }
         );
 
-        if (activoConsultaGPS) {
+
+        console.log(
+            "Remolque candidato GPS:",
+            remolqueGPS
+        );
+
+
+        console.log(
+            "Ultima unidad candidata GPS:",
+            ultimaUnidadGPS
+        );
+
+
+        // ====================================
+        // 1. INTENTAR REMOLQUE
+        // ====================================
+
+        if (remolqueGPS) {
 
             try {
 
-                infoSamsara = await obtenerGPSUnidad(
-                    activoConsultaGPS
-                );
+                const resultadoRemolque =
+                    await obtenerGPSUnidad(
+                        remolqueGPS
+                    );
+
+
+                if (resultadoRemolque) {
+
+                    infoSamsara =
+                        resultadoRemolque;
+
+                    activoConsultaGPS =
+                        remolqueGPS;
+
+                    tipoSeguimientoGPS =
+                        "REMOLQUE";
+
+                }
+
+            } catch (errorRemolque) {
 
                 console.log(
-                    "Resultado GPS:",
-                    infoSamsara
-                );
-
-            } catch (errorSamsara) {
-
-                console.error(
-
-                    "Error consultando Samsara:",
-
-                    errorSamsara.response?.data ||
-
-                    errorSamsara.message
-
+                    "GPS de remolque no disponible:",
+                    remolqueGPS
                 );
 
             }
@@ -587,62 +805,119 @@ El viaje ya cuenta con fecha de llegada registrada en GM Transport.`;
 
 
         // ====================================
+        // 2. FALLBACK AL ULTIMO TRACTO
+        // ====================================
+
+        if (
+            !infoSamsara &&
+            ultimaUnidadGPS
+        ) {
+
+            gpsRemolqueNoDisponible =
+                Boolean(remolqueGPS);
+
+
+            try {
+
+                const resultadoUnidad =
+                    await obtenerGPSUnidad(
+                        ultimaUnidadGPS
+                    );
+
+
+                if (resultadoUnidad) {
+
+                    infoSamsara =
+                        resultadoUnidad;
+
+                    activoConsultaGPS =
+                        ultimaUnidadGPS;
+
+                    tipoSeguimientoGPS =
+                        "UNIDAD";
+
+                }
+
+            } catch (errorUnidad) {
+
+                console.error(
+                    "GPS del tracto tampoco disponible:",
+                    ultimaUnidadGPS,
+                    errorUnidad.response?.data ||
+                    errorUnidad.message
+                );
+
+            }
+
+        }
+
+
+        console.log(
+            "GPS finalmente utilizado:",
+            {
+                activo:
+                    activoConsultaGPS,
+
+                tipo:
+                    tipoSeguimientoGPS,
+
+                fallbackTracto:
+                    gpsRemolqueNoDisponible
+            }
+        );
+
+
+        // ====================================
         // CONSULTAR LIVE SHARING
         // ====================================
 
         let resultadoLiveSharing = {
 
-            fuente: "NO_DISPONIBLE",
+            fuente:
+                "NO_DISPONIBLE",
 
             links: []
 
         };
 
+
         try {
 
             resultadoLiveSharing =
                 await obtenerLiveSharingPrioridad(
-                    datosFactura
+                    datosFactura,
+                    ultimaUnidadGM
                 );
 
+
             console.log(
-
                 "DEBUG Resultado LiveSharing:",
-
                 JSON.stringify(
                     resultadoLiveSharing,
                     null,
                     2
                 )
-
             );
 
-            console.log(
 
+            console.log(
                 "Live Sharing fuente:",
-
                 resultadoLiveSharing.fuente
-
             );
+
 
             console.log(
-
                 "Live Sharing links:",
-
                 resultadoLiveSharing.links
-
             );
+
 
         } catch (errorLiveShare) {
 
             console.error(
-
                 "Error consultando Live Sharing Samsara:",
-
                 errorLiveShare.response?.data ||
-
                 errorLiveShare.message
-
             );
 
         }
@@ -657,11 +932,23 @@ El viaje ya cuenta con fecha de llegada registrada en GM Transport.`;
                 resultadoLiveSharing
             );
 
+
         const primerLiveSharing =
-
-            resultadoLiveSharing.links?.[0]?.link ||
-
+            resultadoLiveSharing
+                .links?.[0]?.link ||
             null;
+
+
+        // ====================================
+        // VALIDAR GPS SAMSARA
+        // SIN LIVE SHARING
+        // ====================================
+
+        const linkGpsTracto =
+            !primerLiveSharing &&
+            infoSamsara?.gpsDisponible
+                ? infoSamsara.mapa
+                : null;
 
 
         // ====================================
@@ -672,10 +959,38 @@ El viaje ya cuenta con fecha de llegada registrada en GM Transport.`;
 `🚛 FACTURA ${datosFactura.Factura || factura}
 
 👤 Cliente: ${datosFactura.Cliente || "Sin dato"}
+
 📍 Origen: ${datosFactura.Origen || "Sin dato"}
+
 🏁 Destino: ${datosFactura.Destino || "Sin dato"}
 
 📦 Remolque: ${datosFactura.Remolque || "Sin dato"}${formatearNumeroViaje(datosFactura)}`;
+
+
+        // ====================================
+        // INDICAR FALLBACK DE REMOLQUE A TRACTO
+        // ====================================
+
+        if (
+            resultadoLiveSharing.fuente === "UNIDAD" &&
+            gpsRemolqueNoDisponible
+        ) {
+
+            const unidadSeguimiento =
+                resultadoLiveSharing
+                    .links?.[0]?.numero ||
+                ultimaUnidadGPS ||
+                datosFactura.Unidad ||
+                "";
+
+
+            respuesta += `
+
+📡 GPS del remolque no disponible.
+
+🚛 Seguimiento en tiempo real mediante el tracto ${unidadSeguimiento}.`;
+
+        }
 
 
         // ====================================
@@ -683,8 +998,36 @@ El viaje ya cuenta con fecha de llegada registrada en GM Transport.`;
         // ====================================
 
         respuesta += `
+
 🔎 Seguimiento de la carga:
-${textoLiveSharing}`;
+
+`;
+
+
+        if (primerLiveSharing) {
+
+            respuesta +=
+                textoLiveSharing;
+
+        }
+
+        else if (linkGpsTracto) {
+
+            respuesta +=
+`📡 Live Sharing no disponible.
+
+🚛 Ubicación actual mediante GPS Samsara del tracto:
+
+${linkGpsTracto}`;
+
+        }
+
+        else {
+
+            respuesta +=
+                "⚠️ No existe seguimiento disponible en este momento.";
+
+        }
 
 
         // ====================================
@@ -703,56 +1046,85 @@ ${textoLiveSharing}`;
 
         await registrarConsulta({
 
-            telefono: numero,
+            telefono:
+                numero,
 
-            cliente: datosFactura.Cliente || "",
+            cliente:
+                datosFactura.Cliente || "",
 
-            factura: datosFactura.Factura || factura,
+            factura:
+                datosFactura.Factura || factura,
 
-            unidad: datosFactura.Unidad || "",
+            unidad:
+                datosFactura.Unidad || "",
 
-            remolque: datosFactura.Remolque || "",
+            remolque:
+                datosFactura.Remolque || "",
 
-            consulta_tipo: "FACTURA",
+            consulta_tipo:
+                "FACTURA",
 
-            resultado: infoSamsara?.gpsDisponible
 
-                ? "EXITOSA_CON_GPS"
+            // ====================================
+            // RESULTADO DE LA CONSULTA
+            // ====================================
+            //
+            // 1. LIVE SHARING DEL REMOLQUE
+            // 2. LIVE SHARING DEL TRACTO
+            // 3. GPS DISPONIBLE PERO SIN LIVE SHARING
+            // 4. SIN GPS Y SIN LIVE SHARING
+            // ====================================
 
-                : infoSamsara?.encontrado
+            resultado:
 
-                    ? "EXITOSA_SIN_GPS"
+                resultadoLiveSharing.fuente === "REMOLQUE"
 
-                    : "EXITOSA_SIN_SAMSARA",
+                    ? "EXITOSA_CON_GPS_REMOLQUE"
+
+                    : resultadoLiveSharing.fuente === "UNIDAD"
+
+                        ? "EXITOSA_CON_GPS_TRACTO"
+
+                        : infoSamsara?.gpsDisponible
+
+                            ? "GPS_DISPONIBLE_SIN_LIVE_SHARING"
+
+                            : "SIN_GPS_SIN_LIVE_SHARING",
+
+
+            // ====================================
+            // GUARDAR UNICAMENTE LIVE SHARING
+            // ====================================
+            //
+            // IMPORTANTE:
+            // NO guardar infoSamsara.mapa como
+            // link_samsara cuando no existe
+            // Live Sharing.
+            // ====================================
 
             link_samsara:
-
-                primerLiveSharing ||
-
-                infoSamsara?.mapa ||
-
-                linkAFC
+                primerLiveSharing || ""
 
         });
 
+
         return res.sendStatus(200);
+
 
     } catch (error) {
 
         console.error(
-
             "Error procesando webhook:",
-
             error.response?.data ||
-
             error.message
-
         );
+
 
         return res.sendStatus(200);
 
     }
 
 });
+
 
 module.exports = router;
